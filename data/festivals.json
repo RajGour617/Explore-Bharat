@@ -1,0 +1,107 @@
+[
+    {
+        "id": "diwali",
+        "name": "Diwali",
+        "state": "All India",
+        "month": "October/November",
+        "description": "Festival of Lights celebrated across India with lamps, sweets, and fireworks."
+    },
+    {
+        "id": "holi",
+        "name": "Holi",
+        "state": "All India",
+        "month": "March",
+        "description": "Festival of Colors, marking the arrival of spring with colored powders."
+    },
+    {
+        "id": "onam",
+        "name": "Onam",
+        "state": "Kerala",
+        "month": "August/September",
+        "description": "Harvest festival of Kerala featuring boat races and floral carpets."
+    },
+    {
+        "id": "pongal",
+        "name": "Pongal",
+        "state": "Tamil Nadu",
+        "month": "January",
+        "description": "Harvest festival thanking the Sun God for prosperity."
+    },
+    {
+        "id": "bihu",
+        "name": "Bihu",
+        "state": "Assam",
+        "month": "April",
+        "description": "Assamese New Year and harvest festival with traditional dances."
+    },
+    {
+        "id": "durga_puja",
+        "name": "Durga Puja",
+        "state": "West Bengal",
+        "month": "September/October",
+        "description": "Major festival celebrating Goddess Durga with pandals and cultural events."
+    },
+    {
+        "id": "ganesh_chaturthi",
+        "name": "Ganesh Chaturthi",
+        "state": "Maharashtra",
+        "month": "August/September",
+        "description": "10-day festival honoring Lord Ganesha with large idols and processions."
+    },
+    {
+        "id": "navratri",
+        "name": "Navratri",
+        "state": "Gujarat",
+        "month": "September/October",
+        "description": "Nine nights of worship, dance, and music celebrating Goddess Durga."
+    },
+    {
+        "id": "lohri",
+        "name": "Lohri",
+        "state": "Punjab",
+        "month": "January",
+        "description": "Harvest festival of Punjab celebrated with bonfires and folk songs."
+    },
+    {
+        "id": "vishu",
+        "name": "Vishu",
+        "state": "Kerala",
+        "month": "April",
+        "description": "Malayali New Year marked by rituals and feasts."
+    },
+    {
+        "id": "makar_sankranti",
+        "name": "Makar Sankranti",
+        "state": "Multiple States",
+        "month": "January",
+        "description": "Harvest festival celebrated with kite flying, sweets, and rituals."
+    },
+    {
+        "id": "pushkar_fair",
+        "name": "Pushkar Fair",
+        "state": "Rajasthan",
+        "month": "November",
+        "description": "World-famous camel and cattle fair with cultural performances."
+    },
+    {
+        "id": "ratha_yatra",
+        "name": "Ratha Yatra",
+        "state": "Odisha",
+        "month": "June/July",
+        "description": "Chariot festival of Lord Jagannath in Puri."
+    },
+    {
+        "id": "gudi_padwa",
+        "name": "Gudi Padwa",
+        "state": "Maharashtra",
+        "month": "March/April",
+        "description": "Maharashtrian New Year festival with rituals and celebrations."
+    },
+    {
+        "id": "baishakhi",
+        "name": "Baishakhi",
+        "state": "Punjab",
+        "month": "April",
+        "description": "Harvest festival and Sikh New Year celebrated with Bhangra and fairs."
+    }
+]

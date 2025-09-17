@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Heritage & Culture — Discover India</title>
+  <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
+      <div class="brand-text"><h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Cultural India</strong></a></h3></div>
+    </div>
+
+    <div class="top-controls">
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="https://www.india.gov.in/topics/art-culture" id="link-about">About</a>
+        <a href="https://www.indiaculture.gov.in/world-heritage" id="link-impact">Impact</a>
+        <a href="#Refs" id="link-references">References</a>
+      </nav>
+
+      <div class="search-lang">
+        <input id="globalSearch" type="search" placeholder="🔎 Search festivals, food, dance, states..." aria-label="Search">
+        <button id="langToggle" class="btn-small">EN/हिं</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Discover India’s Diversity, One State or Tradition at a Time</h1>
+        <p class="lead">Explore culture through states or categories</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="state.html">🗺️ Explore by State</a>
+          <a class="btn btn-secondary" href="category.html">🎭 Explore by Category</a>
+        </div>
+
+        <div class="quick-cards">
+          <button class="chip" id="didYouKnowBtn">💡 Did you know?</button>
+          <div class="chip coming-soon">🔭 VR/AR (coming soon)</div>
+          <div class="chip coming-soon">🛒 Marketplace (coming soon)</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="carousel" aria-roledescription="carousel">
+          <button class="carousel-arrow left" data-dir="-1" aria-label="Previous">‹</button>
+          <div class="carousel-track">
+            <figure class="slide active">
+              <img src="images/UP/tajmahal.jpg" alt="Taj Mahal">
+              <figcaption>Taj Mahal — Agra, Uttar Pradesh</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/Kerala/kathakali.jpg" alt="Kathakali">
+              <figcaption>Kathakali Dance — Kerala</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/Rajasthan/pushkar.avif" alt="Pushkar Camel Fair">
+              <figcaption>Pushkar Camel Fair — Rajasthan</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/festival.jpg" alt="Festival">
+              <figcaption>Holi — UP, MP</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/MP/bhasmarti.jpg" alt="Food">
+              <figcaption>Bhasmarti — Madhya Pradesh</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/attire.jpg" alt="Attire">
+              <figcaption>Folk Attire — Maharashtra</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/spices.jpg" alt="Food">
+              <figcaption>Spices — Kerala</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="images/biryani.jpg" alt="Food">
+              <figcaption>Biryani — Hyderabad</figcaption>
+            </figure>
+          </div>
+          <button class="carousel-arrow right" data-dir="1" aria-label="Next">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CTA GRID -->
+    <section class="home-features">
+      <div class="feature-card">
+        <h3>Explore by State</h3>
+        <p>Click a state to view cities, festivals, food, arts and crafts.</p>
+        <a href="state.html" class="btn-link">Open map/grid →</a>
+      </div>
+
+      <div class="feature-card maroon">
+        <h3>Explore by Category</h3>
+        <p>Festivals, Food, Music/Dance, Arts, Heritage, Languages.</p>
+        <a href="category.html" class="btn-link">Browse categories →</a>
+      </div>
+
+      <div class="feature-card">
+        <h3>AI Recommendations (Demo)</h3>
+        <a href="ai.html">Personalized suggestions coming.</a>
+      </div>
+    </section>
+    <br>
+    <!-- References and Trivia -->
+    <section class="trivia-wrap">
+      <div class="trivia-card" id="triviaCard">
+        <h4>💡 Did you know?</h4>
+        <p id="triviaText">India has 22 official languages and over 700 dialects.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <Aside class="explore" id="Explore">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="state.html" target="_blank">States & UTs</a></li>
+          <li><a href="category.html" target="_blank">Cultural Categories</a></li>
+          <li><a href="index.html" target="_blank">Search</a></li>
+        </ul>
+      </Aside>
+      <Aside class="refs" id="Refs">
+        <h4>References</h4>
+        <ul>
+          <li><a href="https://www.incredibleindia.gov.in/en" target="_blank">Incredible India</a></li>
+          <li><a href="https://en.unesco.org/" target="_blank">UNESCO</a></li>
+          <li><a href="https://www.mptourism.com/" target="_blank">State Tourism Boards</a></li>
+        </ul>
+      </Aside>
+      <Aside class="soon" id="Soon">
+        <h4>Coming Soon</h4>
+        <ul>
+          <li><a href="#" target="_blank">🥽 VR/AR Tours</a></li>
+          <li><a href="#" target="_blank">🛒 Artisan Marketplace</a></li>
+          <li><a href="#" target="_blank">🤖 AI Recommendations</a></li>
+        </ul>
+      </Aside>
+    </footer>
+  </main>
+
+  <!-- Modal for general dynamic popups -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>

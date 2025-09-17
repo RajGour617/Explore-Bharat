@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Categories — Cultural India</title>
+  <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <header class="site-header small">
+    <div class="brand">
+      <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
+      <div class="brand-text"><h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Cultural India</strong></a></h3></div>
+    </div>
+    <div class="top-controls">
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="state.html">States</a>
+      </nav>
+      <div class="search-lang">
+        <input id="globalSearch" type="search" placeholder="🔎 Search categories, festivals, food...">
+        <button id="langToggle" class="btn-small">EN/हिं</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="category-hero">
+      <h1>Explore by Category</h1>
+      <p>Pick a theme to discover cultural items across India</p>
+
+      <div class="filter-row">
+        <label for="stateFilter">Filter by State</label>
+        <select id="stateFilter">
+          <option value="">All States</option>
+        </select>
+
+        <label for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="categoryGrid" class="grid categories-grid">
+      <!-- Category cards populated by JS -->
+    </section>
+
+    <section class="coming-soon">
+      <div class="placeholder">🛒 Marketplace (coming soon)</div>
+      <div class="placeholder">📸 VR/AR Tours (coming soon)</div>
+    </section>
+
+    <footer class="site-footer compact">
+      <p>Built for SIH 2025 — Team TechStar</p>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>State — Cultural India</title>
+  <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header class="site-header small">
+    <div class="brand">
+      <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
+      <div class="brand-text"><h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Cultural India</strong></a></h3></div>
+    </div>
+    <div class="top-controls">
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="category.html">Categories</a>
+      </nav>
+      <div class="search-lang">
+        <input id="globalSearch" type="search" placeholder="🔎 Search...">
+        <button id="langToggle" class="btn-small">EN/हिं</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="stateBanner" class="state-banner">
+      <!-- Banner populated dynamically -->
+    </div>
+
+    <section id="stateIntro" class="state-intro">
+      <!-- State intro text populated by JS -->
+    </section>
+
+    <section class="cards-grid" aria-live="polite">
+      <h2>Cities & Attractions</h2>
+      <div id="citiesGrid" class="grid"></div>
+
+      <h2>Festivals</h2>
+      <div id="festivalsGrid" class="grid"></div>
+
+      <h2>Food</h2>
+      <div id="foodGrid" class="grid"></div>
+
+      <h2>Dance & Music</h2>
+      <div id="danceGrid" class="grid"></div>
+
+      <h2>Crafts & Arts</h2>
+      <div id="craftGrid" class="grid"></div>
+    </section>
+
+    <section class="coming-soon-places">
+      <div class="placeholder">🤖 AI Recommendations: Coming soon</div>
+      <div class="placeholder">🛒 Artisan Marketplace: Coming soon</div>
+    </section>
+
+    <footer class="site-footer compact">
+      <p>References: Incredible India | UNESCO | State Tourism Boards</p>
+      <p>Built for SIH 2025 — Team TechStar</p>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+
+</body>
+
+</html>
