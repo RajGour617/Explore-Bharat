@@ -613,7 +613,7 @@ function initLangToggle() {
   const nextButton = document.querySelector(".carousel-arrow.right");
 
   let currentIndex = 0;
-  const slideInterval = 4000; // 4 seconds per slide
+  const slideInterval = 2000; // 4 seconds per slide
   let autoSlide;
 
   function showSlide(index) {
