@@ -65,7 +65,7 @@
         id: "rajasthan",
         name_en: "Rajasthan",
         name_hi: "राजस्थान",
-        banner: "images/Rajasthan/pushkar.jpg",
+        banner: "images/Rajasthan/pushkar.avif",
         intro_en: "Rajasthan — deserts, forts and the Pushkar Camel Fair.",
         intro_hi: "राजस्थान — रेगिस्तान, किले और पुष्कर ऊँट मेला।",
         cities: [
