@@ -605,3 +605,56 @@ function initLangToggle() {
     });
     setLangButtonText();
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".carousel-track");
+  const slides = Array.from(track.children);
+  const prevButton = document.querySelector(".carousel-arrow.left");
+  const nextButton = document.querySelector(".carousel-arrow.right");
+
+  let currentIndex = 0;
+  const slideInterval = 4000; // 4 seconds per slide
+  let autoSlide;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentIndex + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function prevSlide() {
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(prevIndex);
+  }
+
+  // Button listeners
+  nextButton.addEventListener("click", () => {
+    nextSlide();
+    resetAutoSlide();
+  });
+
+  prevButton.addEventListener("click", () => {
+    prevSlide();
+    resetAutoSlide();
+  });
+
+  // Auto-play
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, slideInterval);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  // Start carousel
+  showSlide(0);
+  startAutoSlide();
+});
