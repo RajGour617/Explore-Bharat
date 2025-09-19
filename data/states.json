@@ -1,0 +1,404 @@
+{
+  "states": [
+    {
+      "id": "Andhra Pradesh",
+      "banner": "images/AP/banner.jpg",
+      "intro": "Known for Kuchipudi dance, Tirupati temple, and spicy cuisine.",
+      "cities": [
+        {
+          "name": "Vijayawada",
+          "img": "",
+          "desc": "Commercial hub with Kanaka Durga temple."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Ugadi",
+          "img": "",
+          "desc": "Telugu New Year festival."
+        }
+      ],
+      "food": [
+        {
+          "name": "Pulihora",
+          "img": "",
+          "desc": "Tamarind rice delicacy."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Kuchipudi",
+          "img": "",
+          "desc": "Classical dance form from Andhra."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Kalamkari",
+          "img": "",
+          "desc": "Hand-painted fabric art."
+        }
+      ]
+    },
+    {
+      "id": "Arunachal Pradesh",
+      "banner": "images/AR/banner.jpg",
+      "intro": "Land of dawn-lit mountains, diverse tribes and Tawang monastery.",
+      "cities": [
+        {
+          "name": "Itanagar",
+          "img": "",
+          "desc": "State capital with historic fort."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Losar",
+          "img": "",
+          "desc": "Tibetan New Year celebration."
+        }
+      ],
+      "food": [
+        {
+          "name": "Thukpa",
+          "img": "",
+          "desc": "Noodle soup popular in the hills."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Ponung Dance",
+          "img": "",
+          "desc": "Group dance of Adi tribe."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Bamboo Handicrafts",
+          "img": "",
+          "desc": "Intricate bamboo crafts."
+        }
+      ]
+    },
+    {
+      "id": "Assam",
+      "banner": "images/AS/banner.jpg",
+      "intro": "Famous for tea gardens, Kaziranga National Park, and Bihu festival.",
+      "cities": [
+        {
+          "name": "Guwahati",
+          "img": "",
+          "desc": "Gateway city with Kamakhya temple."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Bihu",
+          "img": "",
+          "desc": "Harvest festival with dance and songs."
+        }
+      ],
+      "food": [
+        {
+          "name": "Assamese Thali",
+          "img": "",
+          "desc": "Rice, fish and green leafy dishes."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Bihu Dance",
+          "img": "",
+          "desc": "Energetic folk dance."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Assam Silk",
+          "img": "",
+          "desc": "Famous Muga and Eri silk weaving."
+        }
+      ]
+    },
+    {
+      "id": "Bihar",
+      "banner": "images/BR/banner.jpg",
+      "intro": "Home to ancient Nalanda University and Bodh Gaya.",
+      "cities": [
+        {
+          "name": "Patna",
+          "img": "",
+          "desc": "Capital city on the Ganga river."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Chhath Puja",
+          "img": "",
+          "desc": "Sun God worship festival."
+        }
+      ],
+      "food": [
+        {
+          "name": "Litti Chokha",
+          "img": "",
+          "desc": "Stuffed wheat balls with mashed veggies."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Jat-Jatin",
+          "img": "",
+          "desc": "Popular folk dance of Bihar."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Madhubani Painting",
+          "img": "",
+          "desc": "World-famous folk art."
+        }
+      ]
+    },
+    {
+      "id": "Chhattisgarh",
+      "banner": "images/CG/banner.jpg",
+      "intro": "Known for tribal culture, Chitrakote falls and Bastar art.",
+      "cities": [
+        {
+          "name": "Raipur",
+          "img": "",
+          "desc": "State capital and industrial hub."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Bastar Dussehra",
+          "img": "",
+          "desc": "Longest Dussehra celebration."
+        }
+      ],
+      "food": [
+        {
+          "name": "Chila",
+          "img": "",
+          "desc": "Rice-flour pancake dish."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Panthi Dance",
+          "img": "",
+          "desc": "Performed during Maghi Purnima."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Bell Metal Craft",
+          "img": "",
+          "desc": "Bastar Dhokra metal art."
+        }
+      ]
+    },
+    {
+      "id": "Goa",
+      "banner": "images/GA/banner.jpg",
+      "intro": "Beaches, Portuguese heritage, and vibrant nightlife.",
+      "cities": [
+        {
+          "name": "Panaji",
+          "img": "",
+          "desc": "Capital city with Latin Quarter."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Carnival",
+          "img": "",
+          "desc": "Parades, dance, and music."
+        }
+      ],
+      "food": [
+        {
+          "name": "Fish Curry Rice",
+          "img": "",
+          "desc": "Staple Goan dish."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Fugdi",
+          "img": "",
+          "desc": "Traditional dance of women."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Shell Crafts",
+          "img": "",
+          "desc": "Handicrafts made of seashells."
+        }
+      ]
+    },
+    {
+      "id": "Gujarat",
+      "banner": "images/GJ/banner.jpg",
+      "intro": "Land of Gir lions, Somnath temple, and vibrant Navratri.",
+      "cities": [
+        {
+          "name": "Ahmedabad",
+          "img": "",
+          "desc": "Textile city with Sabarmati Ashram."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Navratri",
+          "img": "",
+          "desc": "Nine nights of Garba and Dandiya."
+        }
+      ],
+      "food": [
+        {
+          "name": "Dhokla",
+          "img": "",
+          "desc": "Steamed chickpea flour snack."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Garba",
+          "img": "",
+          "desc": "Circular dance performed during Navratri."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Bandhani",
+          "img": "",
+          "desc": "Tie-dye textile art."
+        }
+      ]
+    },
+    {
+      "id": "Haryana",
+      "banner": "images/HR/banner.jpg",
+      "intro": "Historic land of Kurukshetra and folk dances.",
+      "cities": [
+        {
+          "name": "Chandigarh",
+          "img": "",
+          "desc": "Shared capital with Punjab."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Teej",
+          "img": "",
+          "desc": "Celebrated by women during monsoon."
+        }
+      ],
+      "food": [
+        {
+          "name": "Bajra Khichdi",
+          "img": "",
+          "desc": "Pearl millet porridge."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Phag Dance",
+          "img": "",
+          "desc": "Performed during Holi season."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Phulkari",
+          "img": "",
+          "desc": "Colorful embroidery work."
+        }
+      ]
+    },
+    {
+      "id": "Himachal Pradesh",
+      "banner": "images/HP/banner.jpg",
+      "intro": "Himalayan state with hill stations and apple orchards.",
+      "cities": [
+        {
+          "name": "Shimla",
+          "img": "",
+          "desc": "Former summer capital of British India."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Kullu Dussehra",
+          "img": "",
+          "desc": "Unique week-long celebration."
+        }
+      ],
+      "food": [
+        {
+          "name": "Siddu",
+          "img": "",
+          "desc": "Steamed bread delicacy."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Nati",
+          "img": "",
+          "desc": "Traditional folk dance of Himachal."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Kullu Shawls",
+          "img": "",
+          "desc": "Handwoven woolen shawls."
+        }
+      ]
+    },
+    {
+      "id": "Jharkhand",
+      "banner": "images/JH/banner.jpg",
+      "intro": "Rich in minerals, forests, and tribal heritage.",
+      "cities": [
+        {
+          "name": "Ranchi",
+          "img": "",
+          "desc": "Capital city with waterfalls."
+        }
+      ],
+      "festivals": [
+        {
+          "name": "Sarhul",
+          "img": "",
+          "desc": "Spring festival of tribal communities."
+        }
+      ],
+      "food": [
+        {
+          "name": "Thekua",
+          "img": "",
+          "desc": "Sweet snack offered during Chhath."
+        }
+      ],
+      "danceMusic": [
+        {
+          "name": "Paika",
+          "img": "",
+          "desc": "Martial dance form."
+        }
+      ],
+      "crafts": [
+        {
+          "name": "Stone Carving",
+          "img": "",
+          "desc": "Traditional tribal art."
+        }
+      ]
+    }
+  ]
+}

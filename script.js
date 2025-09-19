@@ -1,401 +1,558 @@
-/* js/script.js
-   Data-driven multi-page behaviors: index, state.html, category.html.
-   Place this file at js/script.js and add images under assets/.
-*/
-
 (() => {
-  // ---------- Sample data store (placeholder demo-ready) ----------
-  // Add / extend items for SIH demo
+  // Replace or extend this object, or create states.json with the same structure and the script will fetch it.
   const DATA = {
-    meta: {
-      trivia: [
-        "India has 22 official languages and over 700 dialects.",
-        "Kumbh Mela is visible from space during peak days.",
-        "The classical dance forms in India include Bharatanatyam, Kathakali, Odissi and Kathak."
-      ]
-    },
     states: [
       {
-        id: "uttar-pradesh",
-        name_en: "Uttar Pradesh",
-        name_hi: "उत्तर प्रदेश",
-        banner: "images/UP/tajmahal.jpg",
-        intro_en: "Uttar Pradesh — home to the Taj Mahal and many festivals.",
-        intro_hi: "उत्तर प्रदेश — ताज महल और कई त्योहारों का घर।",
-        cities: [
-          { name: "Taj Mahal", img: "images/UP/tajmahal.jpg", desc_en: "Agra", desc_hi: "ताज महल" }
-        ],
-        festivals: [
-          { id: "kumbh", name: "Kumbh Mela", img: "images/UP/kumbh.jpg", desc_en: "Massive spiritual gathering", desc_hi: "विशाल धार्मिक सभा" }
-        ],
-        food: [
-          { id: "pethaa", name: "Petha", img: "images/UP/petha.jpg", desc_en: "Agra's sweet", desc_hi: "आगरा का मिठाई" }
-        ],
-        arts: [
-          { id: "mehndi", name: "Chikankari", img: "images/UP/chikankari.jpg", desc_en: "Embroidery tradition", desc_hi: "कढ़ाई की परंपरा" }
-        ],
-        dances: [
-          { id: "kathak", name: "Kathak", img: "images/UP/kathak.jpg", desc_en: "Uttar Pradesh's classical dance", desc_hi: "उत्तर प्रदेश का शास्त्रीय नृत्य" }
-        ]
-      },
-      {
-        id: "kerala",
-        name_en: "Kerala",
-        name_hi: "केरल",
-        banner: "images/Kerala/kathakali.jpg",
-        intro_en: "Kerala — known for Kathakali dance and backwaters.",
-        intro_hi: "केरल — कथकली नृत्य और बैकवाटर्स के लिए जाना जाता है।",
-        cities: [
-          { name: "Kochi", img: "images/Kerala/kochi.jpg", desc_en: "Historic port city", desc_hi: "ऐतिहासिक बंदरगाह शहर" }
-        ],
-        festivals: [
-          { id: "onam", name: "Onam", img: "images/Kerala/onam.jpg", desc_en: "Harvest festival", desc_hi: "फसल त्योहार" }
-        ],
-        food: [
-          { id: "sadya", name: "Sadya", img: "images/Kerala/sadya.jpg", desc_en: "Traditional vegetarian feast", desc_hi: "पारंपरिक शाकाहारी दावत" }
-        ],
-        arts: [
-          { id: "kathakali", name: "Kathakali", img: "images/Kerala/kathakali.jpg", desc_en: "Classical dance-drama", desc_hi: "शास्त्रीय नाट्य नृत्य" }
-        ],
-        dances: [
-          { id: "folkMusic", name: "Folk Music", img: "images/Kerala/folkmusic.jpg", desc_en: "Kerala's folk music", desc_hi: "केरल का लोक संगीत" }
-        ]
-      },
-      {
-        id: "rajasthan",
-        name_en: "Rajasthan",
-        name_hi: "राजस्थान",
-        banner: "images/Rajasthan/pushkar.avif",
-        intro_en: "Rajasthan — deserts, forts and the Pushkar Camel Fair.",
-        intro_hi: "राजस्थान — रेगिस्तान, किले और पुष्कर ऊँट मेला।",
-        cities: [
-          { name: "Pushkar", img: "images/Rajasthan/pushkarcity.jpg", desc_en: "Famous for camel fair", desc_hi: "ऊँट मेला के लिए प्रसिद्ध" }
-        ],
-        festivals: [
-          { id: "pushkarFair", name: "Pushkar Camel Fair", img: "images/Rajasthan/pushkar.avif", desc_en: "Annual camel fair", desc_hi: "वार्षिक ऊंट मेला" }
-        ],
-        food: [
-          { id: "dalBaati", name: "Dal Baati Churma", img: "images/Rajasthan/dalbaati.jpg", desc_en: "Rajasthani speciality", desc_hi: "राजस्थानी व्यंजन" }
-        ],
-        arts: [
-          { id: "blockprint", name: "Block Printing", img: "images/Rajasthan/blockprint.jpg", desc_en: "Traditional textile printing", desc_hi: "पारंपरिक कपड़ा छपाई" }
-        ],
-        dances: [
-          { id: "ghoomar", name: "Ghoomar", img: "images/Rajasthan/ghoomar.jpg", desc_en: "Folk dance", desc_hi: "लोक नृत्य" }
-        ]
-      },
-      {
         id: "Madhya Pradesh",
-        name_en: "Madhya Pradesh",
-        name_hi: "मध्य प्रदेश",
-        banner: "images/mpbanner.jpg",
-        intro_en: "Madhya Pradesh — known for its temples and national parks.",
+        short: "MP",
+        banner: "images/MP/mpbanner.jpg",
+        intro: "Madhya Pradesh — the heart of India; home to ancient caves, wildlife and tribal arts.",
         intro_hi: "मध्य प्रदेश — अपने मंदिरों और राष्ट्रीय उद्यानों के लिए जाना जाता है।",
         cities: [
-          { name: "Bhopal", img: "images/MP/bhopal.jpg", desc_en: "MP Capital city", desc_hi: "राजधानी शहर" }
+          { name: "Bhopal", img: "images/MP/bhopal.jpg", desc: "Capital city with lakes and museums." },
+          { name: "Khajuraho", img: "images/MP/khajuraho.jpg", desc: "Famous for its UNESCO-listed temples." },
+          { name: "Sanchi", img: "images/MP/sanchi.jpg", desc: "Buddhist stupas and ancient heritage." }
         ],
         festivals: [
-          { id: "holi", name: "Holi", img: "images/MP/holi1.jpg", desc_en: "Festival of colors", desc_hi: "रंगों का त्योहार" }
+          {name: "Teej", img: "images/MP/teej.jpg", desc: "Monsoon festival celebrated with songs and swings." },
+          { name: "Holi", img: "images/MP/holi1.jpg", desc: "Vibrant festival of colours" },
+          { name: "Khajuraho Dance Festival", img: "images/MP/khajurahoDance.jpg", desc: "Classical dance under the temple lights." }
         ],
         food: [
-          { id: "dalBafla", name: "Dal Bafla", img: "images/MP/dalbafla.jpg", desc_en: "Madhya Pradesh speciality", desc_hi: "मध्य प्रदेश का विशेष व्यंजन" }
+          { name: "Dal Bafla", img: "images/MP/dalbafla.jpg", desc: "A popular spicy starter." },
+          { name: "Poha", img: "images/MP/poha.jpg", desc: "Flattened rice snack, popular breakfast." }
         ],
-        arts: [
-          { id: "Gond", name: "Gond Art", img: "images/MP/gondart.jpg", desc_en: "Traditional tribal art", desc_hi: "पारंपरिक जनजातीय कला" }
+        danceMusic: [
+          { name: "Gond Dance", img: "images/MP/gondDance.jpg", desc: "Tribal dance of Gond community." },
+          { name: "Rai", img: "images/MP/rai.jpg", desc: "Traditional dance form of the region." }
         ],
-        dances: [
-          { id: "matki", name: "Matki Nritya", img: "images/MP/matki.jpg", desc_en: "Folk dance", desc_hi: "लोक नृत्य" }
-        ]
+        crafts: [
+          { name: "Pithora Paintings", img: "images/MP/pithora.jpg", desc: "Ritual paintings by tribal artists." }
+        ],
+        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+      },
+      {
+        id: "Uttar Pradesh",
+        short: "UP",
+        banner: "images/UP/upbanner.jpg",
+        intro: "Uttar Pradesh — land of Mughal monuments, classical music and colourful fairs.",
+        intro_hi: "उत्तर प्रदेश — मुगल स्मारकों, शास्त्रीय संगीत और रंगीन मेलों की भूमि।",
+        cities: [
+          { name: "Lucknow", img: "images/UP/lucknow.jpg", desc: "Capital city known for its heritage." },
+          { name: "Agra", img: "images/UP/tajmahal.jpg", desc: "Taj Mahal and Mughal history." },
+          { name: "Varanasi", img: "images/UP/varanasi.jpg", desc: "One of the world’s oldest living cities." }
+        ],
+        festivals: [
+          { name: "Diwali", img: "images/UP/diwali.jpg", desc: "Festival of lights celebrated with great fervor." },
+          { name: "Kumbh Mela", img: "images/UP/kumbh.jpg", desc: "Major religious congregation at the Sangam." },
+          { name: "Holi", img: "images/MP/holi1.jpg", desc: "Vibrant festival of colours." }
+        ],
+        food: [
+          { name: "Awadhi Biryani", img: "images/UP/awadhiBiryani.jpg", desc: "Royal flavours of Lucknow." },
+          { name: "Bedai", img: "images/UP/bedai.jpg", desc: "Popular breakfast from Lucknow." }
+        ],
+        danceMusic: [
+          { name: "Thumri & Dadra", img: "images/UP/thumri.jpg", desc: "Classical vocal forms from Awadh." }
+        ],
+        crafts: [
+          { name: "Zardozi Embroidery", img: "images/UP/zardozi.jpg", desc: "Luxurious metal-thread embroidery." }
+        ],
+        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+      },
+      {
+        id: "Kerala",
+        short: "KL",
+        banner: "images/Kerala/keralaBanner.jpg",
+        intro: "Kerala — backwaters, Ayurveda, and a rich performing-art tradition.",
+        intro_hi: "केरल — अपने बैकवाटर्स, आयुर्वेद और समृद्ध प्रदर्शन कला परंपरा के लिए जाना जाता है।",
+        cities: [
+          { name: "Kochi", img: "images/Kerala/kochi.jpg", desc: "Historic port city with colonial past." },
+          { name: "Thiruvananthapuram", img: "images/Kerala/thiru.jpg", desc: "State capital and cultural hub." }
+        ],
+        festivals: [
+          { name: "Onam", img: "images/Kerala/onam.jpg", desc: "Harvest festival celebrated statewide." }
+        ],
+        food: [
+          { name: "Kerala Sadya", img: "images/Kerala/sadya.jpg", desc: "Banquet served on banana leaf." },
+          { name: "Appam & Stew", img: "images/Kerala/appam.jpg", desc: "Light fermented pancakes with stew." }
+        ],
+        danceMusic: [
+          { name: "Kathakali", img: "images/Kerala/kathakali.jpg", desc: "Classical dance-drama with elaborate makeup." }
+        ],
+        crafts: [
+          { name: "Coir Products", img: "images/Kerala/coir.jpg", desc: "Coir-based handicrafts and ropes." }
+        ],
+        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+      },
+      {
+        id: "Rajasthan",
+        short: "RJ",
+        banner: "images/Rajasthan/rajbanner.jpg",
+        intro: "Rajasthan — deserts, forts, folk music and vibrant textile crafts.",
+        intro_hi: "राजस्थान — अपने रेगिस्तान, किलों, लोक संगीत और जीवंत वस्त्र शिल्प के लिए जाना जाता है।",
+        cities: [
+          { name: "Jaipur", img: "images/Rajasthan/jaipur.jpg", desc: "Pink city with palaces & bazaars." },
+          { name: "Jaisalmer", img: "images/Rajasthan/jaisalmer.jpg", desc: "Golden city in the Thar desert." }
+        ],
+        festivals: [
+          { name: "Pushkar Camel Fair", img: "images/Rajasthan/pushkar.avif", desc: "Camel trading fair + cultural events." },
+          { name: "Desert Festival", img: "images/Rajasthan/desertfest.jpg", desc: "Folk performances and camel races." }
+        ],
+        food: [
+          { name: "Dal Baati Churma", img: "images/Rajasthan/dalbaati.jpg", desc: "Signature Rajasthani meal." }
+        ],
+        danceMusic: [
+          { name: "Ghoomar", img: "images/Rajasthan/ghoomar.jpg", desc: "Traditional circular women's dance." }
+        ],
+        crafts: [
+          { name: "Block Printing & Blue Pottery", img: "images/Rajasthan/blockprint.jpg", desc: "Iconic handicrafts." }
+        ],
+        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
       }
-    ],
-
-    // category-level index (for category.html)
-    categories: [
-      { id: "festivals", name_en: "Festivals", name_hi: "त्योहार", icon: "🎉" },
-      { id: "food", name_en: "Food", name_hi: "खाना", icon: "🍛" },
-      { id: "dance", name_en: "Dance", name_hi: "नृत्य", icon: "💃" },
-      { id: "music", name_en: "Music", name_hi: "संगीत", icon: "🎶" },
-      { id: "arts", name_en: "Arts & Crafts", name_hi: "कला और शिल्प", icon: "🖼️" },
-      { id: "heritage", name_en: "Heritage", name_hi: "विरासत", icon: "🏛️" },
-      { id: "languages", name_en: "Languages", name_hi: "भाषाएँ", icon: "🗣️" }
     ]
   };
 
-  // ---------- Utilities ----------
-  const qs = (s, el = document) => el.querySelector(s);
-  const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
-  const htmlEscape = s => String(s || "").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  // ---------- UTILITIES ----------
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  // Determine current page
-  const path = location.pathname.split("/").pop();
-  const isIndex = path === "" || path === "index.html";
-  const isState = path === "state.html";
-  const isCategory = path === "category.html";
-
-  // Language state
-  let LANG = localStorage.getItem("lang") || "en";
-
-  // ---------- UI functions ----------
-  function setLangButtonText() {
-    qsa("#langToggle").forEach(btn => {
-      if(btn) btn.textContent = LANG === "en" ? "EN/हिं" : "EN/हिं";
-    });
-  }
-  function t(en, hi) {
-    return LANG === "hi" ? (hi || en) : en;
+  function createCard(item, type) {
+    const div = document.createElement("article");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${item.img || 'images/placeholder.jpg'}" alt="${item.name}">
+      <h4>${item.name}</h4>
+      <p>${item.desc || ''}</p>
+      <div style="margin-top:auto;">
+        <button class="btn btn-link view-detail" data-type="${type}" data-name="${item.name}">View</button>
+      </div>
+    `;
+    // store full item for modal retrieval
+    div._meta = { item, type };
+    return div;
   }
 
-  function showModal(html) {
-    const modal = qs("#modal");
-    const body = qs("#modalBody");
-    body.innerHTML = html;
+  function showModal(title, htmlContent) {
+    const modal = $("#modal");
+    const body = $("#modalBody");
+    if (!modal || !body) return;
+    body.innerHTML = `<h3>${title}</h3><div>${htmlContent}</div>`;
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
   }
-  function hideModal() {
-    const modal = qs("#modal");
+
+  function closeModal() {
+    const modal = $("#modal");
     if (!modal) return;
     modal.classList.remove("show");
     modal.setAttribute("aria-hidden", "true");
-    qs("#modalBody").innerHTML = "";
   }
 
-  // ---------- Index page behavior ----------
-  function initIndex() {
-    // Carousel auto and arrows
-    const slides = qsa(".slide");
-    let cur = 0;
-    function show(i) {
-      slides.forEach(s => s.classList.remove("active"));
-      slides[i].classList.add("active");
-    }
-    const left = qs(".carousel-arrow.left"), right = qs(".carousel-arrow.right");
-    if (left && right) {
-      left.addEventListener("click", () => { cur = (cur - 1 + slides.length) % slides.length; show(cur); });
-      right.addEventListener("click", () => { cur = (cur + 1) % slides.length; show(cur); });
-    }
-    setInterval(() => { cur = (cur + 1) % slides.length; show(cur); }, 4500);
+  // ---------- RENDERING ----------
+  function populateStateDropdown(states) {
+    const selects = Array.from(document.querySelectorAll("#stateFilter, #stateDropdown"));
+    selects.forEach(sel => {
+      // remove existing except the first (All States)
+      const existing = Array.from(sel.querySelectorAll("option[data-generated]"));
+      existing.forEach(o => o.remove());
 
-    // Did you know rotates trivia
-    const triviaText = qs("#triviaText");
-    let ti = 0;
-    setInterval(() => {
-      ti = (ti + 1) % DATA.meta.trivia.length;
-      if (triviaText) triviaText.textContent = DATA.meta.trivia[ti];
-    }, 5000);
+      states.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.id;
+        opt.textContent = s.id;
+        opt.dataset.generated = "1";
+        sel.appendChild(opt);
+      });
+    });
   }
 
-  // ---------- State page behavior ----------
-  function renderStatePage() {
-    // read state param
-    const params = new URLSearchParams(location.search);
-    const stateIdOrName = params.get("state"); // id or name
-    const defaultState = DATA.states[0];
+  function populateCategoryDropdown(states) {
+    // Collect unique categories across DATA
+    const catSet = new Set();
+    states.forEach(s => (s.categories || []).forEach(c => catSet.add(c)));
+    const categories = Array.from(catSet).sort();
+    const sel = document.querySelector("#categoryFilter, #categoryDropdown");
+    if (!sel) return;
+    // remove previously added
+    Array.from(sel.querySelectorAll("option[data-generated-cat]")).forEach(o => o.remove());
+    categories.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      opt.dataset.generatedCat = "1";
+      sel.appendChild(opt);
+    });
+  }
 
-    let state = DATA.states.find(s => s.id === stateIdOrName || s.name_en.toLowerCase() === (stateIdOrName||"").toLowerCase());
-    if (!state) state = defaultState;
+  function renderStatePage(stateId) {
+    if (!stateId) {
+      // Clear content if no selection
+      const banner = $("#stateBanner");
+      if (banner) banner.innerHTML = "";
+      const intro = $("#stateIntro");
+      if (intro) intro.innerHTML = `<p>Select a state to view its details.</p>`;
+      ["citiesGrid", "festivalsGrid", "foodGrid", "danceGrid", "craftGrid"].forEach(id => {
+        const g = document.getElementById(id);
+        if (g) g.innerHTML = "";
+      });
+      return;
+    }
+    const state = DATA.states.find(s => s.id === stateId);
+    if (!state) return;
 
     // Banner
-    const banner = qs("#stateBanner");
-    banner.innerHTML = `
-      <div class="banner-wrap" style="background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('${state.banner || "assets/tajmahal.jpg"}') center/cover; padding:34px; border-radius:12px; color:#fff;">
-        <h1 style="margin:0">${LANG==='hi'?state.name_hi:state.name_en}</h1>
-        <p style="margin:6px 0">${LANG==='hi'?state.intro_hi:state.intro_en}</p>
-        <a href="category.html" class="btn" style="background:#fff;color:#102a43;border-radius:10px;padding:8px 12px;text-decoration:none">Explore across categories →</a>
-      </div>
-    `;
+    const banner = $("#stateBanner");
+    if (banner) {
+      banner.innerHTML = `
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="${state.banner || 'images/placeholder.jpg'}" alt="${state.id}" style="height:140px;border-radius:12px;object-fit:cover;">
+          <div>
+            <h1>${state.id}</h1>
+            <p style="max-width:640px">${state.intro}</p>
+          </div>
+        </div>
+      `;
+    }
 
-    // Intro
-    const intro = qs("#stateIntro");
-    intro.innerHTML = `<p>${htmlEscape(LANG==='hi'?state.intro_hi:state.intro_en)}</p>`;
+    // Intro section
+    const intro = $("#stateIntro");
+    if (intro) {
+      intro.innerHTML = `<p>${state.intro}</p>`;
+    }
 
     // Populate grids
-    const makeCard = (item, type, stateName) => {
-      const title = htmlEscape(LANG === "hi" ? item.name_hi || item.name : item.name);
-      const desc = htmlEscape(LANG === "hi" ? item.desc_hi || item.desc_en || "" : item.desc_en || "");
-      const img = item.img || state.banner || "assets/tajmahal.jpg";
-      return `
-        <article class="card" data-type="${type}" data-state="${state.id}">
-          <img src="${img}" alt="${title}">
-          <h4>${title}</h4>
-          <p>${desc}</p>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <button class="btn-small btn-open" data-id="${item.id||item.name}" data-type="${type}" data-state="${state.id}">More</button>
-            <a class="btn-link" href="${type==='city'?`https://en.wikipedia.org/wiki/${encodeURIComponent(item.name)}`:'#'}" target="_blank">Learn →</a>
-          </div>
-        </article>
-      `;
-    };
+    const grids = [
+      { key: "cities", id: "citiesGrid", type: "City" },
+      { key: "festivals", id: "festivalsGrid", type: "Festival" },
+      { key: "food", id: "foodGrid", type: "Food" },
+      { key: "danceMusic", id: "danceGrid", type: "Dance/Music" },
+      { key: "crafts", id: "craftGrid", type: "Craft" }
+    ];
 
-    const citiesGrid = qs("#citiesGrid");
-    const festivalsGrid = qs("#festivalsGrid");
-    const foodGrid = qs("#foodGrid");
-    const danceGrid = qs("#danceGrid");
-    const craftGrid = qs("#craftGrid");
-
-    citiesGrid.innerHTML = (state.cities||[]).map(it => makeCard(it,'city',state.name_en)).join("") || `<p class="placeholder">No data yet — add city cards.</p>`;
-    festivalsGrid.innerHTML = (state.festivals||[]).map(it => makeCard(it,'festival',state.name_en)).join("") || `<p class="placeholder">No festivals listed.</p>`;
-    foodGrid.innerHTML = (state.food||[]).map(it => makeCard(it,'food',state.name_en)).join("") || `<p class="placeholder">No food items yet.</p>`;
-    danceGrid.innerHTML = (state.dances||[]).map(it => makeCard(it,'dance',state.name_en)).join("") || `<p class="placeholder">No dance items yet.</p>`;
-    craftGrid.innerHTML = (state.arts||[]).map(it => makeCard(it,'craft',state.name_en)).join("") || `<p class="placeholder">No crafts listed.</p>`;
-
-    // Attach listeners for "More" buttons (event delegation)
-    document.querySelectorAll(".btn-open").forEach(btn => {
-      btn.addEventListener("click", e => {
-        const id = btn.dataset.id;
-        const type = btn.dataset.type;
-        const st = btn.dataset.state;
-        // find item in the state collections
-        const s = DATA.states.find(x => x.id === st);
-        let coll = [];
-        if (type === "city") coll = s.cities;
-        if (type === "festival") coll = s.festivals;
-        if (type === "food") coll = s.food;
-        if (type === "dance") coll = s.dances;
-        if (type === "craft") coll = s.arts;
-        const item = coll.find(x => (x.id || x.name) === id) || coll[0];
-        const title = LANG==='hi' ? item.name_hi || item.name : item.name;
-        const description = LANG==='hi' ? item.desc_hi || item.desc_en || "" : item.desc_en || "";
-        const image = item.img || s.banner || "assets/tajmahal.jpg";
-        showModal(`
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <img src="${image}" alt="${title}" style="width:42%;height:auto;border-radius:10px;object-fit:cover">
-            <div style="flex:1">
-              <h3>${htmlEscape(title)}</h3>
-              <p>${htmlEscape(description)}</p>
-              <p><strong>State:</strong> ${LANG==='hi' ? s.name_hi : s.name_en}</p>
-              <p><strong>Category:</strong> ${type}</p>
-            </div>
-          </div>
-        `);
-      });
-    });
-  }
-
-  // ---------- Category page behavior ----------
-  function renderCategoryPage() {
-    // populate filters
-    const stateFilter = qs("#stateFilter");
-    const categoryFilter = qs("#categoryFilter");
-    // states options
-    DATA.states.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s.id;
-      opt.textContent = LANG === "hi" ? (s.name_hi || s.name_en) : s.name_en;
-      stateFilter.appendChild(opt);
-    });
-    // categories
-    DATA.categories.forEach(c => {
-      const opt = document.createElement("option");
-      opt.value = c.id;
-      opt.textContent = LANG === "hi" ? (c.name_hi || c.name_en) : c.name_en;
-      categoryFilter.appendChild(opt);
-
-      // Also build a visual card in grid
-    });
-
-    // build a combined list of category items across states
-    const items = [];
-    DATA.states.forEach(s => {
-      // festivals
-      (s.festivals||[]).forEach(f => items.push({...f, type:"festivals", stateId:s.id, stateName:s.name_en}));
-      (s.food||[]).forEach(f => items.push({...f, type:"food", stateId:s.id, stateName:s.name_en}));
-      (s.dances||[]).forEach(f => items.push({...f, type:"dance", stateId:s.id, stateName:s.name_en}));
-      (s.arts||[]).forEach(f => items.push({...f, type:"arts", stateId:s.id, stateName:s.name_en}));
-      (s.cities||[]).forEach(f => items.push({...f, type:"heritage", stateId:s.id, stateName:s.name_en}));
-    });
-
-    function renderGrid(filterState, filterCategory) {
-      const container = qs("#categoryGrid");
-      container.innerHTML = ""; // reset
-      const filtered = items.filter(it => {
-        if (filterState && it.stateId !== filterState) return false;
-        if (filterCategory && it.type !== filterCategory) return false;
-        return true;
-      });
-
-      if (!filtered.length) {
-        container.innerHTML = `<div class="placeholder">No items found for your filters.</div>`;
+    grids.forEach(g => {
+      const node = document.getElementById(g.id);
+      if (!node) return;
+      node.innerHTML = "";
+      const items = state[g.key] || [];
+      if (items.length === 0) {
+        node.innerHTML = `<div class="placeholder">No ${g.type} info available.</div>`;
         return;
       }
-
-      filtered.forEach(it => {
-        const title = LANG === "hi" ? it.name_hi || it.name : it.name;
-        const desc = LANG === "hi" ? it.desc_hi || it.desc_en || "" : it.desc_en || "";
-        const img = it.img || "assets/tajmahal.jpg";
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${img}" alt="${htmlEscape(title)}">
-          <h4>${htmlEscape(title)}</h4>
-          <p>${htmlEscape(desc)}</p>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <button class="btn-small btn-open-item" data-name="${htmlEscape(it.name)}" data-state="${it.stateId}" data-type="${it.type}">More</button>
-            <a class="btn-link" href="state.html?state=${it.stateId}">${LANG==='hi'? 'राज्य देखें':'View state'}</a>
-          </div>
-        `;
-        container.appendChild(card);
+      items.forEach(item => {
+        const card = createCard(item, g.type);
+        node.appendChild(card);
       });
-
-      // attach events
-      qsa(".btn-open-item").forEach(b => {
-        b.addEventListener("click", () => {
-          const nm = b.dataset.name;
-          const st = b.dataset.state;
-          const type = b.dataset.type;
-          showModal(`
-            <h3>${nm}</h3>
-            <p>State: ${LANG==='hi' ? (DATA.states.find(s=>s.id===st).name_hi) : DATA.states.find(s=>s.id===st).name_en}</p>
-            <p>Category: ${type}</p>
-            <p>This is demo placeholder content — add detailed description, links, media and references here for SIH.</p>
-          `);
-        });
-      });
-    }
-
-    // initial render
-    renderGrid("", "");
-
-    // listen filters
-    stateFilter.addEventListener("change", () => {
-      renderGrid(stateFilter.value, categoryFilter.value);
     });
-    categoryFilter.addEventListener("change", () => {
-      renderGrid(stateFilter.value, categoryFilter.value);
-    });
-
-    // also populate a quick category card list for visual browsing
-    const catGrid = qs("#categoryGrid");
-    if (catGrid && catGrid.children.length === 0) {
-      // show cards grouped by category initially
-      DATA.categories.forEach(c => {
-        const col = document.createElement("article");
-        col.className = "card";
-        col.innerHTML = `
-          <h3 style="font-size:1.1rem">${c.icon} ${LANG==='hi'? (c.name_hi || c.name_en) : c.name_en}</h3>
-          <p>Explore curated ${c.name_en} across states.</p>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="btn btn-primary btn-filter-by-cat" data-cat="${c.id}">Open</button>
-            <a class="btn-link" href="index.html">Home</a>
-          </div>
-        `;
-        catGrid.appendChild(col);
-      });
-
-      qsa(".btn-filter-by-cat").forEach(b => {
-        b.addEventListener("click", (e) => {
-          const catId = e.currentTarget.dataset.cat;
-          categoryFilter.value = catId;
-          // Apply category filter
-          const evt = new Event("change");
-          categoryFilter.dispatchEvent(evt);
-        });
-      });
-    }
   }
 
-  // ---------- Global search ----------
-  function initSearch() {
+  function renderCategoryGrid() {
+    // If category page exists, populate cards grouped by category
+    const grid = $("#categoryGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    // Flatten items by category across states
+    const map = {}; // category -> array of { state, item, type }
+    DATA.states.forEach(st => {
+      (["festivals", "food", "danceMusic", "crafts", "cities"]).forEach(key => {
+        const items = st[key] || [];
+        items.forEach(it => {
+          // map categories for simple grouping
+          const category =
+            key === "festivals" ? "Festivals" :
+            key === "food" ? "Food" :
+            key === "danceMusic" ? "Dance & Music" :
+            key === "crafts" ? "Crafts & Arts" :
+            "Cities & Attractions";
+          map[category] = map[category] || [];
+          map[category].push({ state: st.id, item: it, type: category });
+        });
+      });
+    });
+
+    Object.keys(map).forEach(cat => {
+      const section = document.createElement("section");
+      section.className = "card";
+      section.style.padding = "12px";
+      section.innerHTML = `<h3>${cat}</h3><div class="grid" style="margin-top:10px"></div>`;
+      const innerGrid = section.querySelector(".grid");
+      map[cat].slice(0, 9).forEach(entry => {
+        const card = createCard(Object.assign({}, entry.item, { img: entry.item.img }), cat);
+        // small caption showing state
+        const caption = document.createElement("div");
+        caption.style.fontSize = "0.8rem";
+        caption.style.color = "#4b5563";
+        caption.textContent = `State: ${entry.state}`;
+        card.appendChild(caption);
+        innerGrid.appendChild(card);
+      });
+      grid.appendChild(section);
+    });
+  }
+
+  // ---------- EVENT BINDINGS ----------
+  function bindEvents() {
+    // state selection(s)
+    const stateSelects = Array.from(document.querySelectorAll("#stateFilter, #stateDropdown"));
+    stateSelects.forEach(sel => {
+      sel.addEventListener("change", e => {
+        const val = e.target.value;
+        // when change on state page, render state
+        if (location.pathname.endsWith("state.html") || location.pathname.endsWith("/state.html") || document.getElementById("stateBanner")) {
+          renderStatePage(val);
+        }
+        // also allow search/filters in category page
+        if (document.getElementById("categoryGrid")) {
+          // simple filtering: re-render category grid to show only items from selected state
+          filterCategoryGrid(val, $("#categoryFilter") ? $("#categoryFilter").value : "");
+        }
+      });
+    });
+
+    // category filter change
+    const catSel = $("#categoryFilter") || $("#categoryDropdown");
+    if (catSel) {
+      catSel.addEventListener("change", () => {
+        const stateVal = $("#stateFilter") ? $("#stateFilter").value : "";
+        filterCategoryGrid(stateVal, catSel.value);
+      });
+    }
+
+    // global search
+    const globalSearch = $("#globalSearch");
+    if (globalSearch) {
+      globalSearch.addEventListener("input", (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        // if on state page, search within content
+        if (document.getElementById("stateBanner")) {
+          searchWithinState(q);
+        } else if (document.getElementById("categoryGrid")) {
+          searchCategoryGrid(q);
+        }
+      });
+    }
+
+    // modal close
+    const modalClose = $("#modalClose");
+    if (modalClose) modalClose.addEventListener("click", closeModal);
+    const modal = $("#modal");
+    if (modal) modal.addEventListener("click", (evt) => {
+      if (evt.target === modal) closeModal();
+    });
+
+    // delegate card view buttons
+    document.body.addEventListener("click", (e) => {
+      const btn = e.target.closest(".view-detail");
+      if (!btn) return;
+      // find nearest card and metadata
+      const card = btn.closest(".card");
+      const meta = card && card._meta ? card._meta : null;
+      const name = btn.dataset.name;
+      const type = btn.dataset.type;
+      // find item by name across DATA
+      let found = null;
+      DATA.states.forEach(s => {
+        ["cities", "festivals", "food", "danceMusic", "crafts"].forEach(k => {
+          (s[k] || []).forEach(it => {
+            if (it.name === name) found = { item: it, state: s.id, key: k };
+          });
+        });
+      });
+      if (!found && meta) {
+        found = { item: meta.item, state: null, key: meta.type };
+      }
+      if (found) {
+        const html = `
+          <img src="${found.item.img || 'images/placeholder.jpg'}" alt="${found.item.name}" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px">
+          <p style="margin-top:10px">${found.item.desc || ""}</p>
+          ${found.state ? `<p><strong>State:</strong> ${found.state}</p>` : ""}
+        `;
+        showModal(found.item.name, html);
+      } else {
+        showModal(name || "Details", "<p>No further details available.</p>");
+      }
+    });
+  }
+
+  // ---------- SEARCH / FILTER helpers ----------
+  function filterCategoryGrid(stateName, categoryName) {
+    // rebuild grid with filter criteria
+    const grid = $("#categoryGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    const entries = [];
+    DATA.states.forEach(st => {
+      if (stateName && st.id !== stateName) return;
+      (["festivals", "food", "danceMusic", "crafts", "cities"]).forEach(key => {
+        const items = st[key] || [];
+        items.forEach(it => {
+          const category =
+            key === "festivals" ? "Festivals" :
+            key === "food" ? "Food" :
+            key === "danceMusic" ? "Dance & Music" :
+            key === "crafts" ? "Crafts & Arts" :
+            "Cities & Attractions";
+          if (categoryName && category !== categoryName) return;
+          entries.push({ state: st.id, item: it, category });
+        });
+      });
+    });
+    if (entries.length === 0) {
+      grid.innerHTML = `<div class="placeholder">No items match your filter.</div>`;
+      return;
+    }
+    // group by category
+    const grouped = entries.reduce((acc, e) => {
+      acc[e.category] = acc[e.category] || [];
+      acc[e.category].push(e);
+      return acc;
+    }, {});
+    Object.keys(grouped).forEach(cat => {
+      const section = document.createElement("section");
+      section.className = "card";
+      section.style.padding = "12px";
+      section.innerHTML = `<h3>${cat}</h3><div class="grid" style="margin-top:10px"></div>`;
+      const inner = section.querySelector(".grid");
+      grouped[cat].forEach(entry => {
+        const card = createCard(entry.item, cat);
+        const caption = document.createElement("div");
+        caption.style.fontSize = "0.8rem";
+        caption.style.color = "#4b5563";
+        caption.textContent = `State: ${entry.state}`;
+        card.appendChild(caption);
+        inner.appendChild(card);
+      });
+      grid.appendChild(section);
+    });
+  }
+
+  function searchWithinState(query) {
+    // Display only cards which match query in current state page
+    const stateSelect = document.querySelector("#stateFilter");
+    if (!stateSelect) return;
+    const stateId = stateSelect.value;
+    if (!stateId) return;
+    const state = DATA.states.find(s => s.id === stateId);
+    if (!state) return;
+    // simple filter: render only items whose name/desc contains query
+    const matches = (list) => (list || []).filter(it => {
+      return String(it.name + (it.desc || "")).toLowerCase().includes(query);
+    });
+    ["cities", "festivals", "food", "danceMusic", "crafts"].forEach(key => {
+      const gridId = key === "cities" ? "citiesGrid" :
+        key === "festivals" ? "festivalsGrid" :
+        key === "food" ? "foodGrid" :
+        key === "danceMusic" ? "danceGrid" : "craftGrid";
+      const node = document.getElementById(gridId);
+      if (!node) return;
+      const found = matches(state[key]);
+      node.innerHTML = "";
+      if (found.length === 0) {
+        node.innerHTML = `<div class="placeholder">No results.</div>`;
+      } else {
+        found.forEach(it => node.appendChild(createCard(it, key)));
+      }
+    });
+  }
+
+  function searchCategoryGrid(q) {
+    // simple full-text filter across category grid
+    const grid = $("#categoryGrid");
+    if (!grid) return;
+    const lower = q.trim().toLowerCase();
+    if (!lower) return renderCategoryGrid();
+    // gather matches
+    const entries = [];
+    DATA.states.forEach(st => {
+      (["cities", "festivals", "food", "danceMusic", "crafts"]).forEach(k => {
+        (st[k] || []).forEach(it => {
+          if ((it.name + " " + (it.desc || "") + " " + st.id).toLowerCase().includes(lower)) {
+            const category =
+              k === "festivals" ? "Festivals" :
+              k === "food" ? "Food" :
+              k === "danceMusic" ? "Dance & Music" :
+              k === "crafts" ? "Crafts & Arts" :
+              "Cities & Attractions";
+            entries.push({ state: st.id, item: it, category });
+          }
+        });
+      });
+    });
+    if (entries.length === 0) {
+      grid.innerHTML = `<div class="placeholder">No results for "${q}".</div>`;
+      return;
+    }
+    grid.innerHTML = "";
+    // show grouped
+    const grouped = entries.reduce((acc, e) => {
+      acc[e.category] = acc[e.category] || [];
+      acc[e.category].push(e);
+      return acc;
+    }, {});
+    Object.keys(grouped).forEach(cat => {
+      const section = document.createElement("section");
+      section.className = "card";
+      section.style.padding = "12px";
+      section.innerHTML = `<h3>${cat}</h3><div class="grid" style="margin-top:10px"></div>`;
+      const innerGrid = section.querySelector(".grid");
+      grouped[cat].forEach(entry => {
+        const card = createCard(entry.item, cat);
+        const caption = document.createElement("div");
+        caption.style.fontSize = "0.8rem";
+        caption.style.color = "#4b5563";
+        caption.textContent = `State: ${entry.state}`;
+        card.appendChild(caption);
+        innerGrid.appendChild(card);
+      });
+      grid.appendChild(section);
+    });
+  }
+
+  //---------- INITIALIZATION ----------
+  function init() {
+    // attempt to fetch external states.json (optional) - fallback to embedded DATA
+    fetch("states.json").then(r => {
+      if (!r.ok) throw new Error("no external json");
+      return r.json();
+    }).then(json => {
+      if (json && Array.isArray(json.states)) {
+        // merge or replace
+        DATA.states = json.states;
+      }
+    }).catch(() => {
+      // silent fallback to embedded DATA
+    }).finally(() => {
+      // populate dropdowns & categories
+      populateStateDropdown(DATA.states);
+      populateCategoryDropdown(DATA.states);
+      // if on state page and a default is selected, render it
+      const pageStateSelect = document.querySelector("#stateFilter");
+      if (pageStateSelect && pageStateSelect.value) {
+        renderStatePage(pageStateSelect.value);
+      } else {
+        // if only one of the selects has a non-empty value, render that (helpful during navigation)
+        const val = pageStateSelect ? pageStateSelect.value : "";
+        if (val) renderStatePage(val);
+      }
+      renderCategoryGrid();
+      bindEvents();
+    });
+  }
+
+  // run on DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // expose some helpers (optional)
+  window.CULTURE_DATA = DATA;
+  window.renderStatePage = renderStatePage;
+})();
+
+
+
+function initSearch() {
     qsa("#globalSearch").forEach(inp => {
       if(!inp) return;
       inp.addEventListener("keydown", e => {
@@ -435,9 +592,7 @@
       });
     });
   }
-
-  // ---------- Language toggle ----------
-  function initLangToggle() {
+function initLangToggle() {
     qsa("#langToggle").forEach(btn => {
       if(!btn) return;
       btn.addEventListener("click", () => {
@@ -450,50 +605,3 @@
     });
     setLangButtonText();
   }
-
-  // ---------- Modal close handlers ----------
-  function attachModalHandlers() {
-    qsa("#modalClose").forEach(b => b.addEventListener("click", hideModal));
-    document.addEventListener("click", e => {
-      if (e.target.matches("#modal.show")) hideModal();
-    });
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") hideModal();
-    });
-  }
-
-  // ---------- Initialize depending on page ----------
-  function init() {
-    initLangToggle();
-    attachModalHandlers();
-    initSearch();
-
-    if (isIndex) {
-      initIndex();
-    }
-    if (isState) {
-      renderStatePage();
-    }
-    if (isCategory) {
-      renderCategoryPage();
-    }
-
-    // Attach generic "did you know" button on index
-    const didYouKnowBtn = qs("#didYouKnowBtn");
-    if (didYouKnowBtn) {
-      didYouKnowBtn.addEventListener("click", () => {
-        const r = DATA.meta.trivia[Math.floor(Math.random()*DATA.meta.trivia.length)];
-        showModal(`<h3>Did you know?</h3><p>${htmlEscape(r)}</p>`);
-      });
-    }
-
-    // Generic internal anchor links protection + try to make navigation dynamic
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", (e) => { e.preventDefault(); const t = e.currentTarget.getAttribute("href"); const el = document.querySelector(t); if(el) el.scrollIntoView({behavior:'smooth'}); });
-    });
-  }
-
-  // run
-  document.addEventListener("DOMContentLoaded", init);
-
-})();

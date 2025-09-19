@@ -1,0 +1,34 @@
+{
+    "Madhya Pradesh": {
+    "cities": ["Bhopal", "Indore", "Gwalior"],
+    "festivals": ["Khajuraho Dance Festival", "Tansen Music Festival"],
+    "food": ["Poha", "Bhutte ka Kees", "Dal Bafle Churma"],
+    "dance_music": ["Matki Nritya", "Pachra"],
+    "crafts": ["Chanderi sarees", "Maheshwari textiles"],
+    "culture": "Known for its rich history, temples, and vibrant folk traditions."
+  },
+  "Uttar Pradesh": {
+    "cities": ["Varanasi", "Lucknow", "Agra"],
+    "festivals": ["Diwali", "Holi", "Ram Navami"],
+    "food": ["Tunday Kababi", "Petha", "Bedai"],
+    "dance_music": ["Kathak", "Thumri"],
+    "crafts": ["Chikan embroidery", "Brassware"],
+    "culture": "Famous for the Ganga aarti, Mughal heritage, and classical music like Kathak."
+  },
+  "Kerala": {
+    "cities": ["Kochi", "Thiruvananthapuram", "Alleppey"],
+    "festivals": ["Onam", "Vishu"],
+    "food": ["Appam", "Puttu", "Sadya"],
+    "dance_music": ["Kathakali", "Mohiniyattam"],
+    "crafts": ["Coir products", "Kasavu sarees"],
+    "culture": "Known for Kathakali dance, Ayurveda traditions, and backwaters."
+  },
+  "Rajasthan": {
+    "cities": ["Jaipur", "Udaipur", "Jaisalmer"],
+    "festivals": ["Pushkar Camel Fair", "Gangaur", "Teej"],
+    "food": ["Dal Baati Churma", "Laal Maas", "Ghevar"],
+    "dance_music": ["Ghoomar", "Kalbeliya"],
+    "crafts": ["Blue pottery", "Bandhani textiles"],
+    "culture": "Rich in forts, palaces, desert festivals, and folk music/dance."
+  }
+}

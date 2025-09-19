@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>State — Cultural India</title>
+  <title>State — Explore Bharat</title>
   <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
 
 </head>
 
@@ -15,7 +16,7 @@
   <header class="site-header small">
     <div class="brand">
       <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
-      <div class="brand-text"><h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Cultural India</strong></a></h3></div>
+      <div class="brand-text"><h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Explore Bharat</strong></a></h3></div>
     </div>
     <div class="top-controls">
       <nav class="top-nav">
@@ -30,6 +31,17 @@
   </header>
 
   <main class="container">
+
+<div>
+<label for="stateDropdown" style="position: absolute; left: -9999px;">Choose a state</label>
+<select id="stateFilter" title="Choose a state">
+          <option value="">All States</option>
+</select>
+
+<div id="infoSection"></div>
+</div>
+
+
     <div id="stateBanner" class="state-banner">
       <!-- Banner populated dynamically -->
     </div>
