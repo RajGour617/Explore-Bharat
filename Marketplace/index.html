@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Explore Bharat E-Mart</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container header-inner">
+            <div class="logo"><a href="C:\Users\rajgo\OneDrive\Desktop\Explore Bharat/index.html">Explore<span class="accent">Bharat</span></a></div>
+            <nav class="nav">
+                <button id="open-cart" aria-label="Open cart">Cart (<span id="cart-count">0</span>)</button>
+                <button class="icon-btn" id="search-btn" aria-label="Search">🔍</button>
+                <button class="icon-btn" id="menu-btn" aria-label="Menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero carousel -->
+        <section class="hero">
+            <div class="carousel" id="hero-carousel" tabindex="0" aria-roledescription="carousel">
+                <div class="slides">
+                    <div class="slide"
+                        style="background-image:url('images/gondart.jpg')"
+                        aria-hidden="false">
+                        <div class="hero-copy">
+                            <h1>Discover the <em>traditional</em><br> arts</h1>
+                            <div class="hero-cta">
+                                <a class="btn" href="#women">Shop Paintings</a>
+                                <a class="btn btn-outline" href="#men">Shop Pottery</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide"
+                        style="background-image:url('images/zardozi.jpg')"
+                        aria-hidden="true">
+                        <div class="hero-copy">
+                            <h1>Fresh drops every day</h1>
+                            <div class="hero-cta">
+                                <a class="btn" href="#drops">See Drops</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide"
+                        style="background-image:url('images/blockprint.jpg')"
+                        aria-hidden="true">
+                        <div class="hero-copy">
+                            <h1>Local artisans &amp; crafts</h1>
+                            <div class="hero-cta">
+                                <a class="btn" href="#artists">Support Artisans</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+                <button class="carousel-btn next" aria-label="Next slide">›</button>
+                <div class="dots" id="hero-dots" aria-hidden="false"></div>
+            </div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="section">
+            <h2 class="section-title">Trending <em>Now</em></h2>
+            <div class="product-row" id="trending-row">
+                <button class="row-arrow left" aria-label="Scroll left">‹</button>
+                <div class="row-track" id="trending-track" role="list"></div>
+                <button class="row-arrow right" aria-label="Scroll right">›</button>
+            </div>
+        </section>
+
+        <!-- Today's Drops -->
+        <section class="section">
+            <h2 class="section-title">Today's <em>Drops</em></h2>
+            <div class="filters">
+                <button class="chip active">Paintings</button>
+                <button class="chip">Pottery</button>
+                <div class="price-chips">
+                    <button class="chip">under $49</button>
+                    <button class="chip"> $50 - $149</button>
+                    <button class="chip"> $150 - $299</button>
+                </div>
+            </div>
+
+            <div class="product-row" id="drops-row">
+                <button class="row-arrow left" aria-label="Scroll left">‹</button>
+                <div class="row-track" id="drops-track" role="list"></div>
+                <button class="row-arrow right" aria-label="Scroll right">›</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <button class="close" id="modal-close" aria-label="Close">✕</button>
+            <div class="modal-body" id="modal-body">
+                <!-- dynamic -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart" aria-label="Close cart">✕</button>
+        </div>
+        <div class="cart-body" id="cart-body">
+            <!-- items injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="totals">
+                <div>Subtotal</div>
+                <div id="cart-subtotal">$0.00</div>
+            </div>
+            <button id="checkout-btn" class="btn full">Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Small checkout overlay -->
+    <div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
+        <div class="checkout-panel">
+            <button class="close" id="close-checkout" aria-label="Close checkout">✕</button>
+            <h3>Checkout</h3>
+            <form id="checkout-form">
+                <label>
+                    Full name
+                    <input type="text" name="name" required />
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" required />
+                </label>
+                <label>
+                    Address
+                    <input type="text" name="address" required />
+                </label>
+                <div class="checkout-actions">
+                    <button type="submit" class="btn full">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© Explore Bharat — Ekart</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

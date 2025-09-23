@@ -1,0 +1,58 @@
+{
+    "products": [
+        {
+            "id": "tx1",
+            "title": "Banarasi Handloom Saree",
+            "category": "textiles",
+            "price": 3250,
+            "img": "https://images.unsplash.com/photo-1520975698512-7f23a3f0dcca?auto=format&fit=crop&w=800&q=60",
+            "tag": "Best seller",
+            "desc": "Beautiful Banarasi saree woven with gold zari."
+        },
+        {
+            "id": "pt1",
+            "title": "Terracotta Serving Bowl",
+            "category": "pottery",
+            "price": 650,
+            "img": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=800&q=60",
+            "tag": "New",
+            "desc": "Hand-thrown terracotta bowl fired in traditional kiln."
+        },
+        {
+            "id": "ar1",
+            "title": "Warli Painting (Small)",
+            "category": "art",
+            "price": 1200,
+            "img": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=60",
+            "tag": "Limited",
+            "desc": "Authentic Warli art painted on canvas."
+        },
+        {
+            "id": "tx2",
+            "title": "Handwoven Scarf",
+            "category": "textiles",
+            "price": 499,
+            "img": "https://images.unsplash.com/photo-1549989478-6a4f3a6f20f9?auto=format&fit=crop&w=800&q=60",
+            "tag": "Trending",
+            "desc": "Soft handwoven scarf from local weavers."
+        },
+        {
+            "id": "pt2",
+            "title": "Blue Glazed Vase",
+            "category": "pottery",
+            "price": 1100,
+            "img": "https://images.unsplash.com/photo-1578926377531-859f8b6b0c29?auto=format&fit=crop&w=800&q=60",
+            "tag": "Handmade",
+            "desc": "Glossy blue glazed vase for home decor."
+        },
+        {
+            "id": "ar2",
+            "title": "Mini Tanjore Frame",
+            "category": "art",
+            "price": 2400,
+            "img": "https://images.unsplash.com/photo-1526312426976-53d4cf4f3f06?auto=format&fit=crop&w=800&q=60",
+            "tag": "Artisan",
+            "desc": "Traditional Tanjore painting framed and ready."
+        }
+    ]
+}

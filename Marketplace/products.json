@@ -1,0 +1,58 @@
+{
+    "products": [
+        {
+            "id": "tx1",
+            "title": "Banarasi Handloom Saree",
+            "category": "textiles",
+            "price": 3250,
+            "img": "images/p_tx1.png",
+            "tag": "Best seller",
+            "desc": "Beautiful Banarasi saree woven with gold zari."
+        },
+        {
+            "id": "pt1",
+            "title": "Terracotta Serving Bowl",
+            "category": "pottery",
+            "price": 650,
+            "img": "images/p_pt1.png",
+            "tag": "New",
+            "desc": "Hand-thrown terracotta bowl fired in traditional kiln."
+        },
+        {
+            "id": "ar1",
+            "title": "Warli Painting (Small)",
+            "category": "art",
+            "price": 1200,
+            "img": "images/p_ar1.png",
+            "tag": "Limited",
+            "desc": "Authentic Warli art painted on canvas."
+        },
+        {
+            "id": "tx2",
+            "title": "Handwoven Scarf",
+            "category": "textiles",
+            "price": 499,
+            "img": "images/p_tx2.png",
+            "tag": "Trending",
+            "desc": "Soft handwoven scarf from local weavers."
+        },
+        {
+            "id": "pt2",
+            "title": "Blue Glazed Vase",
+            "category": "pottery",
+            "price": 1100,
+            "img": "images/p_pt2.png",
+            "tag": "Handmade",
+            "desc": "Glossy blue glazed vase for home decor."
+        },
+        {
+            "id": "ar2",
+            "title": "Mini Tanjore Frame",
+            "category": "art",
+            "price": 2400,
+            "img": "images/p_ar2.png",
+            "tag": "Artisan",
+            "desc": "Traditional Tanjore painting framed and ready."
+        }
+    ]
+}
