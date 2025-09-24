@@ -9,9 +9,13 @@
         intro: "Madhya Pradesh — the heart of India; home to ancient caves, wildlife and tribal arts.",
         intro_hi: "मध्य प्रदेश — अपने मंदिरों और राष्ट्रीय उद्यानों के लिए जाना जाता है।",
         cities: [
-          { name: "Bhopal", img: "images/MP/bhopal.jpg", desc: "Capital city with lakes and museums." },
-          { name: "Khajuraho", img: "images/MP/khajuraho.jpg", desc: "Famous for its UNESCO-listed temples." },
-          { name: "Sanchi", img: "images/MP/sanchi.jpg", desc: "Buddhist stupas and ancient heritage." }
+          { name: "Indore", img: "images/MP/rajwada.jpg", desc: "Cleanest City of India", link: "Indore/index.html" },
+          { name: "Khajuraho", img: "images/MP/khajuraho.jpg", desc: "Famous for its UNESCO-listed temples", link: "Khajuraho/index.html" },
+          { name: "Sanchi", img: "images/MP/sanchi.jpg", desc: "Buddhist stupas and ancient heritage", link: "Sanchi/index.html" },
+          { name: "Sehore", img: "images/MP/sehore.jpg", desc: "Famous for Sharbati Wheat", link: "Sehore/index.html" },
+          { name: "Katni", img: "images/MP/katni.jpg", desc: "City of Marbles", link: "Katni/index.html" },
+          { name: "Mandsaur", img: "images/MP/mandsaur.jpg", desc: "Famous for its poppy seed cultivation", link: "Mandsaur/index.html" },
+          { name: "Neemuch", img: "images/MP/neemuch.jpg", alt: "Neemuch", desc: "North India Mounted Artillary and Cavalry Headquarters", link: "Neemuch/index.html" }
         ],
         festivals: [
           {name: "Teej", img: "images/MP/teej.jpg", desc: "Monsoon festival celebrated with songs and swings." },
@@ -125,6 +129,7 @@
       <p>${item.desc || ''}</p>
       <div style="margin-top:auto;">
         <button class="btn btn-link view-detail" data-type="${type}" data-name="${item.name}">View</button>
+        <a href="${item.link || ''}" class="btn btn-primary" style="float:right; margin-top:8px;">Explore</a>
       </div>
     `;
     // store full item for modal retrieval
