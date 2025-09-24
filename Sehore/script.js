@@ -1,4 +1,4 @@
-// Famous Places of Indore (sample data)
+// Famous Places of Sehore (sample data)
 const placesData = [
     {
         name: "Chintaman Ganesh Mandir",
