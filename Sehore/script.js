@@ -19,16 +19,16 @@ const placesData = [
         facts: "The temple is situated on a hill, offering panoramic views of the surrounding landscape."
     },
     {
+        name: "Shyam Ji Ki Chhatri",
+        img: "images/sanka.jpg",
+        history: "A beautiful garden with cenotaphs of the Holkar rulers.",
+        facts: "Known for its stunning architecture and serene environment."
+    },
+    {
         name: "Chain Singh ki Chhatri",
         img: "images/chhatri.jpg",
         history: "A beautiful chhatri (cenotaph) dedicated to Chain Singh, a prominent figure in the region's history.",
         facts: "Known for its stunning architecture and intricate carvings."
-    },
-    {
-        name: "Chhatri Baag",
-        img: "images/chatri.jpg",
-        history: "A beautiful garden with cenotaphs of the Holkar rulers.",
-        facts: "Known for its stunning architecture and serene environment."
     },
     {
         name: "Annapurna Temple",
@@ -50,6 +50,35 @@ const placesData = [
     }
 ];
 
+// Modal setup
+function showModal(title, content) {
+    let modal = document.getElementById('placeModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'placeModal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100vw';
+        modal.style.height = '100vh';
+        modal.style.background = 'rgba(0,0,0,0.6)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '9999';
+        modal.innerHTML = `<div style="background:#fff;padding:32px 24px;border-radius:12px;max-width:400px;box-shadow:0 8px 32px #0002;position:relative;">
+        <button id="closeModalBtn" style="position:absolute;top:8px;right:12px;font-size:1.5rem;background:none;border:none;cursor:pointer;">&times;</button>
+        <h2 id="modalTitle"></h2>
+        <div id="modalContent"></div>
+    </div>`;
+        document.body.appendChild(modal);
+        modal.querySelector('#closeModalBtn').onclick = () => modal.remove();
+    }
+    modal.querySelector('#modalTitle').textContent = title;
+    modal.querySelector('#modalContent').innerHTML = content;
+    modal.style.display = 'flex';
+}
+
 // Inject cards into DOM
 const container = document.getElementById("places");
 placesData.forEach(place => {
@@ -61,7 +90,12 @@ placesData.forEach(place => {
     <h2>${place.name}</h2>
     <p><strong>History:</strong> ${place.history}</p>
     <p><strong>Fact:</strong> ${place.facts}</p>
-  `;
+    <button class="btn-view" style="margin-top:10px; color:blue; font-weight:bold; background:lightblue; cursor:pointer;"><a href="https://en.wikipedia.org/wiki/${place.name.replace(/ /g, "_")}">View</a></button>
+`;
+
+    card.querySelector('.btn-view').onclick = () => {
+        showModal(place.name, placeDetails[place.name] || 'No further details available.');
+    };
 
     container.appendChild(card);
 });

@@ -10,6 +10,7 @@
         intro_hi: "मध्य प्रदेश — अपने मंदिरों और राष्ट्रीय उद्यानों के लिए जाना जाता है।",
         cities: [
           { name: "Indore", img: "images/MP/rajwada.jpg", desc: "Cleanest City of India", link: "Indore/index.html" },
+          { name: "Ujjain", img: "images/MP/ujjain.jpg", desc: "Famous for Mahakaleshwar Temple", link: "Ujjain/index.html" },
           { name: "Khajuraho", img: "images/MP/khajuraho.jpg", desc: "Famous for its UNESCO-listed temples", link: "Khajuraho/index.html" },
           { name: "Sanchi", img: "images/MP/sanchi.jpg", desc: "Buddhist stupas and ancient heritage", link: "Sanchi/index.html" },
           { name: "Sehore", img: "images/MP/sehore.jpg", desc: "Famous for Sharbati Wheat", link: "Sehore/index.html" },
@@ -23,15 +24,18 @@
           { name: "Khajuraho Dance Festival", img: "images/MP/khajurahoDance.jpg", desc: "Classical dance under the temple lights." }
         ],
         food: [
-          { name: "Dal Bafla", img: "images/MP/dalbafla.jpg", desc: "A popular spicy starter." },
-          { name: "Poha", img: "images/MP/poha.jpg", desc: "Flattened rice snack, popular breakfast." }
+          { name: "Dal Bafla", img: "images/MP/dalbafla.jpg", desc: "A dish of baked wheat balls with dal." },
+          { name: "Poha", img: "images/MP/poha.jpg", desc: "Flattened rice snack, popular breakfast." },
+          { name: "Sabudana Khichdi", img: "images/MP/khichdi.jpg", desc: "A popular dish during fasting periods. Tapioca pearls cooked with peanuts and spices." }
         ],
         danceMusic: [
           { name: "Gond Dance", img: "images/MP/gondDance.jpg", desc: "Tribal dance of Gond community." },
-          { name: "Rai", img: "images/MP/rai.jpg", desc: "Traditional dance form of the region." }
+          { name: "Rai", img: "images/MP/rai.jpg", desc: "Traditional dance form of the region." },
+          { name: "Matki Dance", img: "images/MP/matki.jpg", desc: "Traditional dance with pots on head." }
         ],
         crafts: [
-          { name: "Pithora Paintings", img: "images/MP/pithora.jpg", desc: "Ritual paintings by tribal artists." }
+          { name: "Pithora Paintings", img: "images/MP/pithora.jpg", desc: "Ritual paintings by tribal artists." },
+          { name: "Bhitti Chitra", img: "images/MP/bhitti.jpg", desc: "Traditional handicrafts of Madhya Pradesh." }
         ],
         categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
       },
@@ -123,16 +127,26 @@
   function createCard(item, type) {
     const div = document.createElement("article");
     div.className = "card";
-    div.innerHTML = `
+    let cardContent = `
       <img src="${item.img || 'images/placeholder.jpg'}" alt="${item.name}">
       <h4>${item.name}</h4>
       <p>${item.desc || ''}</p>
       <div style="margin-top:auto;">
-        <button class="btn btn-link view-detail" data-type="${type}" data-name="${item.name}">View</button>
-        <a href="${item.link || ''}" class="btn btn-primary" style="float:right; margin-top:8px;">Explore</a>
-      </div>
     `;
-    // store full item for modal retrieval
+    if (type === "City" || type === "Cities & Attractions") {
+      // Only show view link to city html page
+      if (item.link) {
+        cardContent += `<a href="${item.link}" class="btn btn-primary" style="float:left; margin-top:8px;">Explore</a>`;
+      }
+    } else {
+      // Show view button for modal as before
+      cardContent += `<button class="btn btn-link view-detail" data-type="${type}" data-name="${item.name}">View</button>`;
+      if (item.link) {
+        cardContent += `<a href="${item.link}" class="btn btn-primary" style="float:right; margin-top:8px;">Explore</a>`;
+      }
+    }
+    cardContent += `</div>`;
+    div.innerHTML = cardContent;
     div._meta = { item, type };
     return div;
   }
