@@ -1,4 +1,4 @@
-/* Simple demo product data */
+//! Simple demo product data
 const PRODUCTS = [
     { id: 'p1', title: 'MP Gond Art', price: 79, img: 'images/gondart.jpg', category: 'paintings' },
     { id: 'p2', title: 'Ruby Stone Necklace', price: 399, img: 'images/necklace.jpg', category: 'jewelry' },
@@ -10,7 +10,7 @@ const PRODUCTS = [
     { id: 'p8', title: 'UP Chikankari', price: 129, img: 'images/chikankari.jpg', category: 'weaving' },
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // Elements
     const hero = document.getElementById('hero-carousel');
     const slidesEl = hero.querySelector('.slides');
@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'card';
             card.setAttribute('role', 'listitem');
             card.innerHTML = `
+        <button class="wishlist-btn" data-id="${p.id}" aria-label="Add to wishlist">♡</button>
         <img src="${p.img}" alt="${p.title}">
         <div class="title">${p.title}</div>
         <div class="price">$${p.price.toFixed(2)}</div>
@@ -102,22 +103,52 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRow('trending-track', trending);
     renderRow('drops-track', PRODUCTS);
 
-    // Product modal & cart
+    // ===== Modals, Drawers, and Auth =====
     const modal = document.getElementById('product-modal');
     const modalBody = document.getElementById('modal-body');
     const modalClose = document.getElementById('modal-close');
+
     const cartDrawer = document.getElementById('cart-drawer');
     const openCartBtn = document.getElementById('open-cart');
     const closeCartBtn = document.getElementById('close-cart');
     const cartBody = document.getElementById('cart-body');
     const cartCountEl = document.getElementById('cart-count');
     const cartSubtotal = document.getElementById('cart-subtotal');
+
+    const wishlistDrawer = document.getElementById('wishlist-drawer');
+    const openWishlistBtn = document.getElementById('open-wishlist');
+    const wishlistCountEl = document.getElementById('wishlist-count');
+
     const checkoutBtn = document.getElementById('checkout-btn');
     const checkoutOverlay = document.getElementById('checkout-overlay');
     const closeCheckout = document.getElementById('close-checkout');
     const checkoutForm = document.getElementById('checkout-form');
 
+    // Auth elements
+    const guestView = document.getElementById('guest-view');
+    const userView = document.getElementById('user-view');
+    const signinModal = document.getElementById('signin-modal');
+    const signupModal = document.getElementById('signup-modal');
+    const signinBtnOpen = document.getElementById('signin-btn-open');
+    const signupBtnOpen = document.getElementById('signup-btn-open');
+    const signinModalClose = document.getElementById('signin-modal-close');
+    const signupModalClose = document.getElementById('signup-modal-close');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToSignin = document.getElementById('switch-to-signin');
+    const signoutBtn = document.getElementById('signout-btn');
+    const signinForm = document.getElementById('signin-form');
+    const signupForm = document.getElementById('signup-form');
+
+    // Bharat Points
+    const bharatPointsEl = document.getElementById('bharat-points');
+
+    // ===== State Management =====
     let CART = JSON.parse(localStorage.getItem('demo_cart') || '{}');
+    let WISHLIST = JSON.parse(localStorage.getItem('demo_wishlist') || '{}');
+    let BHARAT_POINTS = parseInt(localStorage.getItem('demo_points') || '0', 10);
+    let IS_LOGGED_IN = localStorage.getItem('demo_loggedin') === 'true';
+
+    // ===== Cart Logic =====
 
     function saveCart() { localStorage.setItem('demo_cart', JSON.stringify(CART)); updateCartUI(); }
     function updateCartUI() {
@@ -138,16 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
             el.innerHTML = `
         <img src="${it.img}" alt="${it.title}">
         <div style="flex:1">
-          <div style="font-weight:600">${it.title}</div>
-          <div style="color:#888;margin-top:6px">$${it.price.toFixed(2)}</div>
-          <div style="margin-top:8px" class="qty">
+        <div style="font-weight:600">${it.title}</div>
+            <div style="color:#888;margin-top:6px">$${it.price.toFixed(2)}</div>
+            <div style="margin-top:8px" class="qty">
             <button class="qty-dec" data-id="${it.id}">−</button>
             <span style="min-width:26px;text-align:center">${it.qty}</span>
             <button class="qty-inc" data-id="${it.id}">+</button>
             <button class="remove" data-id="${it.id}" style="margin-left:12px;color:#c33;background:none;border:0;cursor:pointer">Remove</button>
-          </div>
         </div>
-      `;
+        </div>
+`;
             cartBody.appendChild(el);
         });
         cartSubtotal.textContent = `$${total.toFixed(2)}`;
@@ -159,12 +190,82 @@ document.addEventListener('DOMContentLoaded', () => {
     openCartBtn.addEventListener('click', openCart);
     closeCartBtn.addEventListener('click', closeCart);
 
-    // Attach add/view buttons (delegation)
+    // ===== Wishlist Logic =====
+    function saveWishlist() { localStorage.setItem('demo_wishlist', JSON.stringify(WISHLIST)); updateWishlistUI(); }
+
+    function updateWishlistUI() {
+        const items = Object.values(WISHLIST);
+        wishlistCountEl.textContent = items.length;
+
+        // Update wishlist drawer content
+        wishlistDrawer.innerHTML = `
+            <div class="cart-header">
+                <h3>Your Wishlist</h3>
+                <button id="close-wishlist" aria-label="Close wishlist">✕</button>
+            </div>
+            <div class="cart-body" id="wishlist-body"></div>
+        `;
+
+        const wishlistBody = wishlistDrawer.querySelector('#wishlist-body');
+        if (items.length === 0) {
+            wishlistBody.innerHTML = '<p>Your wishlist is empty.</p>';
+        } else {
+            items.forEach(it => {
+                const el = document.createElement('div');
+                el.className = 'cart-item';
+                el.innerHTML = `
+                    <img src="${it.img}" alt="${it.title}">
+                    <div style="flex:1">
+                        <div style="font-weight:600">${it.title}</div>
+                        <div style="color:#888;margin-top:6px">$${it.price.toFixed(2)}</div>
+                        <div style="margin-top:8px">
+                            <button class="add" data-id="${it.id}">Move to Cart</button>
+                            <button class="remove-wishlist" data-id="${it.id}" style="margin-left:12px;color:#c33;background:none;border:0;cursor:pointer">Remove</button>
+                        </div>
+                    </div>
+                `;
+                wishlistBody.appendChild(el);
+            });
+        }
+
+        // Update heart icons on product cards
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.classList.toggle('active', !!WISHLIST[btn.dataset.id]);
+            btn.innerHTML = WISHLIST[btn.dataset.id] ? '❤️' : '♡';
+        });
+
+        // Add event listeners for new elements inside the drawer
+        wishlistDrawer.querySelector('#close-wishlist').addEventListener('click', closeWishlist);
+    }
+
+    function openWishlist() { wishlistDrawer.setAttribute('aria-hidden', 'false'); }
+    function closeWishlist() { wishlistDrawer.setAttribute('aria-hidden', 'true'); }
+
+    openWishlistBtn.addEventListener('click', openWishlist);
+
+    // ===== Bharat Points Logic =====
+    function updatePointsUI() {
+        bharatPointsEl.textContent = BHARAT_POINTS;
+        localStorage.setItem('demo_points', BHARAT_POINTS);
+    }
+
+    function addPoints(amount) {
+        if (!IS_LOGGED_IN) return;
+        BHARAT_POINTS += Math.floor(amount); // 1 point per dollar spent
+        updatePointsUI();
+    }
+
+    // ===== Event Delegation for Body =====
     document.body.addEventListener('click', e => {
         const addBtn = e.target.closest('.add');
         if (addBtn) {
             const id = addBtn.dataset.id;
             addToCart(id, 1);
+            // If item was in wishlist, remove it
+            if (WISHLIST[id]) {
+                delete WISHLIST[id];
+                saveWishlist();
+            }
             return;
         }
         const viewBtn = e.target.closest('.btn-view');
@@ -173,13 +274,22 @@ document.addEventListener('DOMContentLoaded', () => {
             showProductModal(id);
             return;
         }
+        const wishlistBtn = e.target.closest('.wishlist-btn');
+        if (wishlistBtn) {
+            if (!IS_LOGGED_IN) {
+                alert("Please sign in to use the wishlist!");
+                openSigninModal();
+                return;
+            }
+            toggleWishlist(wishlistBtn.dataset.id);
+            return;
+        }
         if (e.target.id === 'checkout-btn') {
             if (Object.keys(CART).length === 0) { alert('Cart is empty'); return; }
             checkoutOverlay.setAttribute('aria-hidden', 'false');
         }
     });
 
-    // modal open/close
     function showProductModal(id) {
         const p = PRODUCTS.find(x => x.id === id);
         if (!p) return;
@@ -200,7 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modalClose.addEventListener('click', () => modal.setAttribute('aria-hidden', 'true'));
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.setAttribute('aria-hidden', 'true'); });
 
-    // add to cart helper
     function addToCart(id, qty = 1) {
         const p = PRODUCTS.find(x => x.id === id);
         if (!p) return;
@@ -211,7 +320,19 @@ document.addEventListener('DOMContentLoaded', () => {
         openCart();
     }
 
-    // modal add (delegated)
+    function toggleWishlist(id) {
+        const p = PRODUCTS.find(x => x.id === id);
+        if (!p) return;
+
+        if (WISHLIST[id]) {
+            delete WISHLIST[id];
+        } else {
+            WISHLIST[id] = { ...p };
+        }
+        saveWishlist();
+    }
+
+
     document.body.addEventListener('click', e => {
         if (e.target && e.target.id === 'modal-add') {
             addToCart(e.target.dataset.id, 1);
@@ -219,7 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // cart item buttons
     cartBody.addEventListener('click', e => {
         const inc = e.target.closest('.qty-inc');
         const dec = e.target.closest('.qty-dec');
@@ -239,15 +359,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // checkout handlers
+    wishlistDrawer.addEventListener('click', e => {
+        const removeBtn = e.target.closest('.remove-wishlist');
+        if (removeBtn) {
+            delete WISHLIST[removeBtn.dataset.id];
+            saveWishlist();
+        }
+    });
+
     checkoutBtn.addEventListener('click', () => {
         if (Object.keys(CART).length === 0) return alert('Cart empty');
         checkoutOverlay.setAttribute('aria-hidden', 'false');
     });
     closeCheckout.addEventListener('click', () => checkoutOverlay.setAttribute('aria-hidden', 'true'));
+
     checkoutForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // demo: "place order"
+        const subtotal = Object.values(CART).reduce((sum, item) => sum + item.price * item.qty, 0);
+        addPoints(subtotal);
         alert('Order placed — thanks!');
         CART = {};
         saveCart();
@@ -255,9 +384,61 @@ document.addEventListener('DOMContentLoaded', () => {
         closeCart();
     });
 
-    // initialize cart UI
-    updateCartUI();
+    // ===== Auth Logic (Mock) =====
+    function openSigninModal() { signupModal.setAttribute('aria-hidden', 'true'); signinModal.setAttribute('aria-hidden', 'false'); }
+    function openSignupModal() { signinModal.setAttribute('aria-hidden', 'true'); signupModal.setAttribute('aria-hidden', 'false'); }
+    function closeAuthModals() { signinModal.setAttribute('aria-hidden', 'true'); signupModal.setAttribute('aria-hidden', 'true'); }
 
-    // Wire up dynamic card add/view for already rendered cards
-    // (Buttons are attached via body click delegation above.)
+    signinBtnOpen.addEventListener('click', openSigninModal);
+    signupBtnOpen.addEventListener('click', openSignupModal);
+    signinModalClose.addEventListener('click', closeAuthModals);
+    signupModalClose.addEventListener('click', closeAuthModals);
+    switchToSignup.addEventListener('click', openSignupModal);
+    switchToSignin.addEventListener('click', openSigninModal);
+
+    function setLoggedInState(loggedIn) {
+        IS_LOGGED_IN = loggedIn;
+        localStorage.setItem('demo_loggedin', loggedIn);
+        if (loggedIn) {
+            guestView.style.display = 'none';
+            userView.style.display = 'flex';
+        } else {
+            guestView.style.display = 'flex';
+            userView.style.display = 'none';
+            // Clear user-specific data on logout
+            WISHLIST = {};
+            BHARAT_POINTS = 0;
+            saveWishlist();
+            updatePointsUI();
+        }
+    }
+
+    signinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Signed in successfully!");
+        setLoggedInState(true);
+        closeAuthModals();
+    });
+
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Account created! You are now signed in.");
+        setLoggedInState(true);
+        closeAuthModals();
+    });
+
+    signoutBtn.addEventListener('click', () => {
+        setLoggedInState(false);
+        alert("You have been signed out.");
+    });
+
+    // ===== Initial UI Setup =====
+    function initializeUI() {
+        updateCartUI();
+        updateWishlistUI();
+        updatePointsUI();
+        setLoggedInState(IS_LOGGED_IN);
+    }
+
+    initializeUI();
 });
