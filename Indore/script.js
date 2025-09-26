@@ -102,12 +102,8 @@ placesData.forEach(place => {
     <h2>${place.name}</h2>
     <p><strong>History:</strong> ${place.history}</p>
     <p><strong>Fact:</strong> ${place.facts}</p>
-    <button class="btn-view" style="margin-top:10px; color:blue; font-weight:bold; background:lightblue; cursor:pointer;"><a href="https://en.wikipedia.org/wiki/${place.name.replace(/ /g, "_")}">View</a></button>
+    <a href="https://en.wikipedia.org/wiki/${place.name.replace(/ /g, "_")}" class="btn-view" target="_blank" rel="noopener noreferrer">View Details</a>
 `;
-
-    card.querySelector('.btn-view').onclick = () => {
-        showModal(place.name, placeDetails[place.name] || 'No further details available.');
-    };
 
     container.appendChild(card);
 });

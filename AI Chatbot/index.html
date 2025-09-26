@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Travel Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <header>
+            <img src="images/ai.jpg" alt="AI Avatar" class="avatar">
+            <div class="chat-header-info">
+                <h2>Explore Bharat AI</h2>
+                <span style="font-size: 13px; color: #ffffffcc;">Online</span>
+            </div>
+        </header>
+
+        <div id="chat" class="chat-window initial-state">
+            <!-- Messages will appear here -->
+        </div>
+        <form id="chat-form" class="chat-form" onsubmit="return false;">
+            <input id="search" autocomplete="on" placeholder="Ask me about Indian culture..." />
+            <button id="sendBtn">&uarr;</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

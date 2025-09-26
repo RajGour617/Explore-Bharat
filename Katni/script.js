@@ -31,6 +31,7 @@ placesData.forEach(place => {
     <h2>${place.name}</h2>
     <p><strong>History:</strong> ${place.history}</p>
     <p><strong>Fact:</strong> ${place.facts}</p>
+    <a href="https://www.google.com/search?q=${place.name.replace(/ /g, "+")}" class="btn-view" target="_blank" rel="noopener noreferrer">View Details</a>
   `;
 
   container.appendChild(card);

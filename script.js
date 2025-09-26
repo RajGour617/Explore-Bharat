@@ -37,7 +37,7 @@
           { name: "Pithora Paintings", img: "images/MP/pithora.jpg", desc: "Ritual paintings by tribal artists." },
           { name: "Bhitti Chitra", img: "images/MP/bhitti.jpg", desc: "Traditional handicrafts of Madhya Pradesh." }
         ],
-        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+        categories: ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
       },
       {
         id: "Uttar Pradesh",
@@ -65,7 +65,7 @@
         crafts: [
           { name: "Zardozi Embroidery", img: "images/UP/zardozi.jpg", desc: "Luxurious metal-thread embroidery." }
         ],
-        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+        categories: ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
       },
       {
         id: "Kerala",
@@ -90,7 +90,7 @@
         crafts: [
           { name: "Coir Products", img: "images/Kerala/coir.jpg", desc: "Coir-based handicrafts and ropes." }
         ],
-        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+        categories: ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
       },
       {
         id: "Rajasthan",
@@ -115,7 +115,7 @@
         crafts: [
           { name: "Block Printing & Blue Pottery", img: "images/Rajasthan/blockprint.jpg", desc: "Iconic handicrafts." }
         ],
-        categories: ["Festivals", "Food", "Dance & Music", "Crafts"]
+        categories: ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
       }
     ]
   };
@@ -151,6 +151,25 @@
     return div;
   }
 
+  function createStateCard(state) {
+    const div = document.createElement("article");
+    div.className = "card state-card"; // Add a specific class for styling/selection
+    div.dataset.stateId = state.id;
+    div.setAttribute('role', 'button');
+    div.setAttribute('tabindex', '0');
+
+    div.innerHTML = `
+      <img src="${state.banner || 'images/placeholder.jpg'}" alt="Banner for ${state.id}">
+      <h4>${state.id}</h4>
+      <p>${state.intro.split('—')[1]?.trim() || state.intro}</p>
+    `;
+
+    div.addEventListener('click', () => selectState(state.id));
+    div.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') selectState(state.id);
+    });
+    return div;
+  }
   function showModal(title, htmlContent) {
     const modal = $("#modal");
     const body = $("#modalBody");
@@ -171,7 +190,7 @@
   function populateStateDropdown(states) {
     const selects = Array.from(document.querySelectorAll("#stateFilter, #stateDropdown"));
     selects.forEach(sel => {
-      // remove existing except the first (All States)
+      // remove existing except the first
       const existing = Array.from(sel.querySelectorAll("option[data-generated]"));
       existing.forEach(o => o.remove());
 
@@ -203,17 +222,23 @@
     });
   }
 
+  function renderStatesGrid(states) {
+    const grid = $("#statesGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    states.forEach(state => {
+      const card = createStateCard(state);
+      grid.appendChild(card);
+    });
+  }
+
   function renderStatePage(stateId) {
     if (!stateId) {
-      // Clear content if no selection
-      const banner = $("#stateBanner");
-      if (banner) banner.innerHTML = "";
-      const intro = $("#stateIntro");
-      if (intro) intro.innerHTML = `<p>Select a state to view its details.</p>`;
-      ["citiesGrid", "festivalsGrid", "foodGrid", "danceGrid", "craftGrid"].forEach(id => {
-        const g = document.getElementById(id);
-        if (g) g.innerHTML = "";
-      });
+      // If no state is selected, show the main grid and hide details
+      document.body.classList.remove('state-selected');
+      // Reset dropdown to placeholder
+      const stateSelect = $("#stateFilter");
+      if (stateSelect) stateSelect.value = "";
       return;
     }
     const state = DATA.states.find(s => s.id === stateId);
@@ -222,11 +247,11 @@
     // Banner
     const banner = $("#stateBanner");
     if (banner) {
-      banner.innerHTML = `
+        banner.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
           <img src="${state.banner || 'images/placeholder.jpg'}" alt="${state.id}" style="height:140px;border-radius:12px;object-fit:cover;">
           <div>
-            <h1>${state.id}</h1>
+            <h1 style="color: var(--navy);">${state.id}</h1>
             <p style="max-width:640px">${state.intro}</p>
           </div>
         </div>
@@ -245,7 +270,7 @@
       { key: "festivals", id: "festivalsGrid", type: "Festival" },
       { key: "food", id: "foodGrid", type: "Food" },
       { key: "danceMusic", id: "danceGrid", type: "Dance/Music" },
-      { key: "crafts", id: "craftGrid", type: "Craft" }
+      { key: "crafts", id: "craftGrid", type: "Art/Craft" }
     ];
 
     grids.forEach(g => {
@@ -262,6 +287,9 @@
         node.appendChild(card);
       });
     });
+
+    // Show the detail view
+    document.body.classList.add('state-selected');
   }
 
   function renderCategoryGrid() {
@@ -280,7 +308,7 @@
             key === "festivals" ? "Festivals" :
             key === "food" ? "Food" :
             key === "danceMusic" ? "Dance & Music" :
-            key === "crafts" ? "Crafts & Arts" :
+            key === "crafts" ? "Arts & Crafts" :
             "Cities & Attractions";
           map[category] = map[category] || [];
           map[category].push({ state: st.id, item: it, type: category });
@@ -306,6 +334,12 @@
       });
       grid.appendChild(section);
     });
+  }
+
+  function selectState(stateId) {
+    const stateSelect = $("#stateFilter");
+    if (stateSelect) stateSelect.value = stateId;
+    renderStatePage(stateId);
   }
 
   // ---------- EVENT BINDINGS ----------
@@ -358,6 +392,12 @@
       if (evt.target === modal) closeModal();
     });
 
+    // Back to states button
+    const backBtn = $("#backToStates");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => renderStatePage(null));
+    }
+
     // delegate card view buttons
     document.body.addEventListener("click", (e) => {
       const btn = e.target.closest(".view-detail");
@@ -408,7 +448,7 @@
             key === "festivals" ? "Festivals" :
             key === "food" ? "Food" :
             key === "danceMusic" ? "Dance & Music" :
-            key === "crafts" ? "Crafts & Arts" :
+            key === "crafts" ? "Arts & Crafts" :
             "Cities & Attractions";
           if (categoryName && category !== categoryName) return;
           entries.push({ state: st.id, item: it, category });
@@ -489,7 +529,7 @@
               k === "festivals" ? "Festivals" :
               k === "food" ? "Food" :
               k === "danceMusic" ? "Dance & Music" :
-              k === "crafts" ? "Crafts & Arts" :
+              k === "crafts" ? "Arts & Crafts" :
               "Cities & Attractions";
             entries.push({ state: st.id, item: it, category });
           }
@@ -543,6 +583,7 @@
       // populate dropdowns & categories
       populateStateDropdown(DATA.states);
       populateCategoryDropdown(DATA.states);
+      renderStatesGrid(DATA.states);
       // if on state page and a default is selected, render it
       const pageStateSelect = document.querySelector("#stateFilter");
       if (pageStateSelect && pageStateSelect.value) {

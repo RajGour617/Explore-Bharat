@@ -25,6 +25,13 @@
       z-index: 1;
       animation: fadeIn 1.2s cubic-bezier(.23, 1.01, .32, 1) both;
     }
+    
+    /* View toggling */
+    #statesGridContainer { display: block; }
+    #stateDetailContainer { display: none; }
+
+    body.state-selected #statesGridContainer { display: none; }
+    body.state-selected #stateDetailContainer { display: block; }
 
     .state-banner {
       background: rgba(255, 255, 255, 0.7);
@@ -221,54 +228,60 @@
       </div>
     </div>
   </header>
-
+  
   <main class="container">
     <div class="top-row"
       style="display: flex; gap: 2.5rem; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 220px;">
         <label for="stateDropdown" style="position: absolute; left: -9999px;">Choose a state</label>
         <select id="stateFilter" title="Choose a state" aria-label="Choose a state"
-          style="width: 100%; font-size: 1.1rem; padding: 0.7rem 1.2rem; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px #0001;">
-          <option value="">All States</option>
+          style="width: 100%; font-size: 1.1rem; padding: 0.7rem 1.2rem; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <option value="">Select a State...</option>
         </select>
       </div>
       <div style="flex: 2; min-width: 320px; max-width: 540px;">
         <video id="bgVideo" autoplay muted loop playsinline aria-hidden="true"
-          style="width: 100%; border-radius: 16px; box-shadow: 0 4px 24px #0002;">
+          style="width: 100%; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.12);">
           <source src="images/herobg.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
 
-    <div id="stateBanner" class="state-banner" aria-label="State banner">
-      <!-- Banner populated dynamically -->
+    <!-- Initial view: Grid of all states -->
+    <section id="statesGridContainer">
+      <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">Select a State to Explore</h2>
+      <div id="statesGrid" class="grid">
+        <!-- State cards will be injected here by JS -->
+      </div>
+    </section>
+
+    <!-- Detail view: Shown after a state is selected -->
+    <div id="stateDetailContainer">
+      <button id="backToStates" class="btn btn-primary" style="margin-bottom: 1.5rem;">← Back to All States</button>
+      <div id="stateBanner" class="state-banner" aria-label="State banner">
+        <!-- Banner populated dynamically -->
+      </div>
+      <section id="stateIntro" class="state-intro">
+        <!-- State intro text populated by JS -->
+      </section>
+      <section class="cards-grid" aria-live="polite">
+        <h2>Cities & Attractions</h2>
+        <div id="citiesGrid" class="grid"></div>
+
+        <h2>Festivals</h2>
+        <div id="festivalsGrid" class="grid"></div>
+
+        <h2>Food</h2>
+        <div id="foodGrid" class="grid"></div>
+
+        <h2>Dance & Music</h2>
+        <div id="danceGrid" class="grid"></div>
+
+        <h2>Arts & Crafts</h2>
+        <div id="craftGrid" class="grid"></div>
+      </section>
     </div>
-
-    <section id="stateIntro" class="state-intro">
-      <!-- State intro text populated by JS -->
-    </section>
-
-    <section class="cards-grid" aria-live="polite">
-      <h2>Cities & Attractions</h2>
-      <div id="citiesGrid" class="grid"></div>
-
-      <h2>Festivals</h2>
-      <div id="festivalsGrid" class="grid"></div>
-
-      <h2>Food</h2>
-      <div id="foodGrid" class="grid"></div>
-
-      <h2>Dance & Music</h2>
-      <div id="danceGrid" class="grid"></div>
-
-      <h2>Arts & Crafts</h2>
-      <div id="craftGrid" class="grid"></div>
-    </section>
-
-    <section class="coming-soon-places">
-      <div class="placeholder">🤖 AI Recommendations: Coming soon</div>
-    </section>
 
   </main>
 

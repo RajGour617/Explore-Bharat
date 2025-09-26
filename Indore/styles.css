@@ -98,13 +98,29 @@ header p {
     line-height: 1.4;
 }
 
-/* Responsive Typography */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
+.btn-view {
+    display: inline-block; /* To allow margin and padding */
+    margin-top: 4px; /* Pushes button to the bottom of the card */
+    margin-left: auto;
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: #154052;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-    header p {
-        font-size: 1rem;
-    }
+.btn-view:hover {
+    background-color: #267292;
+    transform: translateY(-2px);
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+header p {
+    font-size: 1rem;
 }
