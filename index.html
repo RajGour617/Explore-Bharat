@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Explore Bharat</title>
+  <title data-translate-key="title">Explore Bharat</title>
   <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -18,22 +18,23 @@
     <div class="brand">
       <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
       <div class="brand-text">
-        <h3><a href=index.html style="color: inherit; text-decoration: none;"><strong>Explore Bharat</strong></a></h3>
+        <h3><a href=index.html style="color: inherit; text-decoration: none;"><strong data-translate-key="exploreBharat">Explore Bharat</strong></a></h3>
       </div>
     </div>
 
     <div class="top-controls">
       <nav class="top-nav">
-        <a href="index.html">Home</a>
-        <a href="https://www.india.gov.in/topics/art-culture" id="link-about">About</a>
-        <a href="https://www.indiaculture.gov.in/world-heritage" id="link-impact">Impact</a>
-        <a href="#Refs" id="link-references">References</a>
+        <a href="index.html" data-translate-key="home">Home</a>
+        <a href="https://www.india.gov.in/topics/art-culture" id="link-about" data-translate-key="about">About</a>
+        <a href="https://www.indiaculture.gov.in/world-heritage" id="link-impact" data-translate-key="impact">Impact</a>
+        <a href="#Refs" id="link-references" data-translate-key="references">References</a>
       </nav>
 
       <div class="search-lang">
         <input id="globalSearch" type="search" placeholder="🔎 Search festivals, food, dance, states..."
-          aria-label="Search">
+          aria-label="Search" data-translate-key="searchPlaceholder">
         <button id="langToggle" class="btn-small">EN/हिं</button>
+        <button id="themeToggle" class="btn-small">🌙</button>
       </div>
     </div>
   </header>
@@ -42,93 +43,108 @@
   <main>
     <section class="hero">
       <video autoplay loop muted playsinline class="bg-video" aria-hidden="true" tabindex="-1">
-        <source src="images/bgvideo.mp4" type="video/mp4">
+        <source src="images/culturevid.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="hero-overlay">
         <div class="hero-left">
-          <h2><i>“Explore Bharat – Connecting the world with India’s timeless traditions”</i></h2>
-          <p class="lead">Explore culture through states or categories</p>
+          <h1 class="hero-title-top">“Explore Bharat – <br>Connecting the world with India’s timeless traditions”</h1>
+        </div>
+        <div class="hero-bottom-controls">
           <div class="cta-row">
-            <a class="btn btn-primary" href="state.html">🗺️ Explore by State</a>
-            <a class="btn btn-secondary" href="category.html">🎭 Explore by Category</a>
+            <a class="btn btn-primary" href="state.html" data-translate-key="exploreByState">🗺️ Explore by State</a>
+            <a class="btn btn-secondary" href="category.html" data-translate-key="exploreByCategory">🎭 Explore by Category</a>
           </div>
-
           <div class="quick-cards">
-            <div class="chip coming-soon"><a href="Marketplace/index.html">🛒
+            <div class="chip coming-soon"><a href="Marketplace/index.html" data-translate-key="visitMarketplace">🛒
                 Visit Artisan Marketplace</a></div>
-            <div class="chip coming-soon">🔭 VR/AR (coming soon)</div>
+            <div class="chip coming-soon" data-translate-key="vrAr">🔭 VR/AR (coming soon)</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="hero-right">
-          <div class="carousel" role="region" aria-roledescription="carousel">
-            <button class="carousel-arrow left" data-dir="-1" aria-label="Previous">‹</button>
-            <div class="carousel-track">
-              <figure class="slide active">
-                <img src="images/UP/tajmahal.jpg" alt="Taj Mahal">
-                <figcaption>Taj Mahal — Agra, UP</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/Kerala/kathakali.jpg" alt="Kathakali">
-                <figcaption>Kathakali Dance — Kerala</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/Rajasthan/pushkar.avif" alt="Pushkar Camel Fair">
-                <figcaption>Pushkar Camel Fair — Rajasthan</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/maheshwar.jpg" alt="Maheshwar">
-                <figcaption>Devi Ahilya Fort — Maheshwar, MP</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/festival.jpg" alt="Festival">
-                <figcaption>Holi — UP, MP</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/MP/bhasmarti.jpg" alt="Food">
-                <figcaption>Bhasmarti — Madhya Pradesh</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/attire.jpg" alt="Attire">
-                <figcaption>Folk Attire — Maharashtra</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/spices.jpg" alt="Food">
-                <figcaption>Spices — Kerala</figcaption>
-              </figure>
-              <figure class="slide">
-                <img src="images/biryani.jpg" alt="Food">
-                <figcaption>Biryani — Hyderabad</figcaption>
-              </figure>
-            </div>
-            <button class="carousel-arrow right" data-dir="1" aria-label="Next">›</button>
-          </div>
+    <!-- CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel" role="region" aria-roledescription="carousel">
+        <button class="carousel-arrow left" data-dir="-1" aria-label="Previous">‹</button>
+        <div class="carousel-track">
+          <figure class="slide active">
+            <img src="images/UP/tajmahal.jpg" alt="Taj Mahal">
+            <figcaption data-translate-key="tajMahal">Taj Mahal — Agra, UP</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/Kerala/kathakali.jpg" alt="Kathakali">
+            <figcaption data-translate-key="kathakali">Kathakali Dance — Kerala</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/Rajasthan/pushkar.avif" alt="Pushkar Camel Fair">
+            <figcaption data-translate-key="pushkar">Pushkar Camel Fair — Rajasthan</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/maheshwar.jpg" alt="Maheshwar">
+            <figcaption data-translate-key="maheshwar">Devi Ahilya Fort — Maheshwar, MP</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/festival.jpg" alt="Festival">
+            <figcaption data-translate-key="holi">Holi — UP, MP</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/MP/bhasmarti.jpg" alt="Food">
+            <figcaption data-translate-key="bhasmarti">Bhasmarti — Madhya Pradesh</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/attire.jpg" alt="Attire">
+            <figcaption data-translate-key="folkAttire">Folk Attire — Maharashtra</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/spices.jpg" alt="Food">
+            <figcaption data-translate-key="spices">Spices — Kerala</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="images/biryani.jpg" alt="Food">
+            <figcaption data-translate-key="biryani">Biryani — Hyderabad</figcaption>
+          </figure>
         </div>
+        <button class="carousel-arrow right" data-dir="1" aria-label="Next">›</button>
       </div>
     </section>
 
     <!-- MAIN CTA GRID -->
     <section class="home-features">
       <div class="feature-card maroon">
-        <h3>Explore by State</h3>
-        <p>Click a state to view cities, festivals, food, arts and crafts.</p>
-        <a href="state.html" class="btn-link">Browse states →</a>
+        <h3 data-translate-key="exploreByState">Explore by State</h3>
+        <p data-translate-key="stateDescription">Click a state to view cities, festivals, food, arts and crafts.</p>
+        <a href="state.html" class="btn-link" data-translate-key="browseStates">Browse states →</a>
       </div>
 
       <div class="feature-card maroon">
-        <h3>Explore by Category</h3>
-        <p>Festivals, Food, Music/Dance, Arts, Heritage, Languages.</p>
-        <a href="category.html" class="btn-link">Browse categories →</a>
+        <h3 data-translate-key="exploreByCategory">Explore by Category</h3>
+        <p data-translate-key="categoryDescription">Festivals, Food, Music/Dance, Arts, Heritage, Languages.</p>
+        <a href="category.html" class="btn-link" data-translate-key="browseCategories">Browse categories →</a>
       </div>
     </section>
 
     <br>
-    <!-- References and Trivia -->
-    <section class="trivia-wrap">
-      <div class="trivia-card" id="triviaCard">
-        <h4>💡 Did you know?</h4>
-        <p id="triviaText">India has 22 official languages and over 700 dialects.</p>
+    <!-- Trivia Carousel -->
+    <section class="trivia-carousel-section">
+      <div class="trivia-carousel">
+        <div class="trivia-slide active">
+          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
+          <p data-translate-key="triviaText1">India has 22 official languages and over 700 dialects.</p>
+        </div>
+        <div class="trivia-slide">
+          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
+          <p data-translate-key="triviaText2">The game of Snakes and Ladders was created in India.</p>
+        </div>
+        <div class="trivia-slide">
+          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
+          <p data-translate-key="triviaText3">India is the world’s largest producer of spices.</p>
+        </div>
+        <div class="trivia-slide">
+          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
+          <p data-translate-key="triviaText4">The decimal system and the concept of zero were invented in India.</p>
+        </div>
       </div>
     </section>
 
@@ -136,15 +152,15 @@
     <footer>
       <section class="footer-cards-section">
         <div class="explore" id="Explore">
-          <h4>Explore</h4>
+          <h4 data-translate-key="explore">Explore</h4>
           <ul>
-            <li><a href="state.html" target="_blank">States & UTs</a></li>
-            <li><a href="category.html" target="_blank">Cultural Categories</a></li>
-            <li><a href="index.html" target="_blank">Search</a></li>
+            <li><a href="state.html" target="_blank" data-translate-key="statesUts">States & UTs</a></li>
+            <li><a href="category.html" target="_blank" data-translate-key="culturalCategories">Cultural Categories</a></li>
+            <li><a href="index.html" target="_blank" data-translate-key="search">Search</a></li>
           </ul>
         </div>
         <div class="refs" id="Refs">
-          <h4>References</h4>
+          <h4 data-translate-key="references">References</h4>
           <ul>
             <li><a href="https://www.incredibleindia.gov.in/en" target="_blank" rel="noopener">Incredible India</a></li>
             <li><a href="https://en.unesco.org/" target="_blank" rel="noopener">UNESCO</a></li>
@@ -152,7 +168,7 @@
           </ul>
         </div>
         <div class="soon" id="Soon">
-          <h4>Coming Soon</h4>
+          <h4 data-translate-key="comingSoon">Coming Soon</h4>
           <ul>
             <li><a href="#" target="_blank">🥽 VR/AR Tours</a></li>
             <li><a href="#" target="_blank">🤖 AI Recommendations</a></li>
@@ -173,6 +189,8 @@
   <a href="AI Chatbot/index.html" class="ai-chat-button" aria-label="Open AI Chat">
     <img src="images/ai.jpg" alt="AI Chatbot">
   </a>
+
+  <button id="scrollToTopBtn" class="btn-primary">↑</button>
 
   <script src="script.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
