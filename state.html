@@ -8,12 +8,17 @@
   <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
 
   <style>
     body {
-      background: linear-gradient(120deg, #f9fafb 0%, #60677d 100%);
+      background: linear-gradient(135deg, #f9fafb 0%, #fff6a8 100%);
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    h1 {
+      color: #232f46;
     }
 
     main.container {
@@ -24,13 +29,23 @@
       z-index: 1;
       animation: fadeIn 1.2s cubic-bezier(.23, 1.01, .32, 1) both;
     }
-    
-    /* View toggling */
-    #statesGridContainer { display: block; }
-    #stateDetailContainer { display: none; }
 
-    body.state-selected #statesGridContainer { display: none; }
-    body.state-selected #stateDetailContainer { display: block; }
+    /* View toggling */
+    #statesGridContainer {
+      display: block;
+    }
+
+    #stateDetailContainer {
+      display: none;
+    }
+
+    body.state-selected #statesGridContainer {
+      display: none;
+    }
+
+    body.state-selected #stateDetailContainer {
+      display: block;
+    }
 
     .state-banner {
       background: rgba(255, 255, 255, 0.7);
@@ -224,10 +239,11 @@
         <input id="globalSearch" type="search" data-translate="searchPlaceholder" data-translate-attr="placeholder"
           placeholder="🔎 Search...">
         <button id="langToggle" class="btn-small" aria-label="Toggle language">EN/हिं</button>
+        <button id="theme-switcher" class="btn-small">🌙</button>
       </div>
     </div>
   </header>
-  
+
   <main class="container">
     <div class="top-row"
       style="display: flex; gap: 2.5rem; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap;">
@@ -249,7 +265,7 @@
 
     <!-- Initial view: Grid of all states -->
     <section id="statesGridContainer">
-      <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">Select a State to Explore</h2>
+      <h1 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">Select a State to Explore</h1>
       <div id="statesGrid" class="grid">
         <!-- State cards will be injected here by JS -->
       </div>
@@ -293,6 +309,7 @@
   </div> -->
 
   <script src="script.js" defer></script>
+  <script src="theme-switcher.js"></script>
 </body>
 
 </html>

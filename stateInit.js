@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM Content Loaded');
-    
+
     // Wait a bit for script.js to initialize
     setTimeout(initializeStateView, 100);
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to populate state dropdown
         function populateStateDropdown() {
             if (!stateFilter) return;
-            
+
             // Clear existing options except the first one
             while (stateFilter.options.length > 1) {
                 stateFilter.remove(1);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to render states grid
         function renderStatesGrid() {
             if (!statesGrid) return;
-            
+
             statesGrid.innerHTML = ''; // Clear existing content
             window.CULTURE_DATA.states.forEach(state => {
                 const card = createStateCard(state);

@@ -8,6 +8,7 @@
       "intro_hi": "मध्य प्रदेश — अपने मंदिरों और राष्ट्रीय उद्यानों के लिए जाना जाता है।",
       "cities": [
         { "name": "Indore", "img": "images/MP/rajwada.jpg", "desc": "Cleanest City of India", "link": "Indore/index.html" },
+        {"name": "Ujjain", "img": "Ujjain/images/mahakaleshwar.jpg", "desc": "Known as a major Hindu pilgrimage center and one of the seven sacred Hindu cities", "link": "Ujjain/index.html"},
         { "name": "Khajuraho", "img": "images/MP/khajuraho.jpg", "desc": "Famous for its UNESCO-listed temples", "link": "Khajuraho/index.html" },
         { "name": "Sanchi", "img": "images/MP/sanchi.jpg", "desc": "Buddhist stupas and ancient heritage", "link": "Sanchi/index.html" },
         { "name": "Sehore", "img": "images/MP/sehore.jpg", "desc": "Famous for Sharbati Wheat", "link": "Sehore/index.html" },

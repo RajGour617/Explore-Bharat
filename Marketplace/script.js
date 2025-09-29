@@ -1,16 +1,21 @@
-//! Simple demo product data
-const PRODUCTS = [
-    { id: 'p1', title: 'MP Gond Art', price: 79, img: 'images/gondart.jpg', category: 'paintings' },
-    { id: 'p2', title: 'Ruby Stone Necklace', price: 399, img: 'images/necklace.jpg', category: 'jewelry' },
-    { id: 'p3', title: 'Rajasthan Blue Pottery', price: 199, img: 'images/blockprint.jpg', category: 'pottery' },
-    { id: 'p4', title: 'Musical Instruments', price: 399, img: 'images/folkmusic.jpg', category: 'music' },
-    { id: 'p5', title: 'Kerala Coir', price: 49, img: 'images/coir.jpg', category: 'craft' },
-    { id: 'p6', title: 'Rangoli Style Pottery', price: 85, img: 'images/pottery1.jpg', category: 'pottery' },
-    { id: 'p7', title: 'Metal Elephant', price: 249, img: 'images/elephant.jpg', category: 'art' },
-    { id: 'p8', title: 'UP Chikankari', price: 129, img: 'images/chikankari.jpg', category: 'weaving' },
-];
+let PRODUCTS = [];
+
+async function fetchProducts() {
+    try {
+        const response = await fetch('products.json');
+        const data = await response.json();
+        PRODUCTS = data.products;
+        initializePage();
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
+    fetchProducts();
+});
+
+function initializePage() {
     // Elements
     const hero = document.getElementById('hero-carousel');
     const slidesEl = hero.querySelector('.slides');
@@ -76,15 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = 'card';
             card.setAttribute('role', 'listitem');
             card.innerHTML = `
-        <button class="wishlist-btn" data-id="${p.id}" aria-label="Add to wishlist">♡</button>
-        <img src="${p.img}" alt="${p.title}">
-        <div class="title">${p.title}</div>
-        <div class="price">$${p.price.toFixed(2)}</div>
-        <div class="meta">
-          <button class="add" data-id="${p.id}">Add</button>
-          <button class="btn-view" data-id="${p.id}">View</button>
-        </div>
-      `;
+            <div class="card-img-wrapper">
+                <img src="${p.img}" alt="${p.title}">
+                ${p.tag ? `<div class="tag">${p.tag}</div>` : ''}
+                <button class="wishlist-btn" data-id="${p.id}" aria-label="Add to wishlist">♡</button>
+                <button class="btn-view" data-id="${p.id}">Quick View</button>
+            </div>
+            <div class="title">${p.title}</div>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <div class="meta">
+              <button class="add" data-id="${p.id}">Add to Cart</button>
+            </div>
+          `;
             container.appendChild(card);
         });
     }
@@ -297,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <img src="${p.img}" alt="${p.title}">
       <div class="info">
         <h2 style="margin-top:0">${p.title}</h2>
-        <p style="color:#666">Description of ${p.title}. This is sample copy for the demo product showing features and materials.</p>
+        <p style="color:#666">${p.desc}</p>
         <div style="font-weight:700;margin-top:8px">$${p.price.toFixed(2)}</div>
         <div style="margin-top:12px">
           <button class="btn" id="modal-add" data-id="${p.id}">Add to cart</button>
@@ -441,4 +449,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     initializeUI();
-});
+}
