@@ -448,7 +448,7 @@
         window.CULTURE_DATA = DATA;
         populateStateDropdown(DATA.states);
         populateCategoryDropdown(DATA.states);
-        
+
         const urlParams = new URLSearchParams(window.location.search);
         const stateId = urlParams.get('state');
         const searchQuery = urlParams.get('search');

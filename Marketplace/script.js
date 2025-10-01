@@ -3,12 +3,23 @@ let PRODUCTS = [];
 async function fetchProducts() {
     try {
         const response = await fetch('products.json');
+        if (!response.ok) {
+            throw new Error('Failed to fetch products');
+        }
         const data = await response.json();
         PRODUCTS = data.products;
         initializePage();
     } catch (error) {
         console.error('Error fetching products:', error);
+        showErrorNotification('Failed to load products. Please try again later.');
     }
+}
+function showErrorNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification error';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 5000);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -90,9 +101,9 @@ function initializePage() {
             <div class="title">${p.title}</div>
             <div class="price">$${p.price.toFixed(2)}</div>
             <div class="meta">
-              <button class="add" data-id="${p.id}">Add to Cart</button>
+                <button class="add" data-id="${p.id}">Add to Cart</button>
             </div>
-          `;
+            `;
             container.appendChild(card);
         });
     }
@@ -106,10 +117,45 @@ function initializePage() {
         right?.addEventListener('click', () => track.scrollBy({ left: 320, behavior: 'smooth' }));
     });
 
+    // ===== Filtering Logic =====
+    const filtersForm = document.getElementById('filters-form');
+    const priceFilter = document.getElementById('filter-price');
+    const priceValue = document.getElementById('price-value');
+
+    if (priceFilter && priceValue) {
+        priceFilter.addEventListener('input', () => {
+            priceValue.textContent = `${priceFilter.value}`;
+        });
+    }
+
+    if (filtersForm) {
+        filtersForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            applyFilters();
+        });
+    }
+
+    function applyFilters() {
+        const category = document.getElementById('filter-category').value;
+        const maxPrice = parseInt(document.getElementById('filter-price').value, 10);
+
+        let filteredProducts = PRODUCTS;
+
+        if (category) {
+            filteredProducts = filteredProducts.filter(p => p.category.toLowerCase() === category.toLowerCase());
+        }
+
+        if (!isNaN(maxPrice)) {
+            filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
+        }
+
+        renderRow('all-products-grid', filteredProducts);
+    }
+
     // initial rows
     const trending = PRODUCTS.slice(0, 6);
     renderRow('trending-track', trending);
-    renderRow('drops-track', PRODUCTS);
+    renderRow('all-products-grid', PRODUCTS);
 
     // ===== Modals, Drawers, and Auth =====
     const modal = document.getElementById('product-modal');
@@ -266,6 +312,10 @@ function initializePage() {
     // ===== Event Delegation for Body =====
     document.body.addEventListener('click', e => {
         const addBtn = e.target.closest('.add');
+        const viewBtn = e.target.closest('.btn-view');
+        const wishlistBtn = e.target.closest('.wishlist-btn');
+        const modalAddBtn = e.target.closest('#modal-add');
+
         if (addBtn) {
             const id = addBtn.dataset.id;
             addToCart(id, 1);
@@ -276,13 +326,13 @@ function initializePage() {
             }
             return;
         }
-        const viewBtn = e.target.closest('.btn-view');
+        
         if (viewBtn) {
             const id = viewBtn.dataset.id;
             showProductModal(id);
             return;
         }
-        const wishlistBtn = e.target.closest('.wishlist-btn');
+        
         if (wishlistBtn) {
             if (!IS_LOGGED_IN) {
                 alert("Please sign in to use the wishlist!");
@@ -292,6 +342,13 @@ function initializePage() {
             toggleWishlist(wishlistBtn.dataset.id);
             return;
         }
+
+        if (modalAddBtn) {
+            addToCart(modalAddBtn.dataset.id, 1);
+            modal.setAttribute('aria-hidden', 'true');
+            return;
+        }
+
         if (e.target.id === 'checkout-btn') {
             if (Object.keys(CART).length === 0) { alert('Cart is empty'); return; }
             checkoutOverlay.setAttribute('aria-hidden', 'false');
@@ -306,7 +363,7 @@ function initializePage() {
       <div class="info">
         <h2 style="margin-top:0">${p.title}</h2>
         <p style="color:#666">${p.desc}</p>
-        <div style="font-weight:700;margin-top:8px">$${p.price.toFixed(2)}</div>
+        <div style="font-weight:700;margin-top:8px">${p.price.toFixed(2)}</div>
         <div style="margin-top:12px">
           <button class="btn" id="modal-add" data-id="${p.id}">Add to cart</button>
         </div>
@@ -339,14 +396,6 @@ function initializePage() {
         }
         saveWishlist();
     }
-
-
-    document.body.addEventListener('click', e => {
-        if (e.target && e.target.id === 'modal-add') {
-            addToCart(e.target.dataset.id, 1);
-            modal.setAttribute('aria-hidden', 'true');
-        }
-    });
 
     cartBody.addEventListener('click', e => {
         const inc = e.target.closest('.qty-inc');

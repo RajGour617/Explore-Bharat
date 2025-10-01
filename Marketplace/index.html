@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artisan Marketplace — Explore Bharat</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 </head>
 
 <body>
@@ -15,8 +15,8 @@
             <div class="logo"><a href="../index.html">Explore <span class="accent">Bharat</span></a></div>
             <div class="user-actions">
                 <span class="points-display">Bharat Points: <span id="bharat-points">0</span></span>
-                <button id="open-wishlist" class="icon-btn" aria-label="Wishlist">♡ <span
-                        id="wishlist-count">0</span></button>
+                <button id="open-wishlist-header" class="icon-btn" aria-label="Wishlist">♡ <span
+                        id="wishlist-count-header">0</span></button>
                 <button id="open-cart" class="icon-btn" aria-label="Cart">🛒 <span id="cart-count">0</span></button>
                 <span id="guest-view">
                     <a href="#" id="signin-btn-open" class="btn-link">Sign In</a> /
@@ -86,8 +86,8 @@
                                 <option value="Music">Music</option>
                             </select>
                         </label>
-                        <label style="margin-top:14px;display:block;">Price
-                            <input type="range" id="filter-price" min="0" max="500" step="10" style="width:100%;">
+                        <label style="margin-top:14px;display:block;">Price: <span id="price-value">$500</span>
+                            <input type="range" id="filter-price" value="500" min="0" max="500" step="10" style="width:100%;">
                         </label>
                         <button type="submit" class="btn" style="margin-top:18px;width:100%;">Apply</button>
                     </form>
@@ -98,8 +98,8 @@
                 </div>
                 <div class="section" style="margin-top:18px;">
                     <div class="section-title">Wishlist</div>
-                    <button id="open-wishlist" class="btn full">View Wishlist (<span
-                            id="wishlist-count">0</span>)</button>
+                    <button id="open-wishlist-sidebar" class="btn full">View Wishlist (<span
+                            id="wishlist-count-sidebar">0</span>)</button>
                 </div>
             </aside>
 
@@ -108,7 +108,7 @@
                 <!-- Trending Products -->
                 <section class="section" id="trending">
                     <div class="section-title">Trending Now</div>
-                    <div class="product-row" role="list">
+                    <div class="product-row">
                         <button class="row-arrow left" aria-label="Scroll left">‹</button>
                         <div class="row-track" id="trending-track"></div>
                         <button class="row-arrow right" aria-label="Scroll right">›</button>
@@ -117,10 +117,8 @@
                 <!-- All Products -->
                 <section class="section" id="drops">
                     <div class="section-title">All Products</div>
-                    <div class="product-row" role="list">
-                        <button class="row-arrow left" aria-label="Scroll left">‹</button>
-                        <div class="row-track" id="drops-track"></div>
-                        <button class="row-arrow right" aria-label="Scroll right">›</button>
+                    <div class="product-grid" id="all-products-grid">
+                        <!-- Products will be injected here by script.js -->
                     </div>
                 </section>
             </div>
