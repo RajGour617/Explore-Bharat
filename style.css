@@ -17,8 +17,8 @@
 
 .dark-mode {
     --saffron: #f3a628;
-    --maroon: #c94a4a;
-    --navy: #e2e8f0;
+    --maroon: #9c1a1a;
+    --navy: #1c2d41;
     --card-bg: #1a202c;
     --accent: #5eead4;
     --glass-light: rgba(26, 32, 44, 0.7);
@@ -86,8 +86,8 @@ li {
     top: 0;
     z-index: 50;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -389,10 +389,11 @@ li {
 }
 
 .carousel-arrow {
+    color: #fff;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(18, 17, 17, 0.8);
     border: 0;
     padding: 0.8rem 1.2rem;
     border-radius: 50%;
@@ -958,4 +959,99 @@ footer {
         position: static;
         height: auto;
     }
+}
+
+.dark-mode #Explore::footer {
+    background-color: var(--card-bg);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Interactive Map --- */
+.interactive-map-section {
+    padding: 4rem 2.5rem;
+    text-align: center;
+}
+
+#map-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 1px solid #ccc;
+    box-shadow: var(--shadow);
+    background-color: var(--card-bg);
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+}
+
+#map-container svg {
+    width: 100%;
+    height: auto;
+}
+
+#map-container svg path {
+    fill: var(--accent);
+    stroke: var(--bg-color);
+    stroke-width: 1;
+    transition: fill 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+#map-container svg path:hover {
+    fill: var(--saffron);
+}
+
+#state-info {
+    margin-bottom: 1rem;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+    min-height: 1.5em; /* To prevent layout shift */
+}
+
+/* --- Auth Modal --- */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+#auth-modal .modal-content {
+    max-width: 400px;
+    margin: 10% auto;
+}
+
+#authModalBody {
+    padding: 2rem;
+}
+
+#authModalBody h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+}
+
+.auth-form-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-form-footer a {
+    color: var(--accent);
+    cursor: pointer;
 }
