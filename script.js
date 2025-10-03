@@ -119,8 +119,8 @@
     if (!state) return;
 
     const stateDetailContainer = $("#stateDetailContainer");
-    if(stateDetailContainer) {
-        stateDetailContainer.innerHTML = `
+    if (stateDetailContainer) {
+      stateDetailContainer.innerHTML = `
             <div class="state-page-layout">
                 <div class="state-info">
                     <button id="backToStates" class="btn btn-primary" style="margin-bottom: 1.5rem;">← Back to All States</button>
@@ -153,7 +153,7 @@
     // Banner
     const banner = $("#stateBanner");
     if (banner) {
-        banner.innerHTML = `
+      banner.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
           <img src="${state.banner || 'images/placeholder.jpg'}" alt="${state.id}" style="height:140px;border-radius:12px;object-fit:cover;">
           <div>
@@ -211,10 +211,10 @@
           // map categories for simple grouping
           const category =
             key === "festivals" ? "Festivals" :
-            key === "food" ? "Food" :
-            key === "danceMusic" ? "Dance & Music" :
-            key === "crafts" ? "Arts & Crafts" :
-            "Cities & Attractions";
+              key === "food" ? "Food" :
+                key === "danceMusic" ? "Dance & Music" :
+                  key === "crafts" ? "Arts & Crafts" :
+                    "Cities & Attractions";
           map[category] = map[category] || [];
           map[category].push({ state: st.id, item: it, type: category });
         });
@@ -275,13 +275,25 @@
         if (e.key === "Enter") {
           const q = e.target.value.trim().toLowerCase();
           if (!q) return;
-          
-          if (location.pathname.endsWith("index.html") || location.pathname === "/") {
-            window.location.href = `category.html?search=${q}`;
+
+          // if (location.pathname.endsWith("index.html") || location.pathname === "/") {
+          //   window.location.href = `./category.html?search=${q}`;
+          //   return;
+          // }
+          const path = location.pathname.toLowerCase();
+
+          // Check if current page is home (index.html OR project root path)
+          const isHomePage = path.endsWith("index.html") || path.endsWith("/") || path.endsWith("/explore-bharat/");
+
+          if (isHomePage) {
+            window.location.href = `./category.html?search=${q}`;
             return;
           }
 
+
           searchCategoryGrid(q);
+          // renderStatePage(q);
+
         }
       });
     }
@@ -309,12 +321,12 @@
         found = { item: meta.item, state: null, key: meta.type };
       } else {
         DATA.states.forEach(s => {
-            const all_categories = ["cities", "festivals", "food", "danceMusic", "crafts"];
-            all_categories.forEach(k => {
-                (s[k] || []).forEach(it => {
-                    if (it.name === name) found = { item: it, state: s.id, key: k };
-                });
+          const all_categories = ["cities", "festivals", "food", "danceMusic", "crafts"];
+          all_categories.forEach(k => {
+            (s[k] || []).forEach(it => {
+              if (it.name === name) found = { item: it, state: s.id, key: k };
             });
+          });
         });
       }
 
@@ -335,22 +347,22 @@
     const grid = $("#categoryGrid");
     if (!grid) return;
     if (!q) {
-        renderCategoryGrid($("#stateFilter")?.value || '', $("#categoryFilter")?.value || '');
-        return;
+      renderCategoryGrid($("#stateFilter")?.value || '', $("#categoryFilter")?.value || '');
+      return;
     }
-    
+
     let entries = [];
     DATA.states.forEach(st => {
-        const all_categories = ["cities", "festivals", "food", "danceMusic", "crafts"];
-        all_categories.forEach(key => {
-            const items = st[key] || [];
-            items.forEach(it => {
-                if ((it.name + " " + (it.desc || "") + " " + st.id).toLowerCase().includes(q)) {
-                    const category = key === "cities" ? "Cities & Attractions" : key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
-                    entries.push({ state: st.id, item: it, category });
-                }
-            });
+      const all_categories = ["cities", "festivals", "food", "danceMusic", "crafts"];
+      all_categories.forEach(key => {
+        const items = st[key] || [];
+        items.forEach(it => {
+          if ((it.name + " " + (it.desc || "") + " " + st.id).toLowerCase().includes(q)) {
+            const category = key === "cities" ? "Cities & Attractions" : key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
+            entries.push({ state: st.id, item: it, category });
+          }
         });
+      });
     });
 
     grid.innerHTML = "";
@@ -388,8 +400,8 @@
     const state = DATA.states.find(s => s.id === stateSelect.value);
     if (!state) return;
 
-    const matches = (list) => (list || []).filter(it => 
-        (it.name + " " + (it.desc || "")).toLowerCase().includes(query)
+    const matches = (list) => (list || []).filter(it =>
+      (it.name + " " + (it.desc || "")).toLowerCase().includes(query)
     );
 
     const grids = [
@@ -420,15 +432,15 @@
     const body = document.body;
 
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const isDarkMode = body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDarkMode);
-        themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+      body.classList.toggle('dark-mode');
+      const isDarkMode = body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+      themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
     });
 
     if (localStorage.getItem('darkMode') === 'true') {
-        body.classList.add('dark-mode');
-        themeToggle.textContent = '☀️';
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
     }
   }
 
@@ -454,17 +466,17 @@
         const searchQuery = urlParams.get('search');
 
         if (location.pathname.includes("state.html")) {
-            renderStatesGrid(DATA.states);
-            if (stateId) {
-                selectState(stateId);
-            }
+          renderStatesGrid(DATA.states);
+          if (stateId) {
+            selectState(stateId);
+          }
         } else if (location.pathname.includes("category.html")) {
-            if (searchQuery) {
-                $("#globalSearch").value = searchQuery;
-                searchCategoryGrid(searchQuery);
-            } else {
-                renderCategoryGrid();
-            }
+          if (searchQuery) {
+            $("#globalSearch").value = searchQuery;
+            searchCategoryGrid(searchQuery);
+          } else {
+            renderCategoryGrid();
+          }
         }
 
         bindEvents();
@@ -531,19 +543,19 @@
     let currentLang = localStorage.getItem('lang') || 'en';
 
     function translatePage() {
-        document.querySelectorAll('[data-translate-key]').forEach(el => {
-            const key = el.dataset.translateKey;
-            if (window.translations && translations[key] && translations[key][currentLang]) {
-                el.innerHTML = translations[key][currentLang];
-            }
-        });
-        document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-translate-key]').forEach(el => {
+        const key = el.dataset.translateKey;
+        if (window.translations && translations[key] && translations[key][currentLang]) {
+          el.innerHTML = translations[key][currentLang];
+        }
+      });
+      document.documentElement.lang = currentLang;
     }
 
     langToggle.addEventListener('click', () => {
-        currentLang = currentLang === 'en' ? 'hi' : 'en';
-        localStorage.setItem('lang', currentLang);
-        translatePage();
+      currentLang = currentLang === 'en' ? 'hi' : 'en';
+      localStorage.setItem('lang', currentLang);
+      translatePage();
     });
 
     translatePage();
@@ -553,15 +565,15 @@
     const scrollToTopBtn = $("#scrollToTopBtn");
     if (!scrollToTopBtn) return;
     window.onscroll = () => {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollToTopBtn.style.display = "block";
+      } else {
+        scrollToTopBtn.style.display = "none";
+      }
     };
     scrollToTopBtn.addEventListener("click", () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     });
   }
 
