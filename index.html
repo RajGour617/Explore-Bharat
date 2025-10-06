@@ -210,7 +210,7 @@
             
             function type() {
                 if (i < text.length) {
-                    // Title के लिए innerHTML इस्तेमाल करें ताकि quote marks सही से दिखें
+                   
                     if (element.id === 'typedHeroTitle') {
                          element.innerHTML += text.charAt(i);
                     } else {
@@ -231,14 +231,14 @@
             type();
         }
 
-        // पहले मुख्य शीर्षक (Title) टाइप करें
+        
         typeWriter(titleText, titleElement, titleCursor, 40, () => {
-            // Title खत्म होने के बाद, विवरण (Description) टाइप करना शुरू करें
+            
             typeWriter(descText, descElement, descCursor, 20, () => {
-                // सब खत्म होने के बाद Description Cursor को छिपा दें
+                
                 descCursor.style.display = 'none';
             });
-            // Description Typing शुरू करने के लिए कर्सर दिखाएँ
+           
             descCursor.style.display = 'inline';
             titleCursor.style.display = 'none'; 
         });
