@@ -1,4 +1,4 @@
-// script.js (REPLACE ALL EXISTING CODE WITH THIS)
+
 (() => {
   // Replace or extend this object, or create states.json with the same structure and the script will fetch it.
   window.DATA= {
@@ -506,13 +506,13 @@ function createCard(item, type) {
 let currentLang = localStorage.getItem('exploreBharatLang') || 'en';
 const langToggleBtn = document.getElementById('langToggle');
 
-// **YAHAN PAR DHYAN DEIN: Yeh function tumhare translations.js structure ke liye modify kiya gaya hai**
+
 function applyTranslations(lang) {
-    // translations object ko window scope se access karein (kyunki yeh translations.js mein define hai)
+   
     const translationsData = window.translations; 
 
     if (!translationsData) {
-        // Agar yeh error ab bhi aata hai, to iska matlab hai ki translations.js load nahi ho rahi hai
+       
         console.error("Translations data is not loaded. Please ensure translations.js file path is correct.");
         return;
     }
@@ -534,7 +534,7 @@ function applyTranslations(lang) {
                 window.document.title = translatedText;
             }
             else {
-                // Baaki sab elements ka text badlen. innerHTML use karein Taki <br> tags kaam karein.
+                
                 element.innerHTML = translatedText; 
             }
         }
@@ -556,7 +556,6 @@ function toggleLanguage() {
     localStorage.setItem('exploreBharatLang', currentLang);
 }
 
-// **3. initLanguageToggle: Event listener set karta hai aur initial translation apply karta hai**
 function initLanguageToggle() {
     const langToggleBtn = document.getElementById('langToggle');
     if (!langToggleBtn) return;
@@ -573,14 +572,13 @@ function initLanguageToggle() {
         langToggleBtn.textContent = 'EN/हिं';
     }
     
-    // 3. Translations apply karein
-    // Yeh call ab DOMContentLoaded ke baad aayega
+
     applyTranslations(currentLang); 
 }
 
   // ---------- EVENT BINDINGS ----------
   function bindEvents() {
-    // Fix for hero section buttons not working
+
     const heroButtons = document.querySelectorAll('.cta-row a, .quick-cards a');
     heroButtons.forEach(button => {
         button.addEventListener('click', function(event) {
@@ -625,23 +623,22 @@ function initLanguageToggle() {
 
           if (pathname.endsWith("index.html") || pathname === "/") {
             
-            // 1. Check karein ki query kisi State ID se match karti hai
-            // (DATA.states variable script.js mein shuru mein hi define hota hai)
+            
             const matchingState = DATA.states.find(state => 
               state.id.toLowerCase() === q
             );
 
             if (matchingState) {
-              // Agar State milta hai, toh seedhe state.html par le jayen
+             
               window.location.href = `state.html?state=${encodeURIComponent(matchingState.id)}`;
               return;
             }
 
-            // 2. Check karein ki query kisi City Name se match karti hai
+            
             let matchingCityStateId = null;
 
             for (const state of DATA.states) {
-                // Har city ke naam ko check karein
+              
                 const cityMatch = state.cities.find(city => city.name.toLowerCase() === q);
                 if (cityMatch) {
                     matchingCityStateId = state.id;
@@ -650,21 +647,21 @@ function initLanguageToggle() {
             }
 
             if (matchingCityStateId) {
-              // Agar City milta hai, toh uske State page par redirect karein
+              
               window.location.href = `state.html?state=${encodeURIComponent(matchingCityStateId)}`;
               return;
             }
 
-            // 3. Agar State ya City nahi milta, toh item search ke liye category page par redirect karein (Dal Bafla, Festival, etc.)
+           
             window.location.href = `category.html?search=${encodeURIComponent(q)}`;
             return;
 
           } else if (pathname.includes("state.html")) {
-            // Case 2: State Page -> Sirf current state ke andar search karo
+            
             searchWithinState(q); 
             return;
           } else if (pathname.includes("category.html")) {
-            // Case 3: Category Page -> Poore data mein search karo
+            
             searchCategoryGrid(q);
             return;
           }
@@ -913,14 +910,14 @@ function initLanguageToggle() {
       grid.appendChild(section);
     });
   }
-  // Ye function script.js ke end mein add karein
+ 
 function renderHomeStatesGrid(states) {
     const grid = document.getElementById("statesGridHome");
     if (!grid) return;
     grid.innerHTML = "";
-    // Sirf pehle 4 states dikhayein
+   
     states.slice(0, 4).forEach(state => {
-      // createStateCard function pehle se aapke code mein hai, use reuse karein
+     
       const card = createStateCard(state);
       grid.appendChild(card);
     });
@@ -977,12 +974,6 @@ function renderHomeStatesGrid(states) {
   window.CULTURE_DATA = DATA;
   window.renderStatePage = renderStatePage;
 
-// ===============================================
-// ## GAMIFICATION & POINTS SYSTEM (FINAL VERSION) ##
-// ===============================================
-// ===============================================
-// ## GAMIFICATION & POINTS SYSTEM (FINAL VERSION) ##
-// ===============================================
 
 // ===============================================
 // ## GAMIFICATION & POINTS SYSTEM (FINAL VERSION) ##

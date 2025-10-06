@@ -210,3 +210,33 @@ header {
 #send-btn:active {
     transform: scale(0.95);
 }
+/* --- Mobile Layout Fixes for Keyboard --- */
+@media (max-width: 480px) {
+    /* 1. Chat Container ko puri height aur width dene ke liye */
+    .chat-container {
+        /* height: 100vh; isko rehne de ya 100% karein (agar body/html 100% hai) */
+        height: 100%; /* Yeh 100% height lega, jo zyadatar browsers mein behtar kaam karta hai */
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    /* 2. Input/Type Bar (chat-form) ko bottom par fixed karein */
+    .chat-form {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 9999; /* Isse yeh hamesha sabse upar rahega */
+        background: var(--container-bg); /* Thoda solid background de dein */
+        border-top: 1px solid #dee2e6;
+        padding: 10px; /* Purana padding */
+
+        /* Yahi woh line hai jo mobile OS ke home bar ke liye extra space degi */
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 10px)); 
+    }
+    
+    /* 3. Chat Window mein padding add karein taaki messages input bar ke neeche na chhipein */
+    .chat-window {
+         padding-bottom: 100px !important;    }
+}
