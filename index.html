@@ -4,21 +4,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-translate-key="title">Explore Bharat</title>
+  <title>Explore Bharat</title>
   <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="dark-mode.css">
   <script src="data/translations.js"></script>
-
-</head>
+  <script src="common.js" defer></script> 
+  
+  </head>
 
 <body>
   <header class="site-header">
     <div class="brand">
       <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
       <div class="brand-text">
-        <h3><a href="index.html" class="brand-link"><strong data-translate-key="exploreBharat">Explore Bharat</strong></a></h3>
+        <h3><a href="index.html" style="color: inherit; text-decoration: none;"><strong data-translate-key="exploreBharat">Explore Bharat</strong></a></h3>
       </div>
     </div>
 
@@ -31,136 +31,122 @@
       </nav>
 
       <div class="search-lang">
-        <input id="globalSearch" type="search" placeholder="🔎 Search festivals, food, dance, states..."
-          aria-label="Search" data-translate-key="searchPlaceholder">
+        <input id="globalSearch" type="search" placeholder="🔎 Search festivals, food, dance, states..." data-translate-key="searchPlaceholder"
+          aria-label="Search">
         <button id="langToggle" class="btn-small">EN/हिं</button>
-        <button id="theme-switcher" class="btn-small">🌙</button>
       </div>
+      <div class="points-hub">
+        <button id="pointsBell" class="points-bell-button" aria-label="Show Points">
+          🔔 <span id="user-score">0</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- HERO -->
   <main>
     <section class="hero">
-      <video autoplay loop muted playsinline class="bg-video" aria-hidden="true" tabindex="-1">
-        <source src="images/culturevid.mp4" type="video/mp4" playsinline>
-        Your browser does not support the video tag.
-      </video>
-      <div class="hero-overlay">
-        <div class="hero-left">
-          <h1 class="hero-title-top">“Explore Bharat – <br> Connecting the world with <br> India’s timeless traditions”</h1>
-        </div>
-        <div class="hero-bottom-controls">
-          <div class="cta-row">
-            <a class="btn btn-primary" href="state.html" data-translate-key="exploreByState">🗺️ Explore by State</a>
-            <a class="btn btn-secondary" href="category.html" data-translate-key="exploreByCategory">🎭 Explore by Category</a>
-          </div>
-          <div class="quick-cards">
-            <div class="chip coming-soon"><a href="Marketplace/index.html" data-translate-key="visitMarketplace">🛒
-                Visit Artisan Marketplace</a></div>
-            <div class="chip coming-soon" data-translate-key="vrAr">🔭 VR/AR (coming soon)</div>
-          </div>
+  <video autoplay loop muted playsinline class="bg-video" aria-hidden="true" tabindex="-1">
+    <source src="images/culturevid.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <div class="hero-content-centered" style="text-align: center;">
+      <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">
+        <span id="typedHeroTitle"></span><span id="cursorH2" class="typed-cursor">|</span>
+      </h2>
+      <p class="lead" style="font-weight: 500;">
+        <span id="typedHeroDesc"></span><span id="cursorP" class="typed-cursor-p">|</span>
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary btn-cta-lg" href="state.html" data-translate-key="exploreByState">🗺️ Explore by State</a>
+        <a class="btn btn-secondary btn-cta-lg" href="category.html" data-translate-key="exploreByCategory">🎭 Explore by Category</a>
+      </div>
+      <div class="cta-row quick-cards-row" style="margin-top: 1rem;">
+        <a href="Marketplace/index.html" class="btn btn-ghost-white btn-cta-md" data-translate-key="visitMarketplace">🛒 Visit Artisan Marketplace</a>
+        <a href="vr_tour.html" class="btn btn-ghost-white btn-cta-md" data-translate-key="vrArTour">🔭 VR/AR Tour</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="highlights-section" style="padding: 3rem 1.5rem;">
+      <h3 style="text-align:center; font-size: 2rem; color: var(--navy); margin-bottom: 24px;">Glimpses of India</h3>
+      <div class="carousel-wrapper" style="max-width: 900px; margin: 0 auto;">
+        <div class="carousel" role="region" aria-roledescription="carousel">
+          <button class="carousel-arrow left" data-dir="-1" aria-label="Previous">‹</button>
+          <div class="carousel-track">
+    <figure class="slide active">
+        <img src="images/UP/tajmahal.jpg" alt="Taj Mahal">
+        <figcaption data-translate-key="tajMahal">Taj Mahal — Agra, UP</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/Kerala/kathakali.jpg" alt="Kathakali">
+        <figcaption data-translate-key="kathakali">Kathakali Dance — Kerala</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/Rajasthan/pushkar.avif" alt="Pushkar Camel Fair">
+        <figcaption data-translate-key="pushkar">Pushkar Camel Fair — Rajasthan</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/maheshwar.jpg" alt="Maheshwar">
+        <figcaption data-translate-key="maheshwar">Devi Ahilya Fort — Maheshwar, MP</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/festival.jpg" alt="Festival">
+        <figcaption data-translate-key="holi">Holi — UP, MP</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/MP/bhasmarti.jpg" alt="Food">
+        <figcaption data-translate-key="bhasmarti">Bhasmarti — Madhya Pradesh</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/attire.jpg" alt="Attire">
+        <figcaption data-translate-key="folkAttire">Folk Attire — Maharashtra</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/spices.jpg" alt="Food">
+        <figcaption data-translate-key="spices">Spices — Kerala</figcaption>
+    </figure>
+    <figure class="slide">
+        <img src="images/biryani.jpg" alt="Food">
+        <figcaption data-translate-key="biryani">Biryani — Hyderabad</figcaption>
+    </figure>
+</div>
+          <button class="carousel-arrow right" data-dir="1" aria-label="Next">›</button>
         </div>
       </div>
     </section>
 
-    <!-- CAROUSEL -->
-    <section class="carousel-section">
-      <div class="carousel" role="region" aria-roledescription="carousel">
-        <button class="carousel-arrow left" data-dir="-1" aria-label="Previous">‹</button>
-        <div class="carousel-track">
-          <figure class="slide active">
-            <img src="images/UP/tajmahal.jpg" alt="Taj Mahal">
-            <figcaption data-translate-key="tajMahal">Taj Mahal — Agra, UP</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/Kerala/kathakali.jpg" alt="Kathakali">
-            <figcaption data-translate-key="kathakali">Kathakali Dance — Kerala</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/Rajasthan/pushkar.avif" alt="Pushkar Camel Fair">
-            <figcaption data-translate-key="pushkar">Pushkar Camel Fair — Rajasthan</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/maheshwar.jpg" alt="Maheshwar">
-            <figcaption data-translate-key="maheshwar">Devi Ahilya Fort — Maheshwar, MP</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/festival.jpg" alt="Festival">
-            <figcaption data-translate-key="holi">Holi — UP, MP</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/MP/bhasmarti.jpg" alt="Food">
-            <figcaption data-translate-key="bhasmarti">Bhasmarti — Madhya Pradesh</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/attire.jpg" alt="Attire">
-            <figcaption data-translate-key="folkAttire">Folk Attire — Maharashtra</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/spices.jpg" alt="Food">
-            <figcaption data-translate-key="spices">Spices — Kerala</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="images/biryani.jpg" alt="Food">
-            <figcaption data-translate-key="biryani">Biryani — Hyderabad</figcaption>
-          </figure>
+    <section class="featured-states" style="padding: 2rem 1.5rem; background-color: #fdfaf6; border-top: 1px solid #eee;">
+      <h2 style="text-align: center; margin-bottom: 20px; font-size: 2rem; color: var(--navy);">Explore Our States</h2>
+      <div id="statesGridHome" class="grid" style="max-width: 1200px; margin: 0 auto;">
         </div>
-        <button class="carousel-arrow right" data-dir="1" aria-label="Next">›</button>
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="state.html" class="btn btn-primary">View All States →</a>
       </div>
     </section>
 
-    <!-- MAIN CTA GRID -->
-    <section class="home-features">
-      <div class="feature-card maroon">
-        <h3 data-translate-key="exploreByState">Explore by State</h3>
-        <p data-translate-key="stateDescription">Click a state to view cities, festivals, food, arts and crafts.</p>
-        <a href="state.html" class="btn-link" data-translate-key="browseStates">Browse states →</a>
-      </div>
-
-      <div class="feature-card maroon">
-        <h3 data-translate-key="exploreByCategory">Explore by Category</h3>
-        <p data-translate-key="categoryDescription">Festivals, Food, Music/Dance, Arts, Heritage, Languages.</p>
-        <a href="category.html" class="btn-link" data-translate-key="browseCategories">Browse categories →</a>
+    <section class="trivia-wrap" style="padding: 2rem 1.5rem;">
+      <div class="trivia-card" id="triviaCard">
+        <h4>💡 Did you know?</h4>
+        <p id="triviaText">India has 22 official languages and over 700 dialects.</p>
       </div>
     </section>
 
-    <br>
-    <!-- Trivia Carousel -->
-    <section class="trivia-carousel-section">
-      <div class="trivia-carousel">
-        <div class="trivia-slide active">
-          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
-          <p data-translate-key="triviaText1">India has 22 official languages and over 700 dialects.</p>
-        </div>
-        <div class="trivia-slide">
-          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
-          <p data-translate-key="triviaText2">The game of Snakes and Ladders was created in India.</p>
-        </div>
-        <div class="trivia-slide">
-          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
-          <p data-translate-key="triviaText3">India is the world’s largest producer of spices.</p>
-        </div>
-        <div class="trivia-slide">
-          <h4 data-translate-key="didYouKnow">💡 Did you know?</h4>
-          <p data-translate-key="triviaText4">The decimal system and the concept of zero were invented in India.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Cards -->
     <footer>
       <section class="footer-cards-section">
         <div class="explore" id="Explore">
-          <h4 data-translate-key="explore">Explore</h4>
+          <h4>Explore</h4>
           <ul>
-            <li><a href="state.html" target="_blank" data-translate-key="statesUts">States & UTs</a></li>
-            <li><a href="category.html" target="_blank" data-translate-key="culturalCategories">Cultural Categories</a></li>
-            <li><a href="index.html" target="_blank" data-translate-key="search">Search</a></li>
+            <li><a href="state.html" target="_blank">States & UTs</a></li>
+            <li><a href="category.html" target="_blank">Cultural Categories</a></li>
+            <li><a href="index.html" target="_blank">Search</a></li>
           </ul>
         </div>
         <div class="refs" id="Refs">
-          <h4 data-translate-key="references">References</h4>
+          <h4>References</h4>
           <ul>
             <li><a href="https://www.incredibleindia.gov.in/en" target="_blank" rel="noopener">Incredible India</a></li>
             <li><a href="https://en.unesco.org/" target="_blank" rel="noopener">UNESCO</a></li>
@@ -168,34 +154,96 @@
           </ul>
         </div>
         <div class="soon" id="Soon">
-          <h4 data-translate-key="comingSoon">Coming Soon</h4>
+          <h4>Coming Soon</h4>
           <ul>
-            <li><a href="#" target="_blank">🥽 VR/AR Tours</a></li>
-            <li><a href="#" target="_blank">🤖 AI Recommendations</a></li>
+            <li><a href="vr_tour.html" target="_blank">🥽 VR/AR Tours</a></li>
+            <li><a href="AI Chatbot/index.html" target="_blank">🤖 AI Recommendations</a></li>
           </ul>
         </div>
       </section>
+    </footer>
+
   </main>
 
-  <!-- Modal for general dynamic popups -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true">
       <button class="modal-close" id="modalClose">✕</button>
       <div id="modalBody"></div>
     </div>
   </div>
-  </footer>
-  <!-- AI Chat Button -->
+  
   <a href="AI Chatbot/index.html" class="ai-chat-button" aria-label="Open AI Chat">
     <img src="images/ai.jpg" alt="AI Chatbot">
   </a>
 
-  <button id="scrollToTopBtn" class="btn-primary">↑</button>
-
   <script src="script.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="theme-switcher.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 500ms delay to ensure translations are loaded by the main script.js
+        setTimeout(startTypingAnimation, 500); 
+    });
 
+    function startTypingAnimation() {
+        const lang = localStorage.getItem('exploreBharatLang') || 'en';
+        
+        // Translation data से टेक्स्ट प्राप्त करें
+        if (!window.translations || !window.translations.heroTitle) {
+            document.getElementById('typedHeroTitle').textContent = '“Explore Bharat – Connecting the world with India’s timeless traditions”';
+            document.getElementById('typedHeroDesc').textContent = 'Explore culture through states or categories';
+            document.getElementById('cursorH2').style.display = 'none';
+            document.getElementById('cursorP').style.display = 'none';
+            return;
+        }
+
+        const titleText = window.translations.heroTitle[lang] || window.translations.heroTitle['en'];
+        const descText = window.translations.heroDescription[lang] || window.translations.heroDescription['en'];
+        
+        const titleElement = document.getElementById('typedHeroTitle');
+        const descElement = document.getElementById('typedHeroDesc');
+        const titleCursor = document.getElementById('cursorH2');
+        const descCursor = document.getElementById('cursorP');
+        
+        // --- Typing Logic Function ---
+        function typeWriter(text, element, cursor, speed, callback) {
+            let i = 0;
+            element.textContent = ''; 
+            
+            function type() {
+                if (i < text.length) {
+                    // Title के लिए innerHTML इस्तेमाल करें ताकि quote marks सही से दिखें
+                    if (element.id === 'typedHeroTitle') {
+                         element.innerHTML += text.charAt(i);
+                    } else {
+                         element.textContent += text.charAt(i);
+                    }
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    if (cursor) {
+                        // Typing खत्म होने पर कर्सर को छिपा दें
+                        cursor.style.display = 'none';
+                    }
+                    if (callback) {
+                        callback();
+                    }
+                }
+            }
+            type();
+        }
+
+        // पहले मुख्य शीर्षक (Title) टाइप करें
+        typeWriter(titleText, titleElement, titleCursor, 40, () => {
+            // Title खत्म होने के बाद, विवरण (Description) टाइप करना शुरू करें
+            typeWriter(descText, descElement, descCursor, 20, () => {
+                // सब खत्म होने के बाद Description Cursor को छिपा दें
+                descCursor.style.display = 'none';
+            });
+            // Description Typing शुरू करने के लिए कर्सर दिखाएँ
+            descCursor.style.display = 'inline';
+            titleCursor.style.display = 'none'; 
+        });
+    }
+</script>
 </body>
 
 </html>

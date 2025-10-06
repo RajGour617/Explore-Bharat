@@ -1,213 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artisan Marketplace — Explore Bharat</title>
-    <link rel="stylesheet" href="styles.css">
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Explore Bharat E-Mart</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="../common.js" defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header class="topbar">
-        <div class="container header-inner">
-            <div class="logo"><a href="../index.html">Explore <span class="accent">Bharat</span></a></div>
-            <div class="user-actions">
-                <span class="points-display">Bharat Points: <span id="bharat-points">0</span></span>
-                <button id="open-wishlist-header" class="icon-btn" aria-label="Wishlist">♡ <span
-                        id="wishlist-count-header">0</span></button>
-                <button id="open-cart" class="icon-btn" aria-label="Cart">🛒 <span id="cart-count">0</span></button>
-                <span id="guest-view">
-                    <a href="#" id="signin-btn-open" class="btn-link">Sign In</a> /
-                    <a href="#" id="signup-btn-open" class="btn-link">Sign Up</a>
-                </span>
-                <span id="user-view" style="display:none">
-                    <span style="margin-right:8px;">Hi, User</span>
-                    <button id="signout-btn" class="btn-link">Sign Out</button>
-                </span>
+   <header class="topbar">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="https://rajgour617.github.io/Explore-Bharat/">Explore<span class="accent">Bharat</span></a>
+        </div>
+
+        <div class="user-actions" id="nav-links">
+            <div class="toggle-switch">
+                <span id="role-label-buyer">Buyer</span>
+                <label class="switch">
+                    <input type="checkbox" id="user-role-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span id="role-label-seller">Seller</span>
+            </div>
+            <div id="guest-view">
+                <button class="btn-link" id="signin-btn-open">Sign In</button>
+                <button class="btn" id="signup-btn-open">Sign Up</button>
+            </div>
+            <div id="user-view" style="display: none;">
+                <span class="points-display">💎 <span id="bharat-points">0</span> Points</span>
+                <button class="icon-btn" id="open-wishlist" aria-label="Open wishlist">❤️ (<span id="wishlist-count">0</span>)</button>
+                <button class="icon-btn" id="signout-btn" aria-label="Sign Out">Logout</button>
+            </div>
+            <div class="cart-action">
+                <button id="open-cart" class="icon-btn" aria-label="Open cart">🛒 (<span id="cart-count">0</span>)</button>
             </div>
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Carousel -->
-        <section class="hero container">
-            <div class="carousel" id="hero-carousel" tabindex="0">
-                <div class="slides">
-                    <div class="slide" style="background-image:url('images/blockprint.jpg')">
-                        <div class="hero-copy">
-                            <h1>Handcrafted Treasures <em>from India</em></h1>
-                            <p>Discover unique, authentic, and sustainable products from artisans across Bharat.</p>
-                            <div class="hero-cta">
-                                <a href="#trending" class="btn">Shop Trending</a>
-                                <a href="#drops" class="btn btn-outline">All Products</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+
+    </div>
+</header>
+
+    <main class="container">
+        <div id="buyer-view">
+            <section class="hero">
+                <div class="carousel" id="hero-carousel" tabindex="0" aria-roledescription="carousel">
+                    <div class="slides">
+                        <div class="slide" style="background-image:url('images/gondart.jpg')" aria-hidden="false">
+                            <div class="hero-copy">
+                                <h1>Discover the <em>traditional</em><br> arts</h1>
+                                <div class="hero-cta">
+                                    <a class="btn" href="#women">Shop Paintings</a>
+                                    <a class="btn btn-outline" href="#men">Shop Pottery</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" style="background-image:url('images/zardozi.jpg')" aria-hidden="true">
+                            <div class="hero-copy">
+                                <h1>Fresh drops every day</h1>
+                                <div class="hero-cta">
+                                    <a class="btn" href="#drops">See Drops</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" style="background-image:url('images/blockprint.jpg')" aria-hidden="true">
+                            <div class="hero-copy">
+                                <h1>Local artisans &amp; crafts</h1>
+                                <div class="hero-cta">
+                                    <a class="btn" href="#artists">Support Artisans</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="slide" style="background-image:url('images/chikankari.jpg')">
-                        <div class="hero-copy">
-                            <h1>Support Local Artisans</h1>
-                            <p>Every purchase empowers a community and preserves heritage crafts.</p>
-                            <div class="hero-cta">
-                                <a href="#drops" class="btn">Browse All</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide" style="background-image:url('images/necklace.jpg')">
-                        <div class="hero-copy">
-                            <h1>Ethical. Beautiful. Yours.</h1>
-                            <p>Shop with confidence — quality, authenticity, and fair trade guaranteed.</p>
-                            <div class="hero-cta">
-                                <a href="#trending" class="btn">Trending Now</a>
-                            </div>
-                        </div>
+
+                    <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+                    <button class="carousel-btn next" aria-label="Next slide">›</button>
+                    <div class="dots" id="hero-dots" aria-hidden="false"></div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Trending <em>Now</em></h2>
+                <div class="product-row" id="trending-row">
+                    <button class="row-arrow left" aria-label="Scroll left">‹</button>
+                    <div class="row-track" id="trending-track" role="list"></div>
+                    <button class="row-arrow right" aria-label="Scroll right">›</button>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Today's <em>Drops</em></h2>
+                <div class="filters">
+                    <button class="chip active">Paintings</button>
+                    <button class="chip">Pottery</button>
+                    <div class="price-chips">
+                        <button class="chip">under $49</button>
+                        <button class="chip"> $50 - $149</button>
+                        <button class="chip"> $150 - $299</button>
                     </div>
                 </div>
-                <button class="carousel-btn prev" aria-label="Previous">‹</button>
-                <button class="carousel-btn next" aria-label="Next">›</button>
-                <div class="dots" id="hero-dots"></div>
-            </div>
-        </section>
 
-        <div class="container" style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
-            <!-- Sidebar Filters (future expansion) -->
-            <aside class="sidebar" style="flex:1 1 220px;max-width:260px;min-width:180px;">
-                <div class="section">
-                    <div class="section-title">Filters</div>
-                    <form id="filters-form">
-                        <label>Category
-                            <select id="filter-category" style="width:100%;margin-top:6px;">
-                                <option value="">All</option>
-                                <option value="Textiles">Textiles</option>
-                                <option value="Jewelry">Jewelry</option>
-                                <option value="Home">Home</option>
-                                <option value="Art">Art</option>
-                                <option value="Music">Music</option>
-                            </select>
-                        </label>
-                        <label style="margin-top:14px;display:block;">Price: <span id="price-value">$500</span>
-                            <input type="range" id="filter-price" value="500" min="0" max="500" step="10" style="width:100%;">
-                        </label>
-                        <button type="submit" class="btn" style="margin-top:18px;width:100%;">Apply</button>
+                <div class="product-row" id="drops-row">
+                    <button class="row-arrow left" aria-label="Scroll left">‹</button>
+                    <div class="row-track" id="drops-track" role="list"></div>
+                    <button class="row-arrow right" aria-label="Scroll right">›</button>
+                </div>
+            </section>
+        </div>
+
+        <div id="seller-view" style="display: none;">
+            <section class="section">
+                <h2 class="section-title">Seller <em>Dashboard</em></h2>
+                <div class="seller-form-container">
+                    <h3>List a New Product</h3>
+                    <p>Fill out the details below to submit your product for approval.</p>
+                    <form id="product-listing-form" class="seller-form">
+                        <label>Product Name <input type="text" name="productName" required /></label>
+                        <label>Description <textarea name="description" rows="4" required></textarea></label>
+                        <label>Price ($) <input type="number" name="price" step="0.01" required /></label>
+                        <label>Image URL <input type="url" name="imageUrl" required /></label>
+                        <label>Bank Details (for payment) <input type="text" name="bankDetails" required /></label>
+                        <button type="submit" class="btn full">Submit for Approval</button>
                     </form>
                 </div>
-                <div class="section" style="margin-top:18px;">
-                    <div class="section-title">Your Cart</div>
-                    <button id="open-cart" class="btn full">View Cart (<span id="cart-count">0</span>)</button>
-                </div>
-                <div class="section" style="margin-top:18px;">
-                    <div class="section-title">Wishlist</div>
-                    <button id="open-wishlist-sidebar" class="btn full">View Wishlist (<span
-                            id="wishlist-count-sidebar">0</span>)</button>
-                </div>
-            </aside>
-
-            <!-- Main Product Area -->
-            <div style="flex:3 1 600px;min-width:320px;">
-                <!-- Trending Products -->
-                <section class="section" id="trending">
-                    <div class="section-title">Trending Now</div>
-                    <div class="product-row">
-                        <button class="row-arrow left" aria-label="Scroll left">‹</button>
-                        <div class="row-track" id="trending-track"></div>
-                        <button class="row-arrow right" aria-label="Scroll right">›</button>
-                    </div>
-                </section>
-                <!-- All Products -->
-                <section class="section" id="drops">
-                    <div class="section-title">All Products</div>
-                    <div class="product-grid" id="all-products-grid">
-                        <!-- Products will be injected here by script.js -->
-                    </div>
-                </section>
-            </div>
+            </section>
         </div>
     </main>
 
-    <!-- Cart Drawer -->
+    <div class="modal" id="product-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <button class="close" id="modal-close" aria-label="Close">✕</button>
+            <div class="modal-body" id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signin-modal" aria-hidden="true">
+        <div class="modal-content auth-modal" role="dialog" aria-modal="true">
+            <button class="close" id="signin-modal-close" aria-label="Close">✕</button>
+            <h3>Sign In</h3>
+            <form id="signin-form">
+                <label>Email <input type="email" required /></label>
+                <label>Password <input type="password" required /></label>
+                <button type="submit" class="btn full">Sign In</button>
+                <p class="form-switch">Don't have an account? <button type="button" class="btn-link" id="switch-to-signup">Sign Up</button></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="signup-modal" aria-hidden="true">
+        <div class="modal-content auth-modal" role="dialog" aria-modal="true">
+            <button class="close" id="signup-modal-close" aria-label="Close">✕</button>
+            <h3>Create Account</h3>
+            <form id="signup-form">
+                <label>Full Name <input type="text" required /></label>
+                <label>Email <input type="email" required /></label>
+                <label>Password <input type="password" required /></label>
+                <button type="submit" class="btn full">Sign Up</button>
+                <p class="form-switch">Already have an account? <button type="button" class="btn-link" id="switch-to-signin">Sign In</button></p>
+            </form>
+        </div>
+    </div>
+
+    <aside class="cart-drawer" id="wishlist-drawer" aria-hidden="true">
+        </aside>
+
     <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
         <div class="cart-header">
             <h3>Your Cart</h3>
             <button id="close-cart" aria-label="Close cart">✕</button>
         </div>
-        <div class="cart-body" id="cart-body"></div>
+        <div class="cart-body" id="cart-body">
+            </div>
         <div class="cart-footer">
-            <div style="font-weight:600;margin-bottom:8px;">Subtotal: <span id="cart-subtotal">$0.00</span></div>
+            <div class="totals">
+                <div>Subtotal</div>
+                <div id="cart-subtotal">$0.00</div>
+            </div>
             <button id="checkout-btn" class="btn full">Checkout</button>
         </div>
     </aside>
 
-    <!-- Wishlist Drawer -->
-    <aside class="cart-drawer" id="wishlist-drawer" aria-hidden="true"></aside>
-
-    <!-- Product Modal -->
-    <div class="modal" id="product-modal" aria-hidden="true" tabindex="-1">
-        <div class="modal-content">
-            <button class="close" id="modal-close" aria-label="Close">✕</button>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Checkout Overlay -->
     <div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
         <div class="checkout-panel">
-            <button class="close" id="close-checkout" aria-label="Close">✕</button>
+            <button class="close" id="close-checkout" aria-label="Close checkout">✕</button>
             <h3>Checkout</h3>
             <form id="checkout-form">
-                <label>Name
-                    <input type="text" required>
+                <label>
+                    Full name
+                    <input type="text" name="name" required />
                 </label>
-                <label>Address
-                    <input type="text" required>
+                <label>
+                    Email
+                    <input type="email" name="email" required />
                 </label>
-                <label>Email
-                    <input type="email" required>
+                <label>
+                    Address
+                    <input type="text" name="address" required />
                 </label>
-                <button type="submit" class="btn full" style="margin-top:14px;">Place Order</button>
+                <label>
+                    Coupon Code (Optional)
+                    <input type="text" name="coupon" id="coupon-input" placeholder="Enter coupon code" />
+                </label>
+                <div class="checkout-actions">
+                    <button type="submit" class="btn full">Place Order</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Auth Modals -->
-    <div class="modal auth-modal" id="signin-modal" aria-hidden="true">
-        <div class="modal-content">
-            <button class="close" id="signin-modal-close" aria-label="Close">✕</button>
-            <div class="modal-body">
-                <h3>Sign In</h3>
-                <form id="signin-form">
-                    <label>Email
-                        <input type="email" required>
-                    </label>
-                    <label>Password
-                        <input type="password" required>
-                    </label>
-                    <button type="submit" class="btn full">Sign In</button>
-                </form>
-                <div class="form-switch">No account? <a href="#" id="switch-to-signup">Sign Up</a></div>
-            </div>
+    <footer class="footer">
+        <div class="container">
+            <p>© Explore Bharat — Ekart</p>
         </div>
-    </div>
-    <div class="modal auth-modal" id="signup-modal" aria-hidden="true">
-        <div class="modal-content">
-            <button class="close" id="signup-modal-close" aria-label="Close">✕</button>
-            <div class="modal-body">
-                <h3>Sign Up</h3>
-                <form id="signup-form">
-                    <label>Email
-                        <input type="email" required>
-                    </label>
-                    <label>Password
-                        <input type="password" required>
-                    </label>
-                    <button type="submit" class="btn full">Sign Up</button>
-                </form>
-                <div class="form-switch">Already have an account? <a href="#" id="switch-to-signin">Sign In</a></div>
-            </div>
-        </div>
-    </div>
+    </footer>
+    <div id="flash-message-container"></div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
