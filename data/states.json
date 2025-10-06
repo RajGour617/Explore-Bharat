@@ -32,6 +32,9 @@
       "crafts": [
         { "name": "Pithora Paintings", "img": "images/MP/pithora.jpg", "desc": "Ritual paintings by tribal artists." }
       ],
+      "tours": [
+        { "name": "Khajuraho 360°", "thumb": "images/MP/khajuraho.jpg", "url": "#" }
+      ],
       "categories": ["Festivals", "Food", "Dance & Music", "Crafts"]
     },
     {

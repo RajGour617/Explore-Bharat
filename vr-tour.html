@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal 360° View</title>
+    <link rel="stylesheet" href="lib/pannellum/pannellum.css"/>
+    <script type="text/javascript" src="lib/pannellum/pannellum.js"></script>
+    <style>
+        #panorama {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div id="panorama"></div>
+
+<script>
+pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "panorama": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Taj_Mahal_360%C2%B0_View.jpg",
+    "autoLoad": true
+});
+</script>
+
+</body>
+</html>

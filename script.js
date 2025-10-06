@@ -2,6 +2,14 @@
   // Default data, can be overridden by fetching states.json
   let DATA = { states: [] };
 
+  // ---------- BADGE DEFINITIONS ----------
+  const BADGES = [
+    { id: "first_step", name: "First Step", desc: "Visit your first state." },
+    { id: "state_hopper", name: "State Hopper", desc: "Visit 5 different states." },
+    { id: "northern_explorer", name: "Northern Explorer", desc: "Visit all northern states." },
+    { id: "southern_wanderer", name: "Southern Wanderer", desc: "Visit all southern states." },
+  ];
+
   // ---------- UTILITIES ----------
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
@@ -28,6 +36,27 @@
     cardContent += `</div>`;
     div.innerHTML = cardContent;
     div._meta = { item, type };
+    return div;
+  }
+
+  function createMediaCard(item, type) {
+    const div = document.createElement("article");
+    div.className = "card";
+    let cardContent = `<h4>${item.name}</h4>`;
+
+    switch (type) {
+      case "360° Tour":
+        cardContent += `<a href="${item.url}" target="_blank"><img src="${item.thumb || 'images/placeholder.jpg'}" alt="${item.name}"></a>`;
+        break;
+      case "Audio Guide":
+        cardContent += `<audio controls src="${item.url}" style="width:100%"></audio>`;
+        break;
+      case "Cultural Video":
+        cardContent += `<video controls src="${item.url}" style="width:100%"></video>`;
+        break;
+    }
+
+    div.innerHTML = cardContent;
     return div;
   }
 
@@ -143,6 +172,15 @@
 
                         <h2>Arts & Crafts</h2>
                         <div id="craftGrid" class="grid"></div>
+
+                        <h2>360° Tours</h2>
+                        <div id="toursGrid" class="grid"></div>
+
+                        <h2>Audio Guides</h2>
+                        <div id="audioGrid" class="grid"></div>
+
+                        <h2>Cultural Videos</h2>
+                        <div id="videosGrid" class="grid"></div>
                     </section>
                 </div>
             </div>
@@ -176,7 +214,10 @@
       { key: "festivals", id: "festivalsGrid", type: "Festival" },
       { key: "food", id: "foodGrid", type: "Food" },
       { key: "danceMusic", id: "danceGrid", type: "Dance/Music" },
-      { key: "crafts", id: "craftGrid", type: "Art/Craft" }
+      { key: "crafts", id: "craftGrid", type: "Art/Craft" },
+      { key: "tours", id: "toursGrid", type: "360° Tour" },
+      { key: "audio", id: "audioGrid", type: "Audio Guide" },
+      { key: "videos", id: "videosGrid", type: "Cultural Video" }
     ];
 
     grids.forEach(g => {
@@ -189,7 +230,9 @@
         return;
       }
       items.forEach(item => {
-        const card = createCard(item, g.type);
+        const card = (g.type === "360° Tour" || g.type === "Audio Guide" || g.type === "Cultural Video")
+          ? createMediaCard(item, g.type)
+          : createCard(item, g.type);
         node.appendChild(card);
       });
     });
@@ -245,6 +288,114 @@
     const stateSelect = $("#stateFilter");
     if (stateSelect) stateSelect.value = stateId;
     renderStatePage(stateId);
+    trackStateVisit(stateId);
+  }
+
+  // ---------- BADGE LOGIC ----------
+  async function trackStateVisit(stateId) {
+    try {
+      const user = firebase.auth().currentUser;
+      if (!user) return;
+
+      const userRef = firebase.firestore().collection("users").doc(user.uid);
+      const userDoc = await userRef.get();
+
+      if (userDoc.exists) {
+        const userData = userDoc.data();
+        const visitedStates = userData.visitedStates || [];
+
+        if (!visitedStates.includes(stateId)) {
+          await userRef.update({
+            visitedStates: firebase.firestore.FieldValue.arrayUnion(stateId)
+          });
+          checkAndAwardBadges(user.uid);
+        }
+      }
+    } catch (error) {
+      console.error("Error tracking state visit:", error);
+    }
+  }
+
+  async function checkAndAwardBadges(userId) {
+    try {
+      const userRef = firebase.firestore().collection("users").doc(userId);
+      const userDoc = await userRef.get();
+
+      if (userDoc.exists) {
+        const userData = userDoc.data();
+        const visitedStates = userData.visitedStates || [];
+        const earnedBadges = userData.earnedBadges || [];
+
+        for (const badge of BADGES) {
+          if (earnedBadges.includes(badge.id)) continue;
+
+          let criteriaMet = false;
+          switch (badge.id) {
+            case "first_step":
+              if (visitedStates.length >= 1) criteriaMet = true;
+              break;
+            case "state_hopper":
+              if (visitedStates.length >= 5) criteriaMet = true;
+              break;
+            case "northern_explorer":
+              const northernStates = ["Jammu and Kashmir", "Himachal Pradesh", "Punjab", "Uttarakhand", "Haryana", "Uttar Pradesh", "Delhi"];
+              if (northernStates.every(s => visitedStates.includes(s))) criteriaMet = true;
+              break;
+            case "southern_wanderer":
+              const southernStates = ["Andhra Pradesh", "Karnataka", "Kerala", "Tamil Nadu", "Telangana"];
+              if (southernStates.every(s => visitedStates.includes(s))) criteriaMet = true;
+              break;
+          }
+
+          if (criteriaMet) {
+            await userRef.update({
+              earnedBadges: firebase.firestore.FieldValue.arrayUnion(badge.id)
+            });
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error checking and awarding badges:", error);
+    }
+  }
+
+  async function displayBadges() {
+    try {
+      const user = firebase.auth().currentUser;
+      if (!user) return;
+
+      const userRef = firebase.firestore().collection("users").doc(user.uid);
+      const userDoc = await userRef.get();
+
+      if (userDoc.exists) {
+        const userData = userDoc.data();
+        const earnedBadges = userData.earnedBadges || [];
+        const badgesContainer = $("#badges");
+
+        if (badgesContainer) {
+          badgesContainer.innerHTML = "";
+          if (earnedBadges.length === 0) {
+            badgesContainer.innerHTML = "<p>No badges earned yet. Keep exploring!</p>";
+            return;
+          }
+
+          for (const badgeId of earnedBadges) {
+            const badge = BADGES.find(b => b.id === badgeId);
+            if (badge) {
+              const badgeElement = document.createElement("div");
+              badgeElement.className = "badge";
+              badgeElement.innerHTML = `
+                <h4>${badge.name}</h4>
+                <p>${badge.desc}</p>
+              `;
+              badgesContainer.appendChild(badgeElement);
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error displaying badges:", error);
+    }
   }
 
   // ---------- EVENT BINDINGS ----------
@@ -341,6 +492,20 @@
         showModal(name || "Details", "<p>No further details available.</p>");
       }
     });
+
+    const loginBtn = $("#loginBtn");
+    if (loginBtn) {
+      loginBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+
+    const signupBtn = $("#signupBtn");
+    if (signupBtn) {
+      signupBtn.addEventListener("click", () => {
+        window.location.href = "signup.html";
+      });
+    }
   }
 
   function searchCategoryGrid(q) {
@@ -477,6 +642,8 @@
           } else {
             renderCategoryGrid();
           }
+        } else if (location.pathname.includes("profile.html")) {
+          displayBadges();
         }
 
         bindEvents();
