@@ -13,43 +13,45 @@
 </head>
 
 <body>
-   <header class="topbar">
-    <div class="container header-inner">
-        <div class="logo">
-            <a href="https://rajgour617.github.io/Explore-Bharat/">Explore<span class="accent">Bharat</span></a>
+    <header class="topbar">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="https://rajgour617.github.io/Explore-Bharat/">Explore<span class="accent">Bharat</span></a>
+            </div>
+
+            <div class="user-actions" id="nav-links">
+                <div class="toggle-switch">
+                    <span id="role-label-buyer">Buyer</span>
+                    <label class="switch" for="user-role-toggle">
+                        <input type="checkbox" id="user-role-toggle" title="Toggle between Buyer and Seller role">
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="role-label-seller">Seller</span>
+                </div>
+                <div id="guest-view">
+                    <button class="btn-link" id="signin-btn-open">Sign In</button>
+                    <button class="btn" id="signup-btn-open">Sign Up</button>
+                </div>
+                <div id="user-view" style="display: none;">
+                    <span class="points-display">💎 <span id="bharat-points">0</span> Points</span>
+                    <button class="icon-btn" id="open-wishlist" aria-label="Open wishlist">❤️ (<span
+                            id="wishlist-count">0</span>)</button>
+                    <button class="icon-btn" id="signout-btn" aria-label="Sign Out">Logout</button>
+                </div>
+                <div class="cart-action">
+                    <button id="open-cart" class="icon-btn" aria-label="Open cart">🛒 (<span
+                            id="cart-count">0</span>)</button>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+
         </div>
-
-        <div class="user-actions" id="nav-links">
-            <div class="toggle-switch">
-                <span id="role-label-buyer">Buyer</span>
-                <label class="switch">
-                    <input type="checkbox" id="user-role-toggle">
-                    <span class="slider round"></span>
-                </label>
-                <span id="role-label-seller">Seller</span>
-            </div>
-            <div id="guest-view">
-                <button class="btn-link" id="signin-btn-open">Sign In</button>
-                <button class="btn" id="signup-btn-open">Sign Up</button>
-            </div>
-            <div id="user-view" style="display: none;">
-                <span class="points-display">💎 <span id="bharat-points">0</span> Points</span>
-                <button class="icon-btn" id="open-wishlist" aria-label="Open wishlist">❤️ (<span id="wishlist-count">0</span>)</button>
-                <button class="icon-btn" id="signout-btn" aria-label="Sign Out">Logout</button>
-            </div>
-            <div class="cart-action">
-                <button id="open-cart" class="icon-btn" aria-label="Open cart">🛒 (<span id="cart-count">0</span>)</button>
-            </div>
-        </div>
-
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </button>
-
-    </div>
-</header>
+    </header>
 
     <main class="container">
         <div id="buyer-view">
@@ -104,9 +106,9 @@
                     <button class="chip active">Paintings</button>
                     <button class="chip">Pottery</button>
                     <div class="price-chips">
-                        <button class="chip">under $49</button>
-                        <button class="chip"> $50 - $149</button>
-                        <button class="chip"> $150 - $299</button>
+                        <button class="chip">under ₹199</button>
+                        <button class="chip">₹200 - ₹499</button>
+                        <button class="chip">₹500 - ₹999</button>
                     </div>
                 </div>
 
@@ -127,7 +129,7 @@
                     <form id="product-listing-form" class="seller-form">
                         <label>Product Name <input type="text" name="productName" required /></label>
                         <label>Description <textarea name="description" rows="4" required></textarea></label>
-                        <label>Price ($) <input type="number" name="price" step="0.01" required /></label>
+                        <label>Price (₹) <input type="number" name="price" step="0.01" required /></label>
                         <label>Image URL <input type="url" name="imageUrl" required /></label>
                         <label>Bank Details (for payment) <input type="text" name="bankDetails" required /></label>
                         <button type="submit" class="btn full">Submit for Approval</button>
@@ -141,7 +143,7 @@
         <div class="modal-content" role="dialog" aria-modal="true">
             <button class="close" id="modal-close" aria-label="Close">✕</button>
             <div class="modal-body" id="modal-body">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -153,7 +155,8 @@
                 <label>Email <input type="email" required /></label>
                 <label>Password <input type="password" required /></label>
                 <button type="submit" class="btn full">Sign In</button>
-                <p class="form-switch">Don't have an account? <button type="button" class="btn-link" id="switch-to-signup">Sign Up</button></p>
+                <p class="form-switch">Don't have an account? <button type="button" class="btn-link"
+                        id="switch-to-signup">Sign Up</button></p>
             </form>
         </div>
     </div>
@@ -167,13 +170,14 @@
                 <label>Email <input type="email" required /></label>
                 <label>Password <input type="password" required /></label>
                 <button type="submit" class="btn full">Sign Up</button>
-                <p class="form-switch">Already have an account? <button type="button" class="btn-link" id="switch-to-signin">Sign In</button></p>
+                <p class="form-switch">Already have an account? <button type="button" class="btn-link"
+                        id="switch-to-signin">Sign In</button></p>
             </form>
         </div>
     </div>
 
     <aside class="cart-drawer" id="wishlist-drawer" aria-hidden="true">
-        </aside>
+    </aside>
 
     <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
         <div class="cart-header">
@@ -181,11 +185,11 @@
             <button id="close-cart" aria-label="Close cart">✕</button>
         </div>
         <div class="cart-body" id="cart-body">
-            </div>
+        </div>
         <div class="cart-footer">
             <div class="totals">
                 <div>Subtotal</div>
-                <div id="cart-subtotal">$0.00</div>
+                <div id="cart-subtotal">₹0.00</div>
             </div>
             <button id="checkout-btn" class="btn full">Checkout</button>
         </div>
