@@ -1,13 +1,13 @@
 //! Simple demo product data
 const BASE_PRODUCTS = [
-    { id: 'p1', title: 'MP Gond Art', price: 79, img: 'images/gondart.jpg', category: 'paintings' },
-    { id: 'p2', title: 'Ruby Stone Necklace', price: 399, img: 'images/necklace.jpg', category: 'jewelry' },
+    { id: 'p1', title: 'MP Gond Art', price: 129, img: 'images/gondart.jpg', category: 'paintings' },
+    { id: 'p2', title: 'Ruby Stone Necklace', price: 1499, img: 'images/necklace.jpg', category: 'jewelry' },
     { id: 'p3', title: 'Rajasthan Blue Pottery', price: 199, img: 'images/blockprint.jpg', category: 'pottery' },
-    { id: 'p4', title: 'Musical Instruments', price: 399, img: 'images/folkmusic.jpg', category: 'music' },
-    { id: 'p5', title: 'Kerala Coir', price: 49, img: 'images/coir.jpg', category: 'craft' },
-    { id: 'p6', title: 'Rangoli Style Pottery', price: 85, img: 'images/pottery1.jpg', category: 'pottery' },
-    { id: 'p7', title: 'Metal Elephant', price: 249, img: 'images/elephant.jpg', category: 'art' },
-    { id: 'p8', title: 'UP Chikankari', price: 129, img: 'images/chikankari.jpg', category: 'weaving' },
+    { id: 'p4', title: 'Musical Instruments', price: 799, img: 'images/folkmusic.jpg', category: 'music' },
+    { id: 'p5', title: 'Kerala Coir', price: 79, img: 'images/coir.jpg', category: 'craft' },
+    { id: 'p6', title: 'Rangoli Style Pottery', price: 149, img: 'images/pottery1.jpg', category: 'pottery' },
+    { id: 'p7', title: 'Metal Elephant', price: 649, img: 'images/elephant.jpg', category: 'art' },
+    { id: 'p8', title: 'UP Chikankari', price: 999, img: 'images/chikankari.jpg', category: 'weaving' },
 ];
 
 // ** YAHAN BADLAV KIYA GAYA HAI **
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="wishlist-btn" data-id="${p.id}" aria-label="Add to wishlist">♡</button>
                 <img src="${p.img}" alt="${p.title}">
                 <div class="title">${p.title}</div>
-                <div class="price">$${p.price.toFixed(2)}</div>
+                <div class="price">₹${p.price.toFixed(2)}</div>
                 <div class="meta">
                     <button class="add" data-id="${p.id}">Add</button>
                     <button class="btn-view" data-id="${p.id}">View</button>
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartBody.innerHTML = '';
         if (items.length === 0) {
             cartBody.innerHTML = '<p>Your cart is empty.</p>';
-            cartSubtotal.textContent = '$0.00';
+            cartSubtotal.textContent = '₹0.00';
             return;
         }
         let total = 0;
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="${it.img}" alt="${it.title}">
                 <div style="flex:1">
                     <div style="font-weight:600">${it.title}</div>
-                    <div style="color:#888;margin-top:6px">$${it.price.toFixed(2)}</div>
+                    <div style="color:#888;margin-top:6px">₹${it.price.toFixed(2)}</div>
                     <div style="margin-top:8px" class="qty">
                         <button class="qty-dec" data-id="${it.id}">−</button>
                         <span style="min-width:26px;text-align:center">${it.qty}</span>
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>`;
             cartBody.appendChild(el);
         });
-        cartSubtotal.textContent = `$${total.toFixed(2)}`;
+        cartSubtotal.textContent = `₹${total.toFixed(2)}`;
     }
 
     function openCart() { cartDrawer.setAttribute('aria-hidden', 'false'); }
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${it.img}" alt="${it.title}">
                     <div style="flex:1">
                         <div style="font-weight:600">${it.title}</div>
-                        <div style="color:#888;margin-top:6px">$${it.price.toFixed(2)}</div>
+                        <div style="color:#888;margin-top:6px">₹${it.price.toFixed(2)}</div>
                         <div style="margin-top:8px">
                             <button class="add" data-id="${it.id}">Move to Cart</button>
                             <button class="remove-wishlist" data-id="${it.id}" style="margin-left:12px;color:#c33;background:none;border:0;cursor:pointer">Remove</button>
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="info">
                 <h2 style="margin-top:0">${p.title}</h2>
                 <p style="color:#666">Description of ${p.title}. This is sample copy for the demo product showing features and materials.</p>
-                <div style="font-weight:700;margin-top:8px">$${p.price.toFixed(2)}</div>
+                <div style="font-weight:700;margin-top:8px">₹${p.price.toFixed(2)}</div>
                 <div style="margin-top:12px">
                     <button class="btn" id="modal-add" data-id="${p.id}">Add to cart</button>
                 </div>
