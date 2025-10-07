@@ -1,10 +1,23 @@
+function openLocationPopup(embedCode) {
+    const newWindow = window.open("", "_blank", "width=800,height=600,scrollbars=no");
+    if (newWindow) {
+        const htmlContent = `
+            <!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Location</title><style>body{margin:0;overflow:hidden;font-family:sans-serif}iframe{width:100%;height:100vh;border:none}.back-button{position:fixed;top:70px;left:15px;z-index:1000;background:rgba(0,0,0,.65);color:#fff;padding:10px 16px;border:none;border-radius:50px;cursor:pointer;font-size:16px;font-weight:500;box-shadow:0 3px 8px rgba(0,0,0,.2);transition:background-color .2s}.back-button:hover{background:rgba(0,0,0,.8)}</style></head><body><button class="back-button" onclick="window.close()">← Back</button>${embedCode}</body></html>
+        `;
+        newWindow.document.write(htmlContent);
+        newWindow.document.close();
+    } else {
+        alert("Pop-up was blocked. Please allow pop-ups for this site.");
+    }
+}
 // Famous Places of Indore (sample data)
 const placesData = [
     {
         name: "Mahakaleshwar Jyotirlinga",
         img: "images/mahakaleshwar.jpg",
         history: "One of the twelve Jyotirlingas, Mahakaleshwar is a sacred temple dedicated to Lord Shiva.",
-        facts: "The temple is famous for its unique Bhasma Aarti, performed with sacred ash."
+        facts: "The temple is famous for its unique Bhasma Aarti, performed with sacred ash.",
+        map_embed_code:`<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2631.352268651323!2d75.76562247351377!3d23.182746360335287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963743638ffffff%3A0x3024e4d1bd13cc22!2z4KS24KWN4KSw4KWAIOCkruCkueCkvuCkleCkvuCksuClh-CktuCljeCkteCksCDgpJzgpY3gpK_gpYvgpKTgpL_gpLDgpY3gpLLgpL_gpILgpJcg4KSu4KSC4KSm4KS_4KSw!5e1!3m2!1shi!2sin!4v1759050989169!5m2!1shi!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
     },
     {
         name: "Harshiddhi Mata Mandir",
@@ -105,17 +118,36 @@ function showModal(title, content) {
 
 // Inject cards into DOM
 const container = document.getElementById("places");
-placesData.forEach(place => {
-    const card = document.createElement("div");
-    card.classList.add("place-card");
+if (container) {
+    placesData.forEach(place => {
+        const card = document.createElement("div");
+        card.classList.add("place-card");
 
-    card.innerHTML = `
-    <img src="${place.img}" alt="${place.name}">
-    <h2>${place.name}</h2>
-    <p><strong>History:</strong> ${place.history}</p>
-    <p><strong>Fact:</strong> ${place.facts}</p>
-    <a href="https://en.wikipedia.org/wiki/${place.name.replace(/ /g, "_")}" class="btn-view" target="_blank" rel="noopener noreferrer">View Details</a>
-`;
+        card.innerHTML = `
+            <img src="${place.img}" alt="${place.name}">
+            <h2>${place.name}</h2>
+            <p><strong>History:</strong> ${place.history}</p>
+            <p><strong>Fact:</strong> ${place.facts}</p>
+            <div class="card-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="https://en.wikipedia.org/wiki/${place.name.replace(/ /g, "_")}" class="btn-view" target="_blank" rel="noopener noreferrer">View Details</a>
+                 ${place.map_embed_code ?
+                    `<button class="btn-location"
+                             style="background-color: #6b7280; color: white; padding: 8px 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px;">
+                             View Location
+                    </button>`
+                    : ''}
+            </div>
+        `;
 
-    container.appendChild(card);
-});
+        if (place.map_embed_code) {
+            const locationButton = card.querySelector(".btn-location");
+            if (locationButton) {
+                locationButton.addEventListener('click', () => {
+                    openLocationPopup(place.map_embed_code);
+                });
+            }
+        }
+
+        container.appendChild(card);
+    });
+}

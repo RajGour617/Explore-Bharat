@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>360° View - Explore Bharat</title>
+    <style>
+        /* Viewer ko full screen karne ke liye zaroori CSS */
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background: #000;
+        }
+        #viewerContainer { 
+            width: 100%; 
+            height: 100vh;
+        }
+        /* Iframe (Google Street View) ko poore container par failane ke liye */
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+        /* Simple Back Button (upar left mein) */
+        .back-button {
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6); 
+            color: white; 
+            padding: 10px 15px;
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewerContainer"></div>
+    <button class="back-button" onclick="history.back()">← Back</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // localStorage se embed code nikalna
+            const embedCode = localStorage.getItem('currentVREmbed');
+            const container = document.getElementById('viewerContainer');
+
+            if (embedCode) {
+                // Embed code ko container mein daalna
+                container.innerHTML = embedCode;
+                // Code use hone ke baad localStorage se hatana
+                localStorage.removeItem('currentVREmbed'); 
+            } else {
+                container.innerHTML = '<h1 style="color:white; text-align:center; padding-top: 50vh;">360° View data not found.</h1>';
+            }
+        });
+    </script>
+</body>
+</html>

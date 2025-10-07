@@ -20,7 +20,8 @@
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  /* CHANGED: Set background explicitly to peach color */
+  background: #ffeaac; 
   color: var(--text);
   line-height: 1.6;
   padding: 0;
@@ -60,7 +61,16 @@ input[type="text"] {
   color: var(--text);
   outline: none;
   transition: border 0.2s, box-shadow 0.2s;
+  width: 100%; /* Full width on mobile */
 }
+
+@media (min-width: 600px) {
+  select,
+  input[type="text"] {
+    width: auto; /* Auto width on larger screens */
+  }
+}
+
 select:focus,
 input[type="text"]:focus {
   border-color: var(--primary);
@@ -111,9 +121,10 @@ button:hover,
 
 /* ---------- CARDS ---------- */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+    display: grid;
+    gap: 1.5rem; 
+   
+     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .card {
@@ -145,18 +156,38 @@ button:hover,
 }
 
 /* ---------- BANNER ---------- */
+/* ---------- BANNER (FIXED) ---------- */
 #stateBanner {
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 1rem;
+  padding: 1.5rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column; /* Mobile par upar-neeche stack karega */
+  gap: 1.5rem;
 }
+
+/* 600px se badi screen par side-by-side dikhayega */
+@media (min-width: 600px) {
+  #stateBanner {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
 #stateBanner img {
-  max-width: 220px;
+  width: 100%; /* Mobile par poori chaudai lega */
+  max-width: 220px; /* Badi screen par max width 220px hogi */
   object-fit: cover;
   border-radius: var(--radius);
+  margin: 0 auto; /* Mobile par image ko center karega */
 }
+
+#stateBanner > div {
+   flex: 1; /* Bachi hui jagah le lega */
+}
+
 
 /* ---------- PLACEHOLDER ---------- */
 .placeholder {
@@ -166,6 +197,7 @@ button:hover,
   text-align: center;
   color: var(--muted);
 }
+
 
 /* ---------- MODAL ---------- */
 #modal {
@@ -210,7 +242,87 @@ button:hover,
     flex-direction: column;
     gap: 0.5rem;
   }
-  #stateBanner div {
-    flex-direction: column;
-  }
 }
+
+
+.vr-card {
+    
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+#vrToursGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+/* VR View Button Styling */
+.vr-button {
+  display: block;
+  width: 90%;
+  margin: 0.8rem auto 0;
+  padding: 0.5rem;
+  background-color: var(--primary, #2563eb); 
+  color: white;
+  border: none;
+  border-radius: var(--radius, 12px);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vr-button:hover {
+  background-color: var(--primary-hover, #1d4ed8);
+  transform: translateY(-1px);
+}
+.btn-primary, .btn-secondary {
+    
+    flex-shrink: 0; 
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background: #4f46e5; /* Primary color */
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary {
+    background: #6b7280; /* Secondary (Gray) color for 'View Location' */
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #4b5563; /* Darker gray on hover */
+}
+
+.card .view-map-button {
+    background-color: #6b7280; /* Grayish-blue color */
+    color: white;
+    padding: 0.5rem 1.2rem;     /* Explore button jaisi padding */
+    border-radius: 8px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.card .view-map-button:hover {
+    background-color: #4b5563; /* Hover par dark color */
+}
+
+/* Your existing media query for grids - This is correct */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- CHANGE 2: Added NEW media query for the state details card --- */

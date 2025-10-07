@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Assistant</title>
+    <title>Explore Bharat AI Assistant</title>
     <link rel="stylesheet" href="styles.css" />
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -16,22 +16,31 @@
             <img src="images/ai.jpg" alt="AI Avatar" class="avatar">
             <div class="chat-header-info">
                 <h2>Explore Bharat AI</h2>
-                <span style="font-size: 13px; color: #ffffffcc;">Online</span>
+                <span>Online</span>
             </div>
-            <button id="theme-switcher" class="btn-small">🌙</button>
         </header>
 
-        <div id="chat" class="chat-window initial-state">
-            <!-- Messages will appear here -->
+        <div id="chat" class="chat-window">
+            <div class="message bot">
+                <div class="bubble-container">
+                    <div class="bubble">
+                        Hello! How can I help you explore the culture of Bharat today? Ask me about states, festivals, or famous places!
+                    </div>
+                </div>
+            </div>
         </div>
-        <form id="chat-form" class="chat-form" onsubmit="return false;">
-            <input id="search" autocomplete="on" placeholder="Ask me about Indian culture..." />
-            <button id="sendBtn">&uarr;</button>
+
+        <form id="chat-form" class="chat-form">
+            <input id="message-input" type="text" autocomplete="off" placeholder="Ask me about Indian culture..." />
+            <button id="send-btn" type="submit" aria-label="Send Message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+                </svg>
+            </button>
         </form>
     </div>
 
     <script src="script.js"></script>
-    <script src="../theme-switcher.js"></script>
 </body>
 
 </html>

@@ -124,21 +124,3 @@ header h1 {
 header p {
     font-size: 1rem;
 }
-
-/* Dark Mode Styles */
-.dark-mode body {
-    background: #121212;
-    color: #ffffff;
-}
-
-.dark-mode h1 {
-    color: #ffffff;
-}
-
-.dark-mode p {
-    color: #dddddd;
-}
-
-.dark-mode .place-card {
-    background: rgba(0, 0, 0, 0.5);
-}

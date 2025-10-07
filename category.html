@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="app.css">
+  <script src="common.js" defer></script> 
 
 </head>
 <body>
@@ -24,8 +25,12 @@
       <div class="search-lang">
         <input id="globalSearch" type="search" placeholder="🔎 Search categories, festivals, food...">
         <button id="langToggle" class="btn-small">EN/हिं</button>
-        <button id="theme-switcher" class="btn-small">🌙</button>
       </div>
+      <div class.="points-hub">
+    <button id="pointsBell" class="points-bell-button" aria-label="Show Points">
+        🔔 <span id="user-score">0</span>
+    </button>
+</div>
     </div>
   </header>
 
@@ -35,19 +40,15 @@
       <p>Pick a theme to discover cultural items across India</p>
 
       <div class="filter-row">
-        <div class="filter-group">
-          <label for="stateFilter">Filter by State</label>
-          <select id="stateFilter">
-            <option value="">All States</option>
-          </select>
-        </div>
+        <label for="stateFilter">Filter by State</label>
+        <select id="stateFilter">
+          <option value="">All States</option>
+        </select>
 
-        <div class="filter-group">
-          <label for="categoryFilter">Category</label>
-          <select id="categoryFilter">
-            <option value="">All Categories</option>
-          </select>
-        </div>
+        <label for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+        </select>
       </div>
     </section>
 
@@ -65,9 +66,7 @@
     </div>
   </div>
 
-<!-- <script src="data/translations.js"></script> -->
 <script src="script.js" defer></script>
-<script src="theme-switcher.js"></script>
 
 </body>
 </html>

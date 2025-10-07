@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Explore Bharat</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-view">
+            <div class="login-box">
+                <h2>Admin Login</h2>
+                <form id="admin-login-form">
+                    <label>Password <input type="password" id="admin-password" required /></label>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="dashboard-view" style="display: none;">
+            <header class="admin-header">
+                <h1>Product Approval Dashboard</h1>
+                <button id="logout-btn" class="btn btn-danger">Logout</button>
+            </header>
+            <main>
+                <p>Neeche diye gaye products approval ke liye pending hain.</p>
+                <div class="table-container">
+                    <table id="pending-products-table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Image</th>
+                                <th>Seller's Bank Details</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

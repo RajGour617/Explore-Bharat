@@ -1,0 +1,179 @@
+{
+  "states": [
+    {
+      "id": "Madhya Pradesh",
+      "short": "MP",
+      "banner": "images/MP/mpbanner.jpg",
+      "intro": "Madhya Pradesh — the heart of India; home to ancient caves, wildlife and tribal arts.",
+      "intro_hi": "मध्य प्रदेश — अपने मंदिरों और राष्ट्रीय उद्यानों के लिए जाना जाता है।",
+      "cities": [
+        { 
+          "name": "Indore", 
+          "img": "images/MP/rajwada.jpg", 
+          "desc": "Cleanest City of India", 
+          "link": "Indore/index.html",
+          "map_embed_code": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84489.30308035825!2d75.86384989999999!3d22.723972749999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2z4KSH4KSo4KWN4KSm4KWM4KSwLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2!5e1!3m2!1shi!2sin!4v1759030982583!5m2!1shi!2sin' width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>",
+          "attractions": [
+            { 
+              "name": "Rajwada Palace", 
+              "desc": "Historic palace in the city center.", 
+              "vr_embed_code": "<iframe src=\"<Rajwada ka 360 URL>\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+            },
+            { 
+              "name": "Lal Bagh Palace", 
+              "desc": "Grand 19th-century palace on the banks of Khan River.",
+              "img":"Indore/images/lalbagh.jpg",
+              "vr_embed_code": "<iframe src=\"https://www.google.com/maps/embed?pb=!4v1758963204239!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0VrYURaeWdF!2m2!1d22.7007388764764!2d75.84715274126395!3f194.79083215190397!4f0.21574413372469792!5f0.4000000000000002\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+            }
+          ]
+        },
+        { "name": "Ujjain", "img": "images/MP/ujjain.jpg", "desc": "Famous for Mahakaleshwar Temple", "link": "Ujjain/index.html",
+            "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42102.6848067941!2d75.76803801591797!3d23.179414140698622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39637469de00ff23%3A0x7f82abdf7899d412!2z4KSJ4KSc4KWN4KSc4KWI4KSoLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2!5e1!3m2!1shi!2sin!4v1759043984121!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Khajuraho", "img": "images/MP/khajuraho.jpg", "desc": "Famous for its UNESCO-listed temples", "link": "Khajuraho/index.html",
+           "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41566.12177673196!2d79.89603285332035!3d24.82949702115522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3982e5f63138c3c5%3A0xaa20ea639a4572c!2z4KSW4KSc4KWB4KSw4KS-4KS54KWLLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2IDQ3MTYwNg!5e1!3m2!1shi!2sin!4v1759044458369!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Sanchi", "img": "images/MP/sanchi.jpg", "desc": "Buddhist stupas and ancient heritage", "link": "Sanchi/index.html",
+          "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10501.614136309328!2d77.7321129573186!3d23.483372251878958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c0feedf9fa67d%3A0xfc8b5872bb70993b!2z4KS44KS-4KSB4KSa4KWALCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2IDQ2NDY2MQ!5e1!3m2!1shi!2sin!4v1759044701547!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Sehore", "img": "images/MP/sehore.jpg", "desc": "Famous for Sharbati Wheat", "link": "Sehore/index.html",
+          "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22587.004203471697!2d77.06285182386962!3d23.20915081901627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397cf36a4bac0fb9%3A0xce6c687b989469e1!2z4KS44KWA4KS54KWL4KSwLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2IDQ2NjAwMQ!5e1!3m2!1shi!2sin!4v1759044841276!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Katni", "img": "images/MP/katni.jpg", "desc": "City of Marbles", "link": "Katni/index.html",
+          "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41897.31165139901!2d80.35867563125895!3d23.823699546588326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398161daa3c6993f%3A0x1ebdf64481dcf437!2z4KSV4KSf4KSo4KWALCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2!5e1!3m2!1shi!2sin!4v1759045783729!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Mandsaur", "img": "images/MP/mandsaur.jpg", "desc": "Famous for its poppy seed cultivation", "link": "Mandsaur/index.html",
+          "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23555.066202326354!2d75.04323758533151!3d24.072922197897093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39642ea9db15e09f%3A0x89a3e5ea4399695b!2z4KSu4KSC4KSm4KS44KWM4KSwLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2!5e1!3m2!1shi!2sin!4v1759045900566!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { "name": "Neemuch", "img": "images/MP/neemuch.jpg", "alt": "Neemuch", "desc": "North India Mounted Artillary and Cavalry Headquarters", "link": "Neemuch/index.html",
+          "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41686.66152408943!2d74.83092638806384!3d24.467922140981948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39667381d35aea05%3A0x42c8caa932bb6fa1!2z4KSo4KWA4KSu4KSaLCDgpK7gpKfgpY3gpK8g4KSq4KWN4KSw4KSm4KWH4KS2IDQ1ODQ0MQ!5e1!3m2!1shi!2sin!4v1759046024460!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      }
+      ],
+      "festivals": [
+        {"name": "Teej", "img": "images/MP/teej.jpg", "desc": "Monsoon festival celebrated with songs and swings." },
+        { "name": "Holi", "img": "images/MP/holi1.jpg", "desc": "Vibrant festival of colours" },
+        { "name": "Khajuraho Dance Festival", "img": "images/MP/khajurahoDance.jpg", "desc": "Classical dance under the temple lights." }
+      ],
+      "food": [
+        { "name": "Dal Bafla", "img": "images/MP/dalbafla.jpg", "desc": "A dish of baked wheat balls with dal." },
+        { "name": "Poha", "img": "images/MP/poha.jpg", "desc": "Flattened rice snack, popular breakfast." },
+        { "name": "Sabudana Khichdi", "img": "images/MP/khichdi.jpg", "desc": "A popular dish during fasting periods. Tapioca pearls cooked with peanuts and spices." }
+      ],
+      "danceMusic": [
+        { "name": "Gond Dance", "img": "images/MP/gondDance.jpg", "desc": "Tribal dance of Gond community." },
+        { "name": "Rai", "img": "images/MP/rai.jpg", "desc": "Traditional dance form of the region." },
+        { "name": "Matki Dance", "img": "images/MP/matki.jpg", "desc": "Traditional dance with pots on head." }
+      ],
+      "crafts": [
+        { "name": "Pithora Paintings", "img": "images/MP/pithora.jpg", "desc": "Ritual paintings by tribal artists.",
+            "artisans": [
+      {
+        "name": "Smt. Ganga Bai",
+        "story": "Ganga Bai ji pichle 25 saal se Pithora paintings bana rahi hain. Unki kala unke parivaar ki virasat hai aur woh isse zinda rakhna chahti hain.",
+        "product_link": "Marketplace/index.html" 
+      }
+    ]
+      },
+        { "name": "Bhitti Chitra", "img": "images/MP/bhitti.jpg", "desc": "Traditional handicrafts of Madhya Pradesh.",
+           "artisans": [
+      {
+        "name": "Smt. Ganga Bai",
+        "story": "Ganga Bai ji pichle 25 saal se Pithora paintings bana rahi hain. Unki kala unke parivaar ki virasat hai aur woh isse zinda rakhna chahti hain.",
+        "product_link": "Marketplace/index.html" 
+      }
+    ]
+      }
+      ],
+      "categories": ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
+    },
+    {
+      "id": "Uttar Pradesh",
+      "short": "UP",
+      "banner": "images/UP/upbanner.jpg",
+      "intro": "Uttar Pradesh — land of Mughal monuments, classical music and colourful fairs.",
+      "intro_hi": "उत्तर प्रदेश — मुगल स्मारकों, शास्त्रीय संगीत और रंगीन मेलों की भूमि।",
+      "cities": [
+        { "name": "Lucknow", "img": "images/UP/lucknow.jpg", "desc": "Capital city known for its heritage.",
+           "map_embed_code":"<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114141.78161091554!2d80.83200515282303!3d26.856408180956848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2z4KSy4KSW4KSo4KSKLCDgpIngpKTgpY3gpKTgpLAg4KSq4KWN4KSw4KSm4KWH4KS2!5e1!3m2!1shi!2sin!4v1759046135567!5m2!1shi!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+      },
+        { 
+          "name": "Agra",
+          "img": "images/UP/tajmahal.jpg",
+          "desc": "Taj Mahal and Mughal history.",
+          "link": "Agra/index.html",
+          "attractions": [{
+          "vr_embed_code": "<iframe src=\"https://www.google.com/maps/embed?pb=!4v1758960834211!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ2swT185LWdF!2m2!1d27.17323980938655!2d78.04214660138477!3f352.45119996156996!4f0.3755578837235021!5f0.7820865974627469\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+         } 
+        ]
+        },
+        { "name": "Varanasi", "img": "images/UP/varanasi.jpg", "desc": "One of the world’s oldest living cities." }
+      ],
+      "festivals": [
+        { "name": "Diwali", "img": "images/UP/diwali.jpg", "desc": "Festival of lights celebrated with great fervor." },
+        { "name": "Kumbh Mela", "img": "images/UP/kumbh.jpg", "desc": "Major religious congregation at the Sangam." },
+        { "name": "Holi", "img": "images/MP/holi1.jpg", "desc": "Vibrant festival of colours." }
+      ],
+      "food": [
+        { "name": "Awadhi Biryani", "img": "images/UP/awadhiBiryani.jpg", "desc": "Royal flavours of Lucknow." },
+        { "name": "Bedai", "img": "images/UP/bedai.jpg", "desc": "Popular breakfast from Lucknow." }
+      ],
+      "danceMusic": [
+        { "name": "Thumri & Dadra", "img": "images/UP/thumri.jpg", "desc": "Classical vocal forms from Awadh." }
+      ],
+      "crafts": [
+        { "name": "Zardozi Embroidery", "img": "images/UP/zardozi.jpg", "desc": "Luxurious metal-thread embroidery." }
+      ],
+      "categories": ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
+    },
+    {
+      "id": "Kerala",
+      "short": "KL",
+      "banner": "images/Kerala/keralaBanner.jpg",
+      "intro": "Kerala — backwaters, Ayurveda, and a rich performing-art tradition.",
+      "intro_hi": "केरल — अपने बैकवाटर्स, आयुर्वेद और समृद्ध प्रदर्शन कला परंपरा के लिए जाना जाता है।",
+      "cities": [
+        { "name": "Kochi", "img": "images/Kerala/kochi.jpg", "desc": "Historic port city with colonial past." },
+        { "name": "Thiruvananthapuram", "img": "images/Kerala/thiru.jpg", "desc": "State capital and cultural hub." }
+      ],
+      "festivals": [
+        { "name": "Onam", "img": "images/Kerala/onam.jpg", "desc": "Harvest festival celebrated statewide." }
+      ],
+      "food": [
+        { "name": "Kerala Sadya", "img": "images/Kerala/sadya.jpg", "desc": "Banquet served on banana leaf." },
+        { "name": "Appam & Stew", "img": "images/Kerala/appam.jpg", "desc": "Light fermented pancakes with stew." }
+      ],
+      "danceMusic": [
+        { "name": "Kathakali", "img": "images/Kerala/kathakali.jpg", "desc": "Classical dance-drama with elaborate makeup." }
+      ],
+      "crafts": [
+        { "name": "Coir Products", "img": "images/Kerala/coir.jpg", "desc": "Coir-based handicrafts and ropes." }
+      ],
+      "categories": ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
+    },
+    {
+      "id": "Rajasthan",
+      "short": "RJ",
+      "banner": "images/Rajasthan/rajbanner.jpg",
+      "intro": "Rajasthan — deserts, forts, folk music and vibrant textile crafts.",
+      "intro_hi": "राजस्थान — अपने रेगिस्तान, किलों, लोक संगीत और जीवंत वस्त्र शिल्प के लिए जाना जाता है।",
+      "cities": [
+        { "name": "Jaipur", "img": "images/Rajasthan/jaipur.jpg", "desc": "Pink city with palaces & bazaars." },
+        { "name": "Jaisalmer", "img": "images/Rajasthan/jaisalmer.jpg", "desc": "Golden city in the Thar desert." }
+      ],
+      "festivals": [
+        { "name": "Pushkar Camel Fair", "img": "images/Rajasthan/pushkar.avif", "desc": "Camel trading fair + cultural events." },
+        { "name": "Desert Festival", "img": "images/Rajasthan/desertfest.jpg", "desc": "Folk performances and camel races." }
+      ],
+      "food": [
+        { "name": "Dal Baati Churma", "img": "images/Rajasthan/dalbaati.jpg", "desc": "Signature Rajasthani meal." }
+      ],
+      "danceMusic": [
+        { "name": "Ghoomar", "img": "images/Rajasthan/ghoomar.jpg", "desc": "Traditional circular women's dance." }
+      ],
+      "crafts": [
+        { "name": "Block Printing & Blue Pottery", "img": "images/Rajasthan/blockprint.jpg", "desc": "Iconic handicrafts." }
+      ],
+      "categories": ["Festivals", "Food", "Dance & Music", "Arts & Crafts"]
+    }
+  ]
+}

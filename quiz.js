@@ -1,142 +1,117 @@
-const startButton = document.getElementById('start-btn');
-const questionContainer = document.getElementById('question-container');
-const resultContainer = document.getElementById('result-container');
-const questionText = document.getElementById('question-text');
-const optionsContainer = document.getElementById('options-container');
-const scoreElement = document.getElementById('score');
-const restartButton = document.getElementById('restart-btn');
+// quiz.js (REPLACE ALL EXISTING CODE WITH THIS)
+document.addEventListener('DOMContentLoaded', () => {
+    const quizHeader = document.getElementById('quiz-header');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const nextBtn = document.getElementById('next-btn');
+    const feedbackArea = document.getElementById('feedback-area');
 
-let questions = [];
-let badges = [];
-let currentQuestionIndex = 0;
-let score = 0;
+    const QUIZ_QUESTIONS = {
+        "Madhya Pradesh": [
+            { question: "Which city in MP is known as the 'City of Lakes'?", options: ["Indore", "Gwalior", "Bhopal", "Jabalpur"], answer: "Bhopal" },
+            { question: "The famous Mahakaleshwar Jyotirlinga is located in which city?", options: ["Indore", "Ujjain", "Bhopal", "Omkareshwar"], answer: "Ujjain" },
+            { question: "Which national park in MP is famous for its tigers?", options: ["Panna", "Satpura", "Kanha", "Bandhavgarh"], answer: "Bandhavgarh" },
+            { question: "The Khajuraho temples are famous for their:", options: ["Rock-cut caves", "Intricate carvings", "Tall spires", "Golden domes"], answer: "Intricate carvings" },
+            { question: "What is the traditional folk dance of the Malwa region of MP?", options: ["Ghoomar", "Bhangra", "Matki Dance", "Garba"], answer: "Matki Dance" },
+            { question: "Which river is known as the lifeline of Madhya Pradesh?", options: ["Ganges", "Yamuna", "Narmada", "Tapti"], answer: "Narmada" },
+            { question: "Sanchi Stupa, a UNESCO World Heritage site, is associated with which religion?", options: ["Hinduism", "Jainism", "Buddhism", "Sikhism"], answer: "Buddhism" },
+            { question: "What is the famous street food of Indore?", options: ["Vada Pav", "Poha-Jalebi", "Dosa", "Chole Bhature"], answer: "Poha-Jalebi" }
+        ],
+        // Aap yahan aur states ke questions add kar sakte hain
+        "Default": [
+             { question: "Which monument is a symbol of love in India?", options: ["Qutub Minar", "Hawa Mahal", "Taj Mahal", "India Gate"], answer: "Taj Mahal" },
+             { question: "Which is the festival of colors?", options: ["Diwali", "Holi", "Onam", "Eid"], answer: "Holi" },
+             { question: "Ghoomar is a traditional folk dance of which state?", options: ["Gujarat", "Punjab", "Rajasthan", "Assam"], answer: "Rajasthan" },
+             { question: "Kathakali is a classical dance form from which state?", options: ["Tamil Nadu", "Kerala", "Andhra Pradesh", "Karnataka"], answer: "Kerala" },
+             { question: "Which of these is a famous dish from Punjab?", options: ["Dal Baati", "Sarson da Saag", "Poha", "Dhokla"], answer: "Sarson da Saag" }
+        ]
+    };
 
-async function loadQuizData() {
-    try {
-        const [questionsResponse, badgesResponse] = await Promise.all([
-            fetch('data/quiz.json'),
-            fetch('data/badges.json')
-        ]);
-        const questionsData = await questionsResponse.json();
-        const badgesData = await badgesResponse.json();
-        questions = questionsData.questions;
-        badges = badgesData.badges;
-        startQuiz();
-    } catch (error) {
-        console.error('Error loading quiz data:', error);
-    }
-}
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-function startQuiz() {
-    startButton.classList.add('hidden');
-    resultContainer.classList.add('hidden');
-    questionContainer.classList.remove('hidden');
-    currentQuestionIndex = 0;
-    score = 0;
-    showQuestion();
-}
+    function startQuiz() {
+        const lastVisitedState = localStorage.getItem('lastVisitedState') || 'Default';
+        quizHeader.textContent = `Cultural Quiz: ${lastVisitedState}`;
 
-function showQuestion() {
-    const question = questions[currentQuestionIndex];
-    questionText.innerText = question.question;
-    optionsContainer.innerHTML = '';
+        let questionsForState = QUIZ_QUESTIONS[lastVisitedState] || QUIZ_QUESTIONS['Default'];
 
-    question.options.forEach(option => {
-        const button = document.createElement('button');
-        button.innerText = option;
-        button.classList.add('option');
-        button.addEventListener('click', () => selectAnswer(option));
-        optionsContainer.appendChild(button);
-    });
-}
+        // Shuffle and pick 5 questions
+        currentQuestions = questionsForState.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-function selectAnswer(selectedOption) {
-    const question = questions[currentQuestionIndex];
-    if (selectedOption === question.answer) {
-        score++;
+        currentQuestionIndex = 0;
+        score = 0;
+        nextBtn.style.display = 'none';
+        showQuestion();
     }
 
-    Array.from(optionsContainer.children).forEach(button => {
-        if (button.innerText === question.answer) {
+    function showQuestion() {
+        feedbackArea.textContent = '';
+        const currentQuestion = currentQuestions[currentQuestionIndex];
+        questionText.textContent = currentQuestion.question;
+        optionsContainer.innerHTML = '';
+
+        currentQuestion.options.forEach(option => {
+            const button = document.createElement('button');
+            button.textContent = option;
+            button.classList.add('option-btn');
+            button.addEventListener('click', () => selectAnswer(button, option, currentQuestion.answer));
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function selectAnswer(button, selectedOption, correctAnswer) {
+        // Disable all option buttons
+        document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
+
+        if (selectedOption === correctAnswer) {
             button.classList.add('correct');
-        } else if (button.innerText === selectedOption) {
-            button.classList.add('incorrect');
-        }
-        button.disabled = true;
-    });
-
-    setTimeout(() => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            showQuestion();
+            feedbackArea.textContent = "Correct Answer!";
+            score++;
         } else {
-            showResult();
+            button.classList.add('incorrect');
+            feedbackArea.textContent = `Wrong! The correct answer is ${correctAnswer}.`;
         }
-    }, 1000);
-}
+        nextBtn.style.display = 'block';
+    }
 
-function showResult() {
-    questionContainer.classList.add('hidden');
-    resultContainer.classList.remove('hidden');
-    scoreElement.innerText = `${score} / ${questions.length}`;
-    saveScoreToFirebase(score);
-    checkAndAwardBadges(score, questions.length);
+    nextBtn.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuestions.length) {
+            showQuestion();
+            nextBtn.style.display = 'none';
+        } else {
+            endQuiz();
+        }
+    });
+   function showScore() {
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+    
+    // Sunishchit karein ki yeh line bilkul aisi hai
+    localStorage.setItem('quizScore', score); 
 }
+    function endQuiz() {
+        questionText.textContent = `Quiz Finished! You scored ${score} out of ${currentQuestions.length}.`;
+        optionsContainer.innerHTML = '';
+        nextBtn.style.display = 'none';
 
-async function saveScoreToFirebase(newScore) {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        const userRef = firebase.firestore().collection('users').doc(user.uid);
-        try {
-            const doc = await userRef.get();
-            if (doc.exists) {
-                const existingScore = doc.data().quizScore || 0;
-                if (newScore > existingScore) {
-                    await userRef.update({ quizScore: newScore });
-                    console.log('Score updated successfully!');
-                }
-            } else {
-                // This case should ideally not happen if users are created at signup
-                await userRef.set({ quizScore: newScore }, { merge: true });
+        if (score >= 3) { // Example: 3 se zyada score par points milenge
+            const pointsEarned = 5;
+            feedbackArea.innerHTML = `Congratulations! You've earned <b>${pointsEarned} points</b>!`;
+            // Yeh function main script.js se aayega
+            if (window.addPoints) {
+               window.addPoints(pointsEarned, `You earned ${pointsEarned} points from the quiz!`);
             }
-        } catch (error) {
-            console.error('Error saving score:', error);
+        } else {
+            feedbackArea.textContent = "Good try! Explore more to learn about India's culture.";
         }
     }
-}
 
-startButton.addEventListener('click', loadQuizData);
-async function checkAndAwardBadges(score, totalQuestions) {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        // Award 'First Quiz' badge
-        awardBadge('first_quiz');
-
-        // Award 'Quiz Master' badge for a perfect score
-        if (score === totalQuestions) {
-            awardBadge('quiz_master');
-        }
-    }
-}
-
-async function awardBadge(badgeId) {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        const userBadgeRef = firebase.firestore().collection('user_badges').doc(`${user.uid}_${badgeId}`);
-        try {
-            const doc = await userBadgeRef.get();
-            if (!doc.exists) {
-                await userBadgeRef.set({
-                    userId: user.uid,
-                    badgeId: badgeId,
-                    awardedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                console.log(`Badge ${badgeId} awarded!`);
-            }
-        } catch (error) {
-            console.error(`Error awarding badge ${badgeId}:`, error);
-        }
-    }
-}
-
-restartButton.addEventListener('click', startQuiz);
+    startQuiz();
+    
+    
+});

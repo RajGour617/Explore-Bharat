@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Explore Bharat</title>
+    <title>Cultural Quiz - Explore Bharat</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="quiz.css">
+    <script src="common.js" defer></script> 
+    
 </head>
 <body>
-    <header class="site-header">
+    <header class="site-header small">
         <div class="brand">
             <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
-            <div class="brand-text">
-                <h3><a href="index.html" class="brand-link"><strong>Explore Bharat</strong></a></h3>
+            <div class="brand-text"><h3><a href="index.html" style="color: inherit; text-decoration: none;"><strong>Explore Bharat</strong></a></h3></div>
+        </div>
+        <div class="top-controls">
+             <div class="points-hub">
+                <button id="pointsBell" class="points-bell-button" aria-label="Show Points">
+                    🔔 <span id="user-score">0</span>
+                </button>
             </div>
         </div>
-        <nav class="top-nav">
-            <a href="index.html">Home</a>
-            <a href="state.html">States</a>
-            <a href="category.html">Categories</a>
-        </nav>
     </header>
 
-    <main class="container">
-        <h1>Culture Quiz</h1>
-        <div id="quiz-container">
-            <div id="question-container" class="hidden">
-                <h2 id="question-text"></h2>
-                <div id="options-container"></div>
+    <main class="quiz-container">
+        <div id="quiz-box">
+            <h1 id="quiz-header">Cultural Quiz</h1>
+            <div id="question-area">
+                <h2 id="question-text">Loading quiz...</h2>
+                <div id="options-container">
+                    </div>
             </div>
-            <div id="result-container" class="hidden">
-                <h2>Quiz Complete!</h2>
-                <p>Your score: <span id="score"></span></p>
-                <button id="restart-btn">Restart Quiz</button>
-            </div>
-            <button id="start-btn">Start Quiz</button>
+            <div id="feedback-area"></div>
+            <button id="next-btn" style="display: none;">Next Question</button>
         </div>
     </main>
-
+   
+    <script src="script.js"></script>
     <script src="quiz.js"></script>
 </body>
 </html>
