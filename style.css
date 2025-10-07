@@ -95,9 +95,7 @@ img {
     margin-top: 1rem; /* Add margin for spacing */
 }
 
-.top-nav {
-    display: none; /* Hidden on mobile by default */
-}
+
 
 @media (min-width: 768px) {
     .site-header {
@@ -800,5 +798,101 @@ footer {
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+}
+
+.menu-toggle {
+    display: none; /* Desktop par hide rahega */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 100; /* Sabse upar rahe */
+    line-height: 1;
+    padding: 0.5rem;
+}
+.site-header.menu-active .top-controls {
+    transform: translateX(0); /* Jab active ho toh dikhe */
+    box-shadow: var(--shadow); /* Shadow add karein */
+}
+@media screen and (max-width: 768px) {
+    /* 1. Header Layout Fix: Brand और Menu Toggle को सही जगह रखें */
+    .site-header {
+        align-items: center; 
+        justify-content: space-between; 
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    /* 2. Hamburger Icon Dikhayein */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    /* 3. Top Controls (Search Bar + Bell Icon) को एक लाइन में रखें */
+    .top-controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto; 
+        gap: 10px;
+        order: 3; /* इसे नीचे रखें, लेकिन यह Top-Nav से बाहर है */
+    }
+    
+    /* 4. NAVIGATION LINKS (TOP-NAV) को TOP-TO-BOTTOM स्लाइड के लिए सेट करें */
+    .top-nav {
+        display: flex; 
+        position: fixed;
+        top: 65px; /* Header के नीचे शुरू करें */
+        left: 0; 
+        width: 100%; /* पूरी चौड़ाई लें */
+        height: auto; /* हाइट को कंटेंट के हिसाब से रखें */
+        min-height: 0;
+        
+        /* बैकग्राउंड को सफेद/कार्ड बैकग्राउंड दें ताकि टेक्स्ट दिखे */
+        background-color: var(--white); /* White background for visibility */
+        
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg); /* स्लाइड होने पर अच्छी शैडो दें */
+        
+        /* TOP-TO-BOTTOM SLIDE के लिए translateY का उपयोग करें */
+        transition: transform 0.4s ease-out, visibility 0s 0.4s;
+        transform: translateY(-100%); /* ऊपर (Top) से छिपा रहेगा */
+        
+        z-index: 90; 
+        overflow-y: auto;
+        visibility: hidden;
+    }
+
+    /* 5. Menu Active होने पर दिखें */
+    .top-nav.active {
+        transform: translateY(0); /* नीचे स्लाइड करें */
+        visibility: visible;
+        transition: transform 0.4s ease-out;
+    }
+    
+    /* Menu links को stack करें */
+    .top-nav a {
+        display: block;
+        padding: 12px 0;
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    /* Search bar और Lang toggle को एडजस्ट करें */
+    .search-lang {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    #globalSearch {
+        flex-grow: 1;
+        min-width: 100px;
     }
 }
