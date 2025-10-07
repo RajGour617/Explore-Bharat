@@ -18,24 +18,29 @@
 }
 
 body {
-    font-family: var(--font-sans);
-    /* New Solid Background Color */
-    background-color: #e2e8f0; /* Soft Slate Color */
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+    /* BACKGROUND KA CODE YAHAN REHNE DEIN */
+    background-color: #e2e8f0; 
     color: var(--text-dark);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    
+    /* YAHAN FIX KIYA GAYA HAI: Height ko dvh se badla gaya */
+    height: 100dvh; 
+    min-height: 100vh; /* Fallback */
+    
     padding: 1rem;
     overflow: hidden;
     position: relative;
 }
 
 .chat-container {
-    width: 100%;
-    max-width: 700px; /* Increased width */
-    height: 95vh;
-    max-height: 800px; /* Increased height */
+    width: 450px;
+    max-width: 95%;
+    height: 95dvh; /* Stable height set karein */
+    height: 95vh; /* Fallback for older browsers */
+    max-height: 700px;
     background: var(--container-bg);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -212,10 +217,10 @@ header {
 }
 /* --- Mobile Layout Fixes for Keyboard --- */
 @media (max-width: 480px) {
-    /* 1. Chat Container ko puri height aur width dene ke liye */
     .chat-container {
-        /* height: 100vh; isko rehne de ya 100% karein (agar body/html 100% hai) */
-        height: 100%; /* Yeh 100% height lega, jo zyadatar browsers mein behtar kaam karta hai */
+        width: 100%;
+        height: 100dvh; /* Mobile par poori screen height dega */
+        height: 100vh; /* Fallback */
         margin: 0;
         border-radius: 0;
     }

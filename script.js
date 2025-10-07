@@ -415,14 +415,12 @@ function createCard(item, type) {
     const banner = $("#stateBanner");
     if (banner) {
         banner.innerHTML = `
-        <div style="display:flex;gap:12px;align-items:center">
           <img src="${state.banner || 'images/placeholder.jpg'}" alt="${state.id}" style="height:140px;border-radius:12px;object-fit:cover;">
           <div>
             <h1 style="color: var(--navy);">${state.id}</h1>
-            <p style="max-width:640px">${state.intro}</p>
+            <p>${state.intro}</p>
           </div>
-        </div>
-      `;
+        `;
     }
 
     const grids = [
@@ -575,6 +573,33 @@ function initLanguageToggle() {
 
     applyTranslations(currentLang); 
 }
+
+function initMenuToggle() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const topNav = document.querySelector('.top-nav'); // Sirf navigation links ko target karein
+    
+    if (menuToggle && topNav) {
+        menuToggle.addEventListener('click', () => {
+            topNav.classList.toggle('active');
+            
+            // Icon ko badalna (Hamburger <-> X)
+            if (topNav.classList.contains('active')) {
+                menuToggle.innerHTML = '✕'; 
+            } else {
+                menuToggle.innerHTML = '&#9776;'; // Hamburger icon
+            }
+        });
+        
+        // Menu item par click hone par menu band ho jaaye
+        topNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                topNav.classList.remove('active');
+                menuToggle.innerHTML = '&#9776;';
+            });
+        });
+    }
+}
+
 
   // ---------- EVENT BINDINGS ----------
   function bindEvents() {
@@ -764,7 +789,7 @@ function initLanguageToggle() {
         }
         return;
       }
-
+   
       const artisanBtn = e.target.closest(".view-artisan-button");
       if (artisanBtn) {
           const card = artisanBtn.closest(".card");
@@ -962,6 +987,7 @@ function renderHomeStatesGrid(states) {
       renderCategoryGrid();
       bindEvents();
       initLanguageToggle(); 
+      initMenuToggle(); 
     });
   }
 
