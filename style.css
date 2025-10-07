@@ -831,14 +831,19 @@ footer {
     }
     
     /* 3. Top Controls (Search Bar + Bell Icon) को एक लाइन में रखें */
-    .top-controls {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: auto; 
-        gap: 10px;
-        order: 3; /* इसे नीचे रखें, लेकिन यह Top-Nav से बाहर है */
-    }
+   .top-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    /* OLD: width: auto; */
+    /* REMOVED: width: auto; ताकि यह स्क्रीन के बाहर न जाए */
+    width: 100%; /* ADDED: 100% width set करें */
+    justify-content: space-between; /* ADDED: स्पेसिंग को मैनेज करें */
+    
+    gap: 10px;
+    order: 3;
+}
     
     /* 4. NAVIGATION LINKS (TOP-NAV) को TOP-TO-BOTTOM स्लाइड के लिए सेट करें */
     .top-nav {
@@ -884,12 +889,16 @@ footer {
     }
     
     /* Search bar और Lang toggle को एडजस्ट करें */
-    .search-lang {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
-    }
+ .search-lang {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    
+    /* ADDED: Search और Bell Icon को थोड़ा स्पेस दें */
+    flex-grow: 1; 
+    max-width: 75%; /* ADDED: Search बार को Bell Icon के लिए जगह छोड़ने दें */
+}
     
     #globalSearch {
         flex-grow: 1;
