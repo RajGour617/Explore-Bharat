@@ -1,0 +1,29 @@
+
+{
+    "badges": [
+        {
+            "id": "first_quiz",
+            "name": "First Quiz",
+            "description": "Completed your first quiz.",
+            "image": "images/badges/first_quiz.png"
+        },
+        {
+            "id": "quiz_master",
+            "name": "Quiz Master",
+            "description": "Scored 100% on a quiz.",
+            "image": "images/badges/quiz_master.png"
+        },
+        {
+            "id": "explorer",
+            "name": "Explorer",
+            "description": "Visited 5 different states.",
+            "image": "images/badges/explorer.png"
+        },
+        {
+            "id": "wanderer",
+            "name": "Wanderer",
+            "description": "Visited 10 different states.",
+            "image": "images/badges/wanderer.png"
+        }
+    ]
+}

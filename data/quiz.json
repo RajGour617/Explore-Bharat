@@ -1,0 +1,24 @@
+{
+    "questions": [
+        {
+            "question": "Which of these is a famous festival of Kerala?",
+            "options": ["Diwali", "Onam", "Holi", "Bihu"],
+            "answer": "Onam"
+        },
+        {
+            "question": "The art of Zardozi embroidery is from which state?",
+            "options": ["Rajasthan", "Uttar Pradesh", "Gujarat", "Bihar"],
+            "answer": "Uttar Pradesh"
+        },
+        {
+            "question": "Ghoomar is a traditional folk dance of which state?",
+            "options": ["Punjab", "Haryana", "Rajasthan", "Madhya Pradesh"],
+            "answer": "Rajasthan"
+        },
+        {
+            "question": "Which city is famous for its marble crafts?",
+            "options": ["Jaipur", "Agra", "Udaipur", "Khajuraho"],
+            "answer": "Agra"
+        }
+    ]
+}

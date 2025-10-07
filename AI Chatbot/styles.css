@@ -236,7 +236,8 @@ header {
         padding-bottom: calc(10px + env(safe-area-inset-bottom, 10px)); 
     }
     
-    /* 3. Chat Window mein padding add karein taaki messages input bar ke neeche na chhipein */
+   
     .chat-window {
-         padding-bottom: 100px !important;    }
+         padding-bottom: 100px !important;
+            }
 }

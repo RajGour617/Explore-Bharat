@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile - Explore Bharat</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
+      <div class="brand-text">
+        <h3><a href="index.html" class="brand-link"><strong>Explore Bharat</strong></a></h3>
+      </div>
+    </div>
+    <div class="top-controls">
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Impact</a>
+        <a href="#">References</a>
+      </nav>
+      <div class="auth-buttons">
+        <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="profile-dashboard">
+      <h2>My Profile</h2>
+      <div class="profile-info">
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+      </div>
+
+      <h3>My Saved States</h3>
+      <div id="savedStates" class="grid"></div>
+
+      <h3>My Saved Categories</h3>
+      <div id="savedCategories" class="grid"></div>
+
+      <h3>My Marketplace Items</h3>
+      <div id="savedMarketplaceItems" class="grid"></div>
+
+      <h3>My Badges</h3>
+      <div id="badges" class="grid"></div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="profile.js"></script>
+</body>
+
+</html>

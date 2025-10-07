@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Explore Bharat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <div class="logo-mark"><img src="images/logo.jpg" alt="Logo" width="40"></div>
+            <div class="brand-text">
+                <h3><a href="index.html" class="brand-link"><strong>Explore Bharat</strong></a></h3>
+            </div>
+        </div>
+        <nav class="top-nav">
+            <a href="index.html">Home</a>
+            <a href="state.html">States</a>
+            <a href="category.html">Categories</a>
+            <a href="quiz.html">Quiz</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Leaderboard</h1>
+        <div id="leaderboard-container">
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Leaderboard data will be inserted here by JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="leaderboard.js"></script>
+</body>
+</html>
